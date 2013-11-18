@@ -12,7 +12,6 @@ import android.view.WindowManager;
 
 import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
-import com.innouni.south.entity.UserInfo;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.ShareUtil;
 
@@ -47,9 +46,11 @@ public class WelcomeActivity extends BaseActivity {
 		if(install == -1){
 			shareUtil.setIntValues(ShareUtil.FIRSTINSTALL, 1);
 			install = 1;
+			System.out.println("------");
 		} else {
 			shareUtil.setIntValues(ShareUtil.FIRSTINSTALL, 0);
 			install = 0;
+			System.out.println("======");
 		}
 		
 		//开启推送信息监听的服务
@@ -78,8 +79,10 @@ public class WelcomeActivity extends BaseActivity {
 			Intent intent = new Intent();
 			if(install == -1 || install == 1) {
 				intent.setClass(WelcomeActivity.this, GuideActivity.class);
+				System.out.println("------");
 			} else {
 				intent.setClass(WelcomeActivity.this, MainActivity.class);
+				System.out.println("======");
 			}
 			startActivity(intent);
 			finish();
