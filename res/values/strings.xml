@@ -1,5 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, MainActivity!</string>
-    <string name="app_name">南方贵金属</string>
+	<string name="app_name">南方贵金属</string>
+	<!--
+	<string name="app_url">http://192.168.1.100/ssgjs_app_server</string>
+	-->
+	<string name="app_url">http://www.innouni.com/guijinshu</string>
+	<string name="exit_app">您确定要退出盛世贵金属吗?</string>
+	
+	<!-- 登录注册资源配置 -->
+   	<string name="user_pwd">用户密码</string>
+    <string name="load_tip">用户名或密码不能为空!</string>
+    <string name="load_error">用户名或密码错误,账户不存在!</string>
+    <string name="load_success">登陆成功</string>
+    <string name="load_state">登录状态</string>
+    <string name="loading">正在登录中......</string>
+    <string name="register_info_incomplete">信息填写不完整!</string>
+    <string name="pwd_not_same">两次密码输入不一致</string>
+    <string name="email_error">邮箱格式不正确</string>
+    <string name="phone_error">手机号格式不正确</string>
+    <string name="register_success">注册成功,请您登陆</string>
+    <string name="register_state">正在注册</string>
+    <string name="registering">数据提交中.....</string>
+    <string name="register_name_exception">注册失败,用户名已经存在！！</string>
+    <string name="submit">提  交</string>
+    <string name="register">注  册</string>
+    <string name="login">登  录</string>
+    <string name="login_sina">新浪登录</string>
+    <string name="login_qq">QQ登录</string>
+    <string name="get_password_back">忘记密码</string>
+    <string name="load_first">请先登录</string>
+   	<string name="find_back">找回密码</string>
+   	<string name="user_login">用户登录</string>
+   	<string name="user_reg">用户注册</string>
+   	<string name="complement_info">完善账户信息</string>
+    
+    <!-- 网络设置资源配置 -->
+    <string name="net_time_out">网络连接超时</string>
+    <string name="net_unavailable_current">当前网络不可用</string>
+    <string name="air_mode">请不要在飞行模式下使用本软件.</string>
+	<string name="net_unavailable">网络连接不可用,是否进行设置?</string>
+    <string name="net_setting">设置</string>
+    
+    <!-- 主页九宫格数据资源配置 -->
+    <string-array name="home_icon">
+    	<item>实时数据</item>
+	    <item>市场快讯</item>
+	    <item>财经数据</item>
+	    <item>资讯相关</item>
+	    <item>专家解盘</item>
+	    <item>汇率转换</item>
+	    <item>关于我们</item>
+	    <item>服务热线</item>
+	    <item>使用帮助</item>
+    </string-array>
+    <string name="real_time_data">实时数据</string>
+    <string name="market_news">市场快讯</string>
+    <string name="financial_data">财经数据</string>
+    <string name="info_related">资讯相关</string>
+    <string name="profession_opinion">专家解盘</string>
+    <string name="rechange">汇率转换</string>
+    <string name="about_us">关于我们</string>
+    <string name="server_line">服务热线</string>
+    <string name="help">使用帮助</string>
+    <string name="announcement">通知 : </string>
+    
+    <!-- 实时数据资源配置 -->
+    <string-array name="realtime_title">
+    	<item>纸金</item>
+	    <item>现货</item>
+	    <item>天通</item>
+	    <item>粤贵</item>
+	    <item>T+D</item>
+	    <item>期货</item>
+    </string-array>
+    
+    <!-- 下拉刷新控件资源配置   -->
+    <string name="pull_to_refresh_pull_label">下拉刷新</string>
+    <string name="pull_to_refresh_release_label">松开后刷新</string>
+    <string name="pull_to_refresh_refreshing_label">正在刷新,请稍等...</string>
+    <string name="pull_to_refresh_footer_release_label">松开后加载</string>
+    <string name="pull_to_refresh_footer_pull_label">上拉加载更多</string>
+    <string name="pull_to_refresh_footer_refreshing_label">加载中\u2026</string>
+    <string name="load_data_fail">内容获取失败,请重新获取</string>
+    <string name="load_more">加载更多</string>
+    <string name="no_data">暂无数据</string>
+	<string name="loading_data">加载数据中,请稍等...</string>
+	<string name="no_more_data">没有更多数据啦!</string>
+    
+    <!-- 检查更新资源配置 -->
+    <string name="ver_update_exception">检测异常,请稍后再试！</string>
+	<string name="no_new_version">您的客户端已经是最新版本</string>
+	<string name="ver_checking">正在检查请稍候...</string>
+	<string name="ver_update_tip">发现新的版本，需要升级吗?</string>
+	<string name="ver_ignore">忽略此版本</string>
+	<string name="ver_update_now">现在更新</string>
+	<string name="ver_update_next">以后再说</string>
+	<string name="ver_apk_downloading">正在下载最新版本,请稍等...</string>
+	<string name="ver_nosdcard">请检查sdCard是否安装</string>
+	<string name="ver_update">升级提示</string>
+	
+	<!-- 对话框封装资源配置 -->
+	<string name="alter_title">温馨提示</string>
+    <string name="dialog_positive">确 定</string>
+    <string name="dialog_negative">取 消</string>
+    
+    <!-- 财经指数头部资源配置 -->
+    <string name="data_name">名称</string>
+    <string name="data_new">最新</string>
+    <string name="data_up">涨跌</string>
+    <string name="data_percent">涨跌幅</string>
+    <string name="data_margin">幅度</string>
+    <string name="data_open">开盘</string>
+    <string name="data_close">昨收</string>
+    <string name="data_open_today">今开</string>
+    <string name="data_buy">买入</string>
+    <string name="data_sell">卖出</string>
+    <string name="data_high">最高</string>
+    <string name="data_low">最低</string>
+    <string name="data_count">成交量</string>
+    
+    <!-- 新闻分类头部资源配置 -->
+    <string name="fast_info">快讯</string>
+    <string name="agency_comment">机构评价</string>
+    <string name="fast_news">新闻</string>
+    <string name="profession_news">行业新闻</string>
+    <string name="market_index">市场指数</string>
+    <string name="k_chart">K线图</string>
+    
+    <!-- 专家解盘页资源配置 -->
+    <string name="online_question">在线提问</string>
+    <string name="no_data_now">暂无数据</string>
+   	<string name="online_ask">在线提问</string>
+    <string name="sub_info">订阅信息</string>
+    <string name="sub_info_confirm">订阅信息确认</string>
+    <string name="online_pay">在线支付</string>
+    <string name="choose_tip">请从下面列表中选择想要的专家进行提问。</string>
+    <string name="public_message">发表</string>
+    <string name="free">免费信息</string>
+    <string name="pay">付费信息</string>
+    <string name="basic_desc">基本介绍 :</string>
+    <string name="time_range">时间范围 :</string>
+    <string name="sub_price">订阅价钱 :</string>
+    <string name="share_app_tip">请通过以下方式将软件分享给大家。</string>
+    <string name="no_vip">对不起,您还不是VIP会员!</string>
+    <string name="send_exception">发送失败</string>
+    <string name="ensure_sub">确  认  订  阅</string>
+    <string name="money_no_left">金币余额不足,请先去账户中心充值</string>
+    
+    <!-- 支付资源配置 -->
+  	<string name="ali_pay_money">支付宝支付</string>
+    <string name="yt_pay_money">连连银通支付</string>
+    <string name="pay_money">支付</string>
+    <string name="pay_tip">您还没有输入金额</string>
+    <string name="input_pay_hint">请输入充值额度</string>
+    <string name="user_recharge">盛世贵金属会员充值</string>
+    <string name="choose_pay">选择支付方式</string>
+    <string name="lianlian">连连钱包支付</string>
+    <string name="sure_order">确认订单</string>
+    <string name="add_pay_money">会员充值</string>
+    
+    <!-- 汇率转换页资源配置 -->
+    <string name="cny">CNY人名币</string>
+    <string name="usd">USD美元</string>
+    <string name="eur">EUR欧元</string>
+    
+    <!-- 关于我们 服务热线 使用帮助页资源配置 -->
+    <string name="experience">立即体验</string>
+    <string name="share_app">分享软件</string>
+    <string name="app_info">软件信息</string>
+    <string name="feed_back">反馈信息</string>
+    <string name="sina_weibo">新浪微博</string>
+    <string name="tencnet_weibo">腾讯微博</string>
+    <string name="renn">人人网</string>
+    <string name="update_test">检测是否为最新版本</string>
+    <string name="feed_tip">欢迎您提出宝贵的建议和意见,你留下的每一个字都将用来改善我们的软件。</string>
+	
+	<!-- 账户中心资源配置 --> 
+	<string name="user_center">账户中心</string>
+	<string name="user_nick">用户昵称</string>
+	<string name="gold_left">金币余额</string>
+	<string name="freeze_gold">冻结金币</string>
+	<string name="honous_gold">红利金币</string>
+	<string name="vip_level">会员等级</string>
+	<string name="recharge_record">充值记录</string>
+	<string name="modify_pwd">修改密码</string>
+	<string name="email">邮箱地址</string>
+	<string name="new_email">新 邮 箱</string>
+	<string name="phone">电话号码</string>
+	<string name="mobile_phone">手机号码</string>
+	<string name="new_phone">新 号 码</string>
+	<string name="bind_qq">绑定QQ</string>
+	<string name="qq_account">QQ号码</string>
+	<string name="qq_pwd">QQ密码</string>
+	<string name="bind_sina">绑定新浪</string>
+	<string name="click_pay">点击充值</string>
+	<string name="btn_exit">退 出</string>
+   	<string name="original_pwd">原始密码</string>
+   	<string name="new_pwd"> 新 密 码</string>
+   	<string name="again_pwd">再输一次</string>
+   	<string name="password">密       码</string>
+   	<string name="record_time">时间</string>
+   	<string name="gold_red">金币</string>
+   	<string name="rmb">人名币</string>
+   	<string name="input_tip">请输入邮箱地址</string>
+   	<string name="next_step">下一步</string>
+   	<string name="modify_email">修改邮箱</string>
+   	<string name="modify_phone">修改电话</string>
+   	<string name="modify_success">修改成功</string>
+   	<string name="modify_fail">修改失败</string>
+   	
+   	<!-- 订阅信息资源配置 -->
+   	<string name="payed">已订阅</string>
+   	<string name="unpayed">未订阅</string>
+   	<string name="current_have">当前有</string>
+   	<string name="available_buy">种订阅信息供您订阅</string>
+   	<string name="no_pay">免费</string>
+   	<string name="sub_success">订阅成功</string>
+   	<string name="sub_fail">订阅失败</string>
+   	<string name="rmb_month">金币/月</string>
+   	<string name="you_subed">你订阅了</string>
+   	<string name="you_subed_tail">个信息,点击右上角的图标订阅更多。</string>
+   
+   	<!-- 信息反馈资源配置 -->
+   	<string name="feed_success">反馈信息提交成功</string>
+   	<string name="feed_fail">反馈信息提交失败</string>
+   	<string name="no_input">您还没有输入内容!</string>
+   	<string name="feed_back_que">问题反馈</string>
+   	<string name="data_submit">数据提交中</string>
+   	
+   	<!-- 授权分享资源配置 -->
+   	<string name="share_success">分享成功</string>
+   	<string name="share_fail">分享失败</string>
+   	<string name="oauth_success">授权成功</string>
+   	<string name="bind_success">绑定成功</string>
+   	<string name="bind_fail">绑定失败</string>
+   	<string name="binded">已绑定</string>
+   	<string name="qq_bind">QQ绑定</string>
 </resources>
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- 透明 -->
+	<color name="transparent">#00000000</color>
+	<!-- 黑色 -->
+    <color name="black">#000000</color>
+	<!-- 深灰 -->
+    <color name="dark_gray">#FF444444</color>
+	<!-- 灰色 -->
+    <color name="gray">#FF888888</color>
+	<!-- 浅灰色 -->
+    <color name="light_gray">#FFCCCCCC</color>
+    <!-- 灰白色 -->
+	<color name="dark_white">#858585</color>
+	<!-- 白色 -->
+    <color name="white">#FFFFFFFF</color>
+    <!-- 淡橘色 -->
+    <color name="light_orange">#936639</color>
+	<!-- 橘红色 -->
+	<color name="orange_red">#e41616</color>
+	<!-- 橘色 -->
+	<color name="orange">#c26019</color>
+	<!-- 暗黄色 -->
+	<color name="dark_yellow">#e99323</color>
+	<!-- 红色 -->
+	<color name="red">#FF0000</color>
+	<!-- 蓝色 -->
+	<color name="blue">#396E8C</color>
+	<!-- 淡蓝色 -->
+	<color name="light_blue">#3399FF</color>
+	<!-- 绿色 -->
+	<color name="green">#23990B</color>
+	<!-- 浅黑色 -->
+	<color name="light_black">#BDC7D8</color>
+	<!-- 棕色 -->
+	<color name="brown">#663300</color>
+	<!-- 淡黑色 -->
+	<color name="might_black">#212121</color>
+	<!-- 接近黑色 -->
+	<color name="dight_black">#222222</color>
+	<!-- 接近白色 -->
+	<color name="dight_white">#FFFFEE</color>
+	<!-- 深橘色 -->
+	<color name="dark_orange">#663300</color>
+	<!-- 马鞍棕色 -->
+	<color name="saddle_brown">#8b4513</color>
+	<!-- 暗淡的灰色 -->
+	<color name="dim_gray">#696969</color>
+	
+</resources>

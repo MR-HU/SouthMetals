@@ -8,16 +8,346 @@
 package com.innouni.south.activity;
 
 public final class R {
+    public static final class array {
+        /**  主页九宫格数据资源配置 
+         */
+        public static final int home_icon=0x7f060000;
+        /**  实时数据资源配置 
+         */
+        public static final int realtime_title=0x7f060001;
+    }
     public static final class attr {
     }
+    public static final class color {
+        /**  黑色 
+         */
+        public static final int black=0x7f040001;
+        /**  蓝色 
+         */
+        public static final int blue=0x7f04000c;
+        /**  棕色 
+         */
+        public static final int brown=0x7f040010;
+        /**  深灰 
+         */
+        public static final int dark_gray=0x7f040002;
+        /**  深橘色 
+         */
+        public static final int dark_orange=0x7f040014;
+        /**  灰白色 
+         */
+        public static final int dark_white=0x7f040005;
+        /**  暗黄色 
+         */
+        public static final int dark_yellow=0x7f04000a;
+        /**  接近黑色 
+         */
+        public static final int dight_black=0x7f040012;
+        /**  接近白色 
+         */
+        public static final int dight_white=0x7f040013;
+        /**  暗淡的灰色 
+         */
+        public static final int dim_gray=0x7f040016;
+        /**  灰色 
+         */
+        public static final int gray=0x7f040003;
+        /**  绿色 
+         */
+        public static final int green=0x7f04000e;
+        /**  浅黑色 
+         */
+        public static final int light_black=0x7f04000f;
+        /**  淡蓝色 
+         */
+        public static final int light_blue=0x7f04000d;
+        /**  浅灰色 
+         */
+        public static final int light_gray=0x7f040004;
+        /**  淡橘色 
+         */
+        public static final int light_orange=0x7f040007;
+        /**  淡黑色 
+         */
+        public static final int might_black=0x7f040011;
+        /**  橘色 
+         */
+        public static final int orange=0x7f040009;
+        /**  橘红色 
+         */
+        public static final int orange_red=0x7f040008;
+        /**  红色 
+         */
+        public static final int red=0x7f04000b;
+        /**  马鞍棕色 
+         */
+        public static final int saddle_brown=0x7f040015;
+        /**  透明 
+         */
+        public static final int transparent=0x7f040000;
+        /**  白色 
+         */
+        public static final int white=0x7f040006;
+    }
     public static final class drawable {
-        public static final int icon=0x7f020000;
+        public static final int app_background=0x7f020000;
+        public static final int bg=0x7f020001;
+        public static final int icon=0x7f020002;
+        public static final int logo72=0x7f020003;
+        public static final int message_btn_send=0x7f020004;
+        public static final int message_btn_send_hover=0x7f020005;
+        public static final int send_btn_selector=0x7f020006;
+        public static final int welcom_img=0x7f020007;
+        public static final int welcome_img1=0x7f020008;
+        public static final int welcome_img2=0x7f020009;
+        public static final int welcome_img3=0x7f02000a;
+        public static final int welcome_img4=0x7f02000b;
+        public static final int welcome_img5=0x7f02000c;
+        public static final int welcome_logo=0x7f02000d;
+        public static final int welcome_tab=0x7f02000e;
+        public static final int welcome_tab_hover=0x7f02000f;
+    }
+    public static final class id {
+        public static final int enter_app=0x7f080008;
+        public static final int guide_viewpager=0x7f080006;
+        public static final int image_welcome=0x7f080007;
+        public static final int img_dot_fifth=0x7f080005;
+        public static final int img_dot_first=0x7f080001;
+        public static final int img_dot_fouth=0x7f080004;
+        public static final int img_dot_second=0x7f080002;
+        public static final int img_dot_third=0x7f080003;
+        public static final int lay_dots=0x7f080000;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int activity_guide=0x7f030000;
+        public static final int activity_welcome=0x7f030001;
+        public static final int item_guide_viewpage=0x7f030002;
     }
     public static final class string {
-        public static final int app_name=0x7f040001;
-        public static final int hello=0x7f040000;
+        public static final int about_us=0x7f050027;
+        public static final int add_pay_money=0x7f050071;
+        public static final int again_pwd=0x7f050093;
+        public static final int agency_comment=0x7f050051;
+        public static final int air_mode=0x7f05001e;
+        /**  支付资源配置 
+         */
+        public static final int ali_pay_money=0x7f050068;
+        /**  对话框封装资源配置 
+         */
+        public static final int alter_title=0x7f050040;
+        public static final int announcement=0x7f05002a;
+        public static final int app_info=0x7f050077;
+        public static final int app_name=0x7f050000;
+        /** 
+	<string name="app_url">http://192.168.1.100/ssgjs_app_server</string>
+	
+         */
+        public static final int app_url=0x7f050001;
+        public static final int available_buy=0x7f0500a1;
+        public static final int basic_desc=0x7f050060;
+        public static final int bind_fail=0x7f0500b1;
+        public static final int bind_qq=0x7f05008b;
+        public static final int bind_sina=0x7f05008e;
+        public static final int bind_success=0x7f0500b0;
+        public static final int binded=0x7f0500b2;
+        public static final int btn_exit=0x7f050090;
+        public static final int choose_pay=0x7f05006e;
+        public static final int choose_tip=0x7f05005c;
+        public static final int click_pay=0x7f05008f;
+        /**  汇率转换页资源配置 
+         */
+        public static final int cny=0x7f050072;
+        public static final int complement_info=0x7f05001b;
+        public static final int current_have=0x7f0500a0;
+        public static final int data_buy=0x7f05004b;
+        public static final int data_close=0x7f050049;
+        public static final int data_count=0x7f05004f;
+        public static final int data_high=0x7f05004d;
+        public static final int data_low=0x7f05004e;
+        public static final int data_margin=0x7f050047;
+        /**  财经指数头部资源配置 
+         */
+        public static final int data_name=0x7f050043;
+        public static final int data_new=0x7f050044;
+        public static final int data_open=0x7f050048;
+        public static final int data_open_today=0x7f05004a;
+        public static final int data_percent=0x7f050046;
+        public static final int data_sell=0x7f05004c;
+        public static final int data_submit=0x7f0500ac;
+        public static final int data_up=0x7f050045;
+        public static final int dialog_negative=0x7f050042;
+        public static final int dialog_positive=0x7f050041;
+        public static final int email=0x7f050086;
+        public static final int email_error=0x7f05000b;
+        public static final int ensure_sub=0x7f050066;
+        public static final int eur=0x7f050074;
+        public static final int exit_app=0x7f050002;
+        /**  关于我们 服务热线 使用帮助页资源配置 
+         */
+        public static final int experience=0x7f050075;
+        /**  新闻分类头部资源配置 
+         */
+        public static final int fast_info=0x7f050050;
+        public static final int fast_news=0x7f050052;
+        public static final int feed_back=0x7f050078;
+        public static final int feed_back_que=0x7f0500ab;
+        public static final int feed_fail=0x7f0500a9;
+        /**  信息反馈资源配置 
+         */
+        public static final int feed_success=0x7f0500a8;
+        public static final int feed_tip=0x7f05007d;
+        public static final int financial_data=0x7f050023;
+        public static final int find_back=0x7f050018;
+        public static final int free=0x7f05005e;
+        public static final int freeze_gold=0x7f050081;
+        public static final int get_password_back=0x7f050016;
+        public static final int gold_left=0x7f050080;
+        public static final int gold_red=0x7f050096;
+        public static final int help=0x7f050029;
+        public static final int honous_gold=0x7f050082;
+        public static final int info_related=0x7f050024;
+        public static final int input_pay_hint=0x7f05006c;
+        public static final int input_tip=0x7f050098;
+        public static final int k_chart=0x7f050055;
+        public static final int lianlian=0x7f05006f;
+        public static final int load_data_fail=0x7f050031;
+        public static final int load_error=0x7f050005;
+        public static final int load_first=0x7f050017;
+        public static final int load_more=0x7f050032;
+        public static final int load_state=0x7f050007;
+        public static final int load_success=0x7f050006;
+        public static final int load_tip=0x7f050004;
+        public static final int loading=0x7f050008;
+        public static final int loading_data=0x7f050034;
+        public static final int login=0x7f050013;
+        public static final int login_qq=0x7f050015;
+        public static final int login_sina=0x7f050014;
+        public static final int market_index=0x7f050054;
+        public static final int market_news=0x7f050022;
+        public static final int mobile_phone=0x7f050089;
+        public static final int modify_email=0x7f05009a;
+        public static final int modify_fail=0x7f05009d;
+        public static final int modify_phone=0x7f05009b;
+        public static final int modify_pwd=0x7f050085;
+        public static final int modify_success=0x7f05009c;
+        public static final int money_no_left=0x7f050067;
+        public static final int net_setting=0x7f050020;
+        /**  网络设置资源配置 
+         */
+        public static final int net_time_out=0x7f05001c;
+        public static final int net_unavailable=0x7f05001f;
+        public static final int net_unavailable_current=0x7f05001d;
+        public static final int new_email=0x7f050087;
+        public static final int new_phone=0x7f05008a;
+        public static final int new_pwd=0x7f050092;
+        public static final int next_step=0x7f050099;
+        public static final int no_data=0x7f050033;
+        public static final int no_data_now=0x7f050057;
+        public static final int no_input=0x7f0500aa;
+        public static final int no_more_data=0x7f050035;
+        public static final int no_new_version=0x7f050037;
+        public static final int no_pay=0x7f0500a2;
+        public static final int no_vip=0x7f050064;
+        public static final int oauth_success=0x7f0500af;
+        public static final int online_ask=0x7f050058;
+        public static final int online_pay=0x7f05005b;
+        /**  专家解盘页资源配置 
+         */
+        public static final int online_question=0x7f050056;
+        public static final int original_pwd=0x7f050091;
+        public static final int password=0x7f050094;
+        public static final int pay=0x7f05005f;
+        public static final int pay_money=0x7f05006a;
+        public static final int pay_tip=0x7f05006b;
+        /**  订阅信息资源配置 
+         */
+        public static final int payed=0x7f05009e;
+        public static final int phone=0x7f050088;
+        public static final int phone_error=0x7f05000c;
+        public static final int profession_news=0x7f050053;
+        public static final int profession_opinion=0x7f050025;
+        public static final int public_message=0x7f05005d;
+        public static final int pull_to_refresh_footer_pull_label=0x7f05002f;
+        public static final int pull_to_refresh_footer_refreshing_label=0x7f050030;
+        public static final int pull_to_refresh_footer_release_label=0x7f05002e;
+        /**  下拉刷新控件资源配置   
+         */
+        public static final int pull_to_refresh_pull_label=0x7f05002b;
+        public static final int pull_to_refresh_refreshing_label=0x7f05002d;
+        public static final int pull_to_refresh_release_label=0x7f05002c;
+        public static final int pwd_not_same=0x7f05000a;
+        public static final int qq_account=0x7f05008c;
+        public static final int qq_bind=0x7f0500b3;
+        public static final int qq_pwd=0x7f05008d;
+        public static final int real_time_data=0x7f050021;
+        public static final int rechange=0x7f050026;
+        public static final int recharge_record=0x7f050084;
+        public static final int record_time=0x7f050095;
+        public static final int register=0x7f050012;
+        public static final int register_info_incomplete=0x7f050009;
+        public static final int register_name_exception=0x7f050010;
+        public static final int register_state=0x7f05000e;
+        public static final int register_success=0x7f05000d;
+        public static final int registering=0x7f05000f;
+        public static final int renn=0x7f05007b;
+        public static final int rmb=0x7f050097;
+        public static final int rmb_month=0x7f0500a5;
+        public static final int send_exception=0x7f050065;
+        public static final int server_line=0x7f050028;
+        public static final int share_app=0x7f050076;
+        public static final int share_app_tip=0x7f050063;
+        public static final int share_fail=0x7f0500ae;
+        /**  授权分享资源配置 
+         */
+        public static final int share_success=0x7f0500ad;
+        public static final int sina_weibo=0x7f050079;
+        public static final int sub_fail=0x7f0500a4;
+        public static final int sub_info=0x7f050059;
+        public static final int sub_info_confirm=0x7f05005a;
+        public static final int sub_price=0x7f050062;
+        public static final int sub_success=0x7f0500a3;
+        public static final int submit=0x7f050011;
+        public static final int sure_order=0x7f050070;
+        public static final int tencnet_weibo=0x7f05007a;
+        public static final int time_range=0x7f050061;
+        public static final int unpayed=0x7f05009f;
+        public static final int update_test=0x7f05007c;
+        public static final int usd=0x7f050073;
+        /**  账户中心资源配置 
+         */
+        public static final int user_center=0x7f05007e;
+        public static final int user_login=0x7f050019;
+        public static final int user_nick=0x7f05007f;
+        /**  登录注册资源配置 
+         */
+        public static final int user_pwd=0x7f050003;
+        public static final int user_recharge=0x7f05006d;
+        public static final int user_reg=0x7f05001a;
+        public static final int ver_apk_downloading=0x7f05003d;
+        public static final int ver_checking=0x7f050038;
+        public static final int ver_ignore=0x7f05003a;
+        public static final int ver_nosdcard=0x7f05003e;
+        public static final int ver_update=0x7f05003f;
+        /**  检查更新资源配置 
+         */
+        public static final int ver_update_exception=0x7f050036;
+        public static final int ver_update_next=0x7f05003c;
+        public static final int ver_update_now=0x7f05003b;
+        public static final int ver_update_tip=0x7f050039;
+        public static final int vip_level=0x7f050083;
+        public static final int you_subed=0x7f0500a6;
+        public static final int you_subed_tail=0x7f0500a7;
+        public static final int yt_pay_money=0x7f050069;
+    }
+    public static final class style {
+        public static final int GroupActivity=0x7f070008;
+        public static final int ThemeActivity=0x7f070007;
+        public static final int data_detail_data_low_text=0x7f070003;
+        public static final int data_detail_data_up_text=0x7f070002;
+        public static final int data_detail_title_text=0x7f070000;
+        public static final int data_financial_title_text=0x7f070001;
+        public static final int data_recharge_red_text=0x7f070006;
+        public static final int data_recharge_text=0x7f070004;
+        public static final int data_recharge_white_text=0x7f070005;
     }
 }

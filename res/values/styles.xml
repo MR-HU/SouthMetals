@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="data_detail_title_text"> 
+        <item name="android:textSize">15.0sp</item> 
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+	</style> 
+	
+	<style name="data_financial_title_text"> 
+        <item name="android:textSize">14.0sp</item> 
+        <item name="android:gravity">center</item>
+	</style>
+	 
+	<style name="data_detail_data_up_text"> 
+        <item name="android:textSize">15.0sp</item> 
+        <item name="android:textColor">@color/red</item>
+        <item name="android:gravity">center</item>
+	</style>
+	
+	<style name="data_detail_data_low_text"> 
+        <item name="android:textSize">15.0sp</item> 
+        <item name="android:textColor">@color/green</item>
+        <item name="android:gravity">center</item>
+	</style>
+	
+	<style name="data_recharge_text"> 
+        <item name="android:textSize">18.0sp</item> 
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+	</style>
+	
+	<style name="data_recharge_white_text"> 
+        <item name="android:textSize">16.0sp</item> 
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+	</style>
+	
+	<style name="data_recharge_red_text"> 
+        <item name="android:textSize">16.0sp</item> 
+        <item name="android:textColor">@color/red</item>
+        <item name="android:gravity">center</item>
+	</style>
+	
+	<style name="ThemeActivity" mce_bogus="1">  
+	    <item name="android:windowNoTitle">true</item> 
+	</style>
+	      
+	<style name="GroupActivity" parent="@android:style/Theme.Translucent.NoTitleBar" mce_bogus="1">  
+	    <item name="android:windowNoTitle">true</item> 
+	</style>
+	 
+</resources>
