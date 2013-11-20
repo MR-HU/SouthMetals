@@ -124,16 +124,16 @@ public class UserCenterActivity extends BaseActivity implements OnClickListener 
 			finish();
 			break;
 		case R.id.lay_modify_pwd:
-//			intent = new Intent(UserCenterActivity.this, ModifyPwdActivity.class);
-//			startActivity(intent);
+			intent = new Intent(UserCenterActivity.this, ModifyPwdActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.lay_email_address:
-//			intent = new Intent(UserCenterActivity.this, ModifyEmailActivity.class);
-//			startActivity(intent);
+			intent = new Intent(UserCenterActivity.this, ModifyEmailActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.lay_phone_num:
-//			intent = new Intent(UserCenterActivity.this, ModifyPhoneActivity.class);
-//			startActivity(intent);
+			intent = new Intent(UserCenterActivity.this, ModifyPhoneActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.lay_bind_qq:
 			if (Boolean.valueOf(application.getUserInfo().getIsBindQQ().toString())) {
@@ -361,9 +361,6 @@ public class UserCenterActivity extends BaseActivity implements OnClickListener 
 			if (isSuccess) {
 				int userId = object.getInt("userId");
 				String nick = object.getString("nick");
-				String money = object.getString("money");
-				String freeze = object.getString("freeze");
-				String honous = object.getString("honous");
 				boolean vip = object.getBoolean("vip");
 				String email = object.getString("email");
 				String phone = object.getString("phone");

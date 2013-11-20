@@ -32,9 +32,6 @@ public class GuideActivity extends BaseActivity implements OnClickListener, OnPa
 	private List<View> views;
 	private List<View> dots;
 	
-	private Bundle bundle;
-	private String skip;
-	
 	private int[] welcomeIcon = {
 			R.drawable.welcome_img1,
 			R.drawable.welcome_img2,
@@ -51,12 +48,6 @@ public class GuideActivity extends BaseActivity implements OnClickListener, OnPa
 	    setContentView(R.layout.activity_guide);
 	    application = MainApplication.getApplication();
 	    application.setActivity(this);
-	    bundle = this.getIntent().getExtras();
-		if (null != bundle) {
-			skip = bundle.getString("skip");
-		} else {
-			skip = "";
-		}
 		initDots();
 	    initView();
 	}
@@ -126,16 +117,10 @@ public class GuideActivity extends BaseActivity implements OnClickListener, OnPa
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.enter_app:
-			//skip用于判断是点击了首页中的使用帮助跳到引导页
-			//还是直接从启动页进入引导页
-			if ("skip".equals(skip)) {
-				finish();
-			} else {
-				Intent intent = new Intent();
-				intent.setClass(GuideActivity.this, MainActivity.class);
-				startActivity(intent);
-				finish();
-			}
+			Intent intent = new Intent();
+			intent.setClass(GuideActivity.this, MainActivity.class);
+			startActivity(intent);
+			finish();
 			break;
 		default:
 			break;

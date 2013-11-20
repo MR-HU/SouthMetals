@@ -169,11 +169,10 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 //			intent.setClass(MainActivity.this, AboutActivity.class);
 			break;
 		case 7:
-//			intent.setClass(MainActivity.this, ServerActivity.class);
+			intent.setClass(MainActivity.this, ServerActivity.class);
 			break;
 		case 8:
-			intent.setClass(MainActivity.this, GuideActivity.class);
-			intent.putExtra("skip", "skip");
+//			intent.setClass(MainActivity.this, GuideActivity.class);
 			break;
 		default:
 			break;

@@ -27,6 +27,13 @@
      	<activity android:name=".RegisterActivity" />
     	<activity android:name=".LoadActivity" />
     	<activity android:name=".UserCenterActivity" />
+    	<activity android:name=".ServerActivity" />
+    	<activity android:name=".RateExchangeActivity" />
+     	<activity android:name=".ModifyPwdActivity" />
+       	<activity android:name=".ModifyEmailActivity" />
+       	<activity android:name=".ModifyPhoneActivity" />
+       	
+       	<activity android:name=".GetPwdBackActivity" />
     	
     	<!-- QQ授权 -->
     	<activity

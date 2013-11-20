@@ -5,7 +5,7 @@
 <!-- 	
 	<string name="app_url">http://www.innouni.com/guijinshu</string>
  -->	
- <string name="exit_app">您确定要退出盛世贵金属吗?</string>
+ <string name="exit_app">您确定要退出南方贵金属吗?</string>
 	
 	<!-- 登录注册资源配置 -->
    	<string name="user_pwd">用户密码</string>
@@ -43,15 +43,15 @@
     
     <!-- 主页九宫格数据资源配置 -->
     <string-array name="home_icon">
-    	<item>实时数据</item>
-	    <item>市场快讯</item>
-	    <item>财经数据</item>
-	    <item>资讯相关</item>
-	    <item>专家解盘</item>
-	    <item>汇率转换</item>
-	    <item>关于我们</item>
-	    <item>服务热线</item>
-	    <item>使用帮助</item>
+    	<item>综合报价</item>
+	    <item>新闻资讯</item>
+	    <item>财经日历</item>
+	    <item>独家策略</item>
+	    <item>模拟账户</item>
+	    <item>ETF</item>
+	    <item>技术分析</item>
+	    <item>客户服务</item>
+	    <item>开户申请</item>
     </string-array>
     <string name="real_time_data">实时数据</string>
     <string name="market_news">市场快讯</string>
