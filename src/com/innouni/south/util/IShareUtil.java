@@ -13,10 +13,10 @@ public interface IShareUtil {
 	public static final String SHARENAME = "southShareInfo";
 	
 	/** QQ互联申请的APP_ID */
-	public static final String QQ_APP_ID = "100505815";
+	public static final String QQ_APP_ID = "100560437";
 	
 	/** QQ互联申请的APP_KEY */
-	public static final String QQ_APP_KEY = "bef8b1fe71e83b89dea8592437088af4";
+	public static final String QQ_APP_KEY = "a75b84d065ebab3fd65d055ff471ed98";
 	
 	/** QQ授权的内容 */
 	public static final String QQ_SCOPE = "get_user_info,get_simple_userinfo,get_user_profile,get_app_friends,upload_photo,"
@@ -41,10 +41,10 @@ public interface IShareUtil {
 	public static final String TENCENT_REDIRECT_URL = "http://www.innouni.com";
 	
 	/** 新浪微博开放平台申请的APP_KEY */
-	public static final String SINA_APP_KEY = "2611018552";
+	public static final String SINA_APP_KEY = "6357510";
 
 	/** 新浪微博开放平台申请的APP_SECRET */
-	public static final String SINA_APP_SECRET = "65de0d2bf0536fc480aea848aa5c5d17";
+	public static final String SINA_APP_SECRET = "43f334c588868f44a8f156458ba0c0be";
 	
 	/** 新浪微博开放平台申请的授权回调页 */
 	public static final String SINA_REDIRECT_URL = "http://www.innouni.com";

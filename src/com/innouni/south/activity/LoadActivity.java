@@ -39,11 +39,12 @@ import com.weibo.sdk.android.WeiboException;
 import com.weibo.sdk.android.sso.SsoHandler;
 
 /**
- * µÇÂ¼Ò³Ãæ
+ * µÇÂ½Ò³Ãæ
  * @author HuGuojun
- * @data 2013-08-12
- * @modify 2013-08-15 Î¢²©µÇÂ½  QQµÇÂ¼
- */ 
+ * @date 2013-11-18 ÏÂÎç5:13:04
+ * @modify
+ * @version 1.0.0
+ */
 public class LoadActivity extends BaseActivity implements OnClickListener{
 	
 	public static final int REGISTER_CUSTOM = 1;
@@ -229,7 +230,7 @@ public class LoadActivity extends BaseActivity implements OnClickListener{
         public void onError(WeiboDialogError e) {
         	showToast("ÊÚÈ¨Ê§°Ü : " + e.getMessage());
         }
-
+        
         @Override
         public void onCancel() {
         	showToast("È¡ÏûÊÚÈ¨");
@@ -249,10 +250,11 @@ public class LoadActivity extends BaseActivity implements OnClickListener{
 			showToast(R.string.load_tip);
 		} else {
 			password = MD5.getMD5(password);
-			if(null == loadTask){
-				loadTask = new LoadTask();
-				loadTask.execute(username, password);
+			if(null != loadTask){
+				loadTask.cancel(true);
 			}
+			loadTask = new LoadTask();
+			loadTask.execute(username, password);
 		}
 	}
 	
@@ -350,9 +352,6 @@ public class LoadActivity extends BaseActivity implements OnClickListener{
 			if (isSuccess) {
 				int userId = object.getInt("userId");
 				String nick = object.getString("nick");
-				String money = object.getString("money");
-				String freeze = object.getString("freeze");
-				String honous = object.getString("honous");
 				boolean vip = object.getBoolean("vip");
 				String email = object.getString("email");
 				String phone = object.getString("phone");

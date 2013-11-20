@@ -216,10 +216,6 @@ public final class R {
         public static final int announcement=0x7f05002a;
         public static final int app_info=0x7f050077;
         public static final int app_name=0x7f050000;
-        /** 
-	<string name="app_url">http://192.168.1.100/ssgjs_app_server</string>
-	
-         */
         public static final int app_url=0x7f050001;
         public static final int available_buy=0x7f0500a1;
         public static final int basic_desc=0x7f050060;
@@ -259,6 +255,10 @@ public final class R {
         public static final int email_error=0x7f05000b;
         public static final int ensure_sub=0x7f050066;
         public static final int eur=0x7f050074;
+        /**  	
+	<string name="app_url">http://www.innouni.com/guijinshu</string>
+ 
+         */
         public static final int exit_app=0x7f050002;
         /**  关于我们 服务热线 使用帮助页资源配置 
          */

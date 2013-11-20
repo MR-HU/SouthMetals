@@ -138,7 +138,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		@Override
 		protected void onPreExecute() {
 			pairs = new ArrayList<NameValuePair>();
-			pairs.add(new BasicNameValuePair("userName", name));
+			pairs.add(new BasicNameValuePair("username", name));
 			pairs.add(new BasicNameValuePair("password", MD5.getMD5(password)));
 			pairs.add(new BasicNameValuePair("email", email));
 			pairs.add(new BasicNameValuePair("phone", phone));
