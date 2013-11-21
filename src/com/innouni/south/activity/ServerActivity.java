@@ -77,8 +77,8 @@ public class ServerActivity extends BaseActivity implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.btn_goto_web:
-			showToast("直接跳到南方白银网");
-			Intent intent2 = new Intent(ServerActivity.this, RateExchangeActivity.class);
+			showToast("跳到关于页面");
+			Intent intent2 = new Intent(ServerActivity.this, AboutActivity.class);
 			startActivity(intent2);
 			break;
 		default:

@@ -26,6 +26,7 @@ import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
 import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.NetUtil;
+import com.innouni.south.util.UpdateVersionUtil;
 import com.innouni.south.widget.MsgBox;
 
 /**
@@ -60,6 +61,9 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		initData();
 		initView();
 		if (NetUtil.isNetworkAvailable(this)) {
+			UpdateVersionUtil versionUtil = UpdateVersionUtil.getInstance(MainActivity.this);
+			versionUtil.setShowLoading(false);
+			versionUtil.startCheckVersion();
 			if (task != null) task.cancel(true);
 			task = new GetAnnouncementTask();
 			task.execute();

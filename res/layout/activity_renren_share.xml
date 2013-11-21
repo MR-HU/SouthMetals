@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+  	<include layout="@layout/app_title_bar"/>
+    <LinearLayout 
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:orientation="vertical"
+    	android:background="@drawable/app_background">
+    	<ImageView 
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:background="@drawable/title_low_background"/>
+    	<EditText 
+    		android:id="@+id/edit_share_content"
+    		android:layout_width="fill_parent"
+    		android:layout_height="150.0dip"
+    		android:layout_margin="10.0dip"
+    		android:gravity="top|left"
+    		android:padding="10.0dip"
+    		android:textColor="@color/light_black"
+    		android:text="我正在使用南方贵金属APP,你也来试试吧!!"
+    		android:background="@drawable/main_input_bg"/>
+    </LinearLayout> 
+</LinearLayout>

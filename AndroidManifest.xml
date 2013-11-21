@@ -28,12 +28,32 @@
     	<activity android:name=".LoadActivity" />
     	<activity android:name=".UserCenterActivity" />
     	<activity android:name=".ServerActivity" />
-    	<activity android:name=".RateExchangeActivity" />
      	<activity android:name=".ModifyPwdActivity" />
        	<activity android:name=".ModifyEmailActivity" />
        	<activity android:name=".ModifyPhoneActivity" />
-       	
        	<activity android:name=".GetPwdBackActivity" />
+       	<activity android:name=".RateExchangeActivity" android:windowSoftInputMode="adjustResize" />
+    	<activity android:name=".AboutActivity" />
+    	<activity android:name=".FeedBackActivity" android:windowSoftInputMode="adjustResize" />
+    	<activity android:name=".AppInfoActivity" />
+    	
+    	<!-- 新浪微博分享 -->
+    	<activity android:name=".ShareAppActivity">
+    		<intent-filter >
+				<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />    		
+          	</intent-filter>
+       	</activity>
+    	
+    	<activity android:name=".ShareTencentWeiboActivity" />
+        <!-- 騰訊微博授權 -->
+    	<activity android:name="com.tencent.weibo.webview.OAuthV2AuthorizeWebView" />
+    	
+    	<activity android:name=".ShareRenrenActivity" />
+      	<!-- 人人授权 -->
+    	<activity 
+    		android:name="com.renn.rennsdk.oauth.OAuthActivity"
+			android:configChanges="orientation|navigation|keyboardHidden"/>
     	
     	<!-- QQ授权 -->
     	<activity

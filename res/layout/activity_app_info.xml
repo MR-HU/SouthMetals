@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+    <include layout="@layout/app_title_bar"/>
+    <LinearLayout 
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:background="@drawable/app_background"
+    	android:orientation="vertical">
+	    <ImageView 
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:background="@drawable/title_low_background"/>
+	    <com.innouni.south.widget.ReboundScrollView 
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="fill_parent"
+	    	android:layout_margin="10.0dip"
+	    	android:scrollbars="none"
+	    	android:fadingEdge="none">
+		    <LinearLayout 
+		    	android:layout_width="fill_parent"
+		    	android:layout_height="fill_parent"
+		    	android:orientation="vertical"
+		    	android:background="@color/white"
+		    	android:padding="10.0dip">
+		    	<TextView 
+		    		android:id="@+id/txt_version_title"
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:layout_marginTop="5.0dip"
+		    		android:gravity="center"
+		    		android:text="南方贵金属Android版1.0"
+		    		android:textColor="@color/black"
+		    		android:textSize="18.0sp"/>
+		    	<TextView
+					android:id="@+id/txt_version_content"
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:layout_marginTop="15.0dip"
+		    		android:layout_marginLeft="15.0dip"
+		    		android:layout_marginRight="15.0dip"
+		    		android:layout_marginBottom="10.0dip"
+		    		android:gravity="center_vertical"
+		    		android:text="南方贵金属经营有限公司  版权所有"
+		    		android:textColor="@color/dim_gray"
+		    		android:textSize="16.0sp"/>
+	    		<TextView 
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:gravity="center"
+		    		android:text="南方贵金属经营有限公司  版权所有"
+		    		android:textColor="@color/black"
+		    		android:textSize="16.0sp"/>
+		    	<Button 
+		    		android:id="@+id/btn_test_update"
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:layout_marginTop="10.0dip"
+		    		android:layout_marginBottom="10.0dip"
+		    		android:text="@string/update_test"
+		    		android:gravity="center"
+		    		android:textSize="19.0sp"
+		    		android:textColor="@color/white"
+		    		android:background="@drawable/test_update_btn_selector"/>
+		    </LinearLayout>
+		</com.innouni.south.widget.ReboundScrollView>
+	</LinearLayout>
+</LinearLayout>

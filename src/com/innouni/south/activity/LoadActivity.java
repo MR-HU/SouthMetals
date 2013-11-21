@@ -139,9 +139,8 @@ public class LoadActivity extends BaseActivity implements OnClickListener{
 	
 	/** ÕÒ»ØÃÜÂë  */
 	private void handleBackPwdBtn() {
-//		Intent intent = new Intent(LoadActivity.this, GetPwdBackActivity.class);
-//		startActivity(intent);
-		showToast("Õ¹¹ñÃÜÂë");
+		Intent intent = new Intent(LoadActivity.this, GetPwdBackActivity.class);
+		startActivity(intent);
 	}
 	
 	/** Ê¹ÓÃQQÕËºÅµÇÂ¼ */
