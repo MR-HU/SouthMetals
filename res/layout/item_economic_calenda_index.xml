@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/list_middle_click">
+    <TextView 
+        android:id="@+id/txt_economic_time_index"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_margin="5dp"
+    	android:textColor="@color/black"
+    	android:textSize="15sp"/>
+    <TextView 
+        android:id="@+id/txt_economic_effect_index"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentRight="true"
+    	android:layout_margin="5dp"
+    	android:textColor="@color/black"
+    	android:textSize="15sp"/>
+	<TextView 
+        android:id="@+id/txt_economic_title_index"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_below="@id/txt_economic_time_index"
+    	android:layout_marginLeft="10dp"
+    	android:textColor="@color/black"
+    	android:textSize="17sp"/>
+	<LinearLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:layout_margin="5dp"
+	    android:layout_below="@id/txt_economic_title_index">
+
+		<TextView
+		    android:id="@+id/txt_economic_preview_index"
+		    android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:textColor="@color/black"
+		    android:textSize="14sp" />
+
+	    <TextView
+		    android:id="@+id/txt_economic_predict_index"
+	        android:layout_width="0dp"
+	    	android:layout_height="wrap_content"
+	    	android:layout_weight="1"
+	    	android:gravity="center"
+	    	android:textColor="@color/black"
+	    	android:textSize="14sp"/>
+	    <TextView
+		    android:id="@+id/txt_economic_actual_index"
+	        android:layout_width="0dp"
+	    	android:layout_height="wrap_content"
+	    	android:layout_weight="1"
+	    	android:gravity="right"
+	    	android:textColor="@color/black"
+	    	android:textSize="14sp"/>
+	</LinearLayout>
+</RelativeLayout>

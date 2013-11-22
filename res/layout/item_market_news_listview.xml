@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/list_middle_click">
+    <RelativeLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:layout_marginTop="4.0dip"
+    	android:layout_marginLeft="3.0dip"
+    	android:layout_marginRight="3.0dip"
+    	android:layout_marginBottom="1.0dip">
+    	<TextView 
+    		android:id="@+id/txt_market_news_title"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_alignParentTop="true"
+    		android:gravity="center_vertical"
+    		android:singleLine="true"
+    		android:ellipsize="end"
+    		android:text="高盛指标显示全球经济增长放缓速度加快"
+    		android:textColor="@color/black"
+    		android:textSize="18.0sp"/>
+    	<TextView 
+    		android:id="@+id/txt_market_news_content"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_below="@id/txt_market_news_title"
+    		android:gravity="center_vertical"
+    		android:layout_marginTop="3.0dip"
+    		android:text="过去几个月公布的一些宏观数据初始值显得过于乐观,后来又都出现大幅度修正调整。"
+    		android:textColor="@color/light_black"
+    		android:textSize="14.0sp"/>
+    	<TextView 
+    		android:id="@+id/txt_market_news_time"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_below="@id/txt_market_news_content"
+    		android:layout_alignParentRight="true"
+    		android:gravity="center_vertical"
+    		android:text="08月24日"
+    		android:textColor="@color/light_black"
+    		android:textSize="14.0sp"/>
+    </RelativeLayout>
+</LinearLayout>

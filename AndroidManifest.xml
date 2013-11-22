@@ -36,6 +36,11 @@
     	<activity android:name=".AboutActivity" />
     	<activity android:name=".FeedBackActivity" android:windowSoftInputMode="adjustResize" />
     	<activity android:name=".AppInfoActivity" />
+    	<activity android:name=".EconomicCalendarGroupActivity" android:theme="@style/GroupActivity" />
+    	<activity android:name=".EconomicCalendaActivity" />
+    	<activity android:name=".MarketIndexActivity" />
+    	<activity android:name=".MarketNewsActivity" />
+    	<activity android:name=".NewsDetailActivity" />
     	
     	<!-- 新浪微博分享 -->
     	<activity android:name=".ShareAppActivity">

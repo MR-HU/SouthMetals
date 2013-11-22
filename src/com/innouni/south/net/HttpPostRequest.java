@@ -55,4 +55,31 @@ public class HttpPostRequest {
 		return result;
 	}
 	
+	/**
+	 * 从南方白银网获取新闻数据
+	 * @param params
+	 * @return  String
+	 * @exception
+	 */
+	public static String getDataFromWebServer(List<NameValuePair> params){
+		String url = "http://www.drssm.com/?api";
+		HttpPost request = HttpPostRequest.getHttpPost(url);
+		String result = null;
+		try{
+			if (null != params) {
+				request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+			}
+			HttpResponse response = HttpPostRequest.getHttpResponse(request);
+			if(response.getStatusLine().getStatusCode() == 200){
+				result = EntityUtils.toString(response.getEntity());
+			}
+		}catch(ClientProtocolException e){
+			result = "net_err";
+		}catch(IOException e){
+			result = "net_err";
+		}catch(Exception e){
+			result = "net_err";
+		}
+		return result;
+	}
 }
