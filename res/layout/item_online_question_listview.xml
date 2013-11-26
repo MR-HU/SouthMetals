@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/list_middle_click"
+	android:padding="10.0dip">
+	<RelativeLayout 
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent">
+		<ImageView 
+			android:id="@+id/image_expert_head"
+			android:layout_width="50.0dip"
+			android:layout_height="50.0dip"
+			android:scaleType="fitXY"
+			android:src="@drawable/user_expert_default"/>
+		<TextView 
+			android:id="@+id/txt_expert_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="8.0dip"
+			android:layout_toRightOf="@id/image_expert_head"
+			android:text="白建武"
+			android:textColor="@color/black"
+			android:textSize="19.0dip"/>
+		<TextView 
+			android:id="@+id/txt_expert_description"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="8.0dip"
+			android:layout_marginTop="3.0dip"
+			android:layout_below="@id/txt_expert_name"
+			android:layout_toRightOf="@id/image_expert_head"
+			android:text="啊美素奶粉别靠近艾丝凡你忙吧付款就会把看风景巴氏奶本菲卡金风科技安抚开水晶发卡机是否课件啊，定风波卡京东方"
+			android:textColor="@color/light_black"
+			android:textSize="14.0dip"/>
+	</RelativeLayout>
+</LinearLayout>

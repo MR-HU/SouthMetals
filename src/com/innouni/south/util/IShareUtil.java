@@ -23,19 +23,19 @@ public interface IShareUtil {
         				+ "add_share,add_topic,list_album,upload_pic,add_album,set_user_face,get_vip_info,get_vip_rich_info,get_intimate_friends_weibo,match_nick_tips_weibo";
 	
 	/** 人人开放平台申请的APP_ID */
-	public static final String RENREN_APP_ID = "240149";
+	public static final String RENREN_APP_ID = "244582";
 	
 	/** 人人开放平台申请的API_KEY */
-	public static final String RENREN_API_KEY = "792bcf37fd384046a7fb150b1f8bcbaa";
+	public static final String RENREN_API_KEY = "89006a8a219f4c0993f468edc1411db6";
 	
 	/** 人人开放平台申请的SECRET_KEY */
-	public static final String RENREN_SECRET_KEY = "719b099301bc4caab79ed3aa7023a3fb";
+	public static final String RENREN_SECRET_KEY = "5fbab85a695349ca9b1e72f22609da39";
 	
 	/** 腾讯微博开放平台申请的APP_KEY */
-	public static final String TENCENT_APP_KEY = "801402968";
+	public static final String TENCENT_APP_KEY = "801447911";
 	
 	/** 腾讯微博开放平台申请的APP_SECRET */
-	public static final String Tencent_APP_SECRET = "538465818ecd4778cbf4e91f5b0bd189";
+	public static final String Tencent_APP_SECRET = "5b21edfe713f5812c32b8a14b56007d8";
 	
 	/** 腾讯微博开放平台申请的授权回调页 */
 	public static final String TENCENT_REDIRECT_URL = "http://www.innouni.com";

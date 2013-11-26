@@ -41,6 +41,11 @@
     	<activity android:name=".MarketIndexActivity" />
     	<activity android:name=".MarketNewsActivity" />
     	<activity android:name=".NewsDetailActivity" />
+    	<activity android:name=".ExpertOpinionActivity" />
+    	<activity android:name=".OnLineQuestionActivity" />
+    	<activity android:name=".MessageActivity" />
+    	<activity android:name=".VoiceClassActivity" />
+    	<activity android:name=".VirtualAccountActivity" />
     	
     	<!-- 新浪微博分享 -->
     	<activity android:name=".ShareAppActivity">
@@ -72,6 +77,22 @@
 	   			<data android:scheme="tencent100560437" />
 			</intent-filter>
 		</activity>
+		
+    	<!-- 消息推送服务 -->
+        <service
+            android:name="com.innouni.south.push.SouthMessageService"
+            android:killAfterRestore="false"
+            android:process="system" >
+            <intent-filter android:priority="999" />
+        </service>
+        
+        <!-- 手机启动的广播接收者 -->
+        <receiver android:name="com.innouni.south.push.BootBroadCastReceiver">  
+      		<intent-filter>  
+        		<action android:name="android.intent.action.BOOT_COMPLETED" />  
+           		<category android:name="android.intent.category.LAUNCHER" />  
+       		</intent-filter>  
+    	</receiver>
     	
     </application>
     

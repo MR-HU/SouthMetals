@@ -27,6 +27,8 @@ import com.innouni.south.util.ShareUtil;
  */
 public class ServerActivity extends BaseActivity implements OnClickListener{
 	
+	private Button gotoAbotButton;
+	private Button gotoChargeButton;
 	private Button gotoWeButton;
 	private LinearLayout telLayout;
 	private TextView serverView;
@@ -64,6 +66,10 @@ public class ServerActivity extends BaseActivity implements OnClickListener{
 		
 		gotoWeButton = (Button) findViewById(R.id.btn_goto_web);
 		gotoWeButton.setOnClickListener(this);
+		gotoAbotButton = (Button) findViewById(R.id.btn_goto_about);
+		gotoChargeButton = (Button) findViewById(R.id.btn_goto_charge);
+		gotoAbotButton.setOnClickListener(this);
+		gotoChargeButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -77,9 +83,16 @@ public class ServerActivity extends BaseActivity implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.btn_goto_web:
-			showToast("跳到关于页面");
+			Intent intent3 = new Intent(ServerActivity.this, VirtualAccountActivity.class);
+			startActivity(intent3);
+			break;
+		case R.id.btn_goto_about:
 			Intent intent2 = new Intent(ServerActivity.this, AboutActivity.class);
 			startActivity(intent2);
+			break;
+		case R.id.btn_goto_charge:
+			Intent intent4 = new Intent(ServerActivity.this, RateExchangeActivity.class);
+			startActivity(intent4);
 			break;
 		default:
 			break;

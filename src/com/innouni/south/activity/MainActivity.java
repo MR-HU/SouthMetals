@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
 import com.innouni.south.net.HttpPostRequest;
+import com.innouni.south.push.SouthMessageService;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.UpdateVersionUtil;
 import com.innouni.south.widget.MsgBox;
@@ -61,6 +62,9 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		initData();
 		initView();
 		if (NetUtil.isNetworkAvailable(this)) {
+			if (application.getUserInfo() != null) {
+				startService(new Intent(this, SouthMessageService.class));
+			}
 			UpdateVersionUtil versionUtil = UpdateVersionUtil.getInstance(MainActivity.this);
 			versionUtil.setShowLoading(false);
 			versionUtil.startCheckVersion();
@@ -152,32 +156,31 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		Intent intent = new Intent();
 		switch (position) {
 		case 0:
-//			intent.setClass(MainActivity.this, RealTimeDataActivity.class);
+			intent.setClass(MainActivity.this, MarketNewsActivity.class);
 			break;
 		case 1:
 			intent.setClass(MainActivity.this, MarketNewsActivity.class);
 			break;
 		case 2:
-//			intent.setClass(MainActivity.this, FinancialDataActivity.class);
 			intent.setClass(MainActivity.this, EconomicCalendarGroupActivity.class);
 			break;
 		case 3:
-//			intent.setClass(MainActivity.this, InfoRelatedActivity.class);
+			intent.setClass(MainActivity.this, ExpertOpinionActivity.class);
 			break;
 		case 4:
-//			intent.setClass(MainActivity.this, ExpertOpinionActivity.class);
+			intent.setClass(MainActivity.this, VirtualAccountActivity.class);
 			break;
 		case 5:
-//			intent.setClass(MainActivity.this, RateExchangeActivity.class);
+			intent.setClass(MainActivity.this, MarketNewsActivity.class);
 			break;
 		case 6:
-//			intent.setClass(MainActivity.this, AboutActivity.class);
+			intent.setClass(MainActivity.this, MarketNewsActivity.class);
 			break;
 		case 7:
 			intent.setClass(MainActivity.this, ServerActivity.class);
 			break;
 		case 8:
-//			intent.setClass(MainActivity.this, GuideActivity.class);
+			intent.setClass(MainActivity.this, MarketNewsActivity.class);
 			break;
 		default:
 			break;

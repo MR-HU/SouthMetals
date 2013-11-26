@@ -1,6 +1,9 @@
 package com.innouni.south.adapter;
 
+import android.R.integer;
 import android.content.Context;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +44,7 @@ public class MarketNewsAdapter extends ArrayListAdapter<Object> {
 		}
 		news = (MarketNews) mList.get(position);
 		viewHolder.titleView.setText(news.getTitle().toString());
-		viewHolder.contentView.setText(subContent(news.getContent().toString()));
+		viewHolder.contentView.setText(subHtml(news.getContent().toString()));
 		viewHolder.timeView.setText(news.getTime().toString());
 		return convertView;
 	}
@@ -53,7 +56,17 @@ public class MarketNewsAdapter extends ArrayListAdapter<Object> {
 	}
 	
 	private String subContent(String content) {
-		return content.substring(content.indexOf("<p>")+3, content.indexOf("</p>"));
+		String sub = content.substring(content.indexOf("<p>")+3, content.indexOf("</p>")-6);
+		return sub;
+	}
+	
+	private String subHtml(String content) {
+		Spanned spanned = Html.fromHtml(subContent(content));
+		int length = spanned.length();
+		if (spanned.length() > 50) {
+			length = 50;
+		}
+		return spanned.subSequence(0, length).toString().trim();
 	}
 
 }

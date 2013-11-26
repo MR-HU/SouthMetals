@@ -23,6 +23,7 @@ import com.innouni.south.base.BaseActivity;
 import com.innouni.south.entity.QQAccessToken;
 import com.innouni.south.entity.UserInfo;
 import com.innouni.south.net.HttpPostRequest;
+import com.innouni.south.push.SouthMessageService;
 import com.innouni.south.util.MD5;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.QQAccessTokenKeeper;
@@ -281,7 +282,7 @@ public class LoadActivity extends BaseActivity implements OnClickListener{
 			if(result) {
 				showToast(R.string.load_success);
 				//登录成功以后开启消息推送服务
-//				startService(new Intent(LoadActivity.this, MessageService.class));
+				startService(new Intent(LoadActivity.this, SouthMessageService.class));
 				Intent intent = new Intent(LoadActivity.this, UserCenterActivity.class);
 				startActivity(intent);
 				finish();
@@ -328,7 +329,7 @@ public class LoadActivity extends BaseActivity implements OnClickListener{
 			if (result) {
 				showToast(R.string.load_success);
 				//登录成功以后开启消息推送服务
-//				startService(new Intent(LoadActivity.this, MessageService.class));
+				startService(new Intent(LoadActivity.this, SouthMessageService.class));
 				Intent intent = new Intent(LoadActivity.this, UserCenterActivity.class);
 				startActivity(intent);
 				finish();

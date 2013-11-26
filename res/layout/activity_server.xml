@@ -51,6 +51,20 @@
     	    android:gravity="center"
     		android:layout_margin="20.0dip"
     	    android:background="@drawable/send_btn_selector"
-    	    android:text="点击直接进入南方白银网"/>
+    	    android:text="访问南方白银网"/>
+    	<Button 
+    	    android:id="@+id/btn_goto_about"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:gravity="center"
+    	    android:background="@drawable/send_btn_selector"
+    	    android:text="关于"/>
+    	<Button 
+    	    android:id="@+id/btn_goto_charge"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:gravity="center"
+    	    android:background="@drawable/send_btn_selector"
+    	    android:text="汇率转换"/>
    	</LinearLayout>
 </LinearLayout>

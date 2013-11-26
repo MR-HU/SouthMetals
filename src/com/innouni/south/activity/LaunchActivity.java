@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.innouni.south.base.BaseActivity;
+import com.innouni.south.push.NotificationManagerUnits;
 
 /**
  * 页面分发中心，程序启动项。<br>
@@ -26,15 +27,15 @@ public class LaunchActivity extends BaseActivity {
 		boolean pushTag = bundle == null ? false : bundle.getBoolean("push");
 		if(pushTag) {
 			//是推送则根据推送的信息跳转到指定页面
-//			String expertId = bundle.getString("expertId");
-//			String expertName = bundle.getString("expertName");
-//			String userId = bundle.getString("userId");
-//			intent.putExtra("push", true);
-//			intent.putExtra("expertId", expertId);
-//			intent.putExtra("expertName", expertName);
-//			intent.putExtra("userId", userId);
-//			intent.setClass(LaunchActivity.this, MessageActivity.class);
-//			NotificationManagerUnits.getInstance(this).cancel(Integer.valueOf(expertId));
+			String expertId = bundle.getString("expertId");
+			String expertName = bundle.getString("expertName");
+			String userId = bundle.getString("userId");
+			intent.putExtra("push", true);
+			intent.putExtra("expertId", expertId);
+			intent.putExtra("expertName", expertName);
+			intent.putExtra("userId", userId);
+			intent.setClass(LaunchActivity.this, MessageActivity.class);
+			NotificationManagerUnits.getInstance(this).cancel(Integer.valueOf(expertId));
 		} else {
 			//不是推送就直接跳转到欢迎页面
 			intent.setClass(LaunchActivity.this, WelcomeActivity.class);

@@ -120,9 +120,12 @@
     <string name="data_count">成交量</string>
     
     <!-- 新闻分类头部资源配置 -->
-    <string name="fast_info">快讯</string>
-    <string name="agency_comment">机构评价</string>
-    <string name="fast_news">新闻</string>
+    <string name="fast_info">实时银讯</string>
+    <string name="agency_comment">每日精评</string>
+    <string name="fast_news">全球市场</string>
+    <string name="forex_news">外汇要闻</string>
+    <string name="world_finance">世界财经</string>
+    <string name="famous_column">名家专栏</string>
     <string name="profession_news">行业新闻</string>
     <string name="market_index">市场指数</string>
     <string name="k_chart">K线图</string>
@@ -134,6 +137,7 @@
     <string name="sub_info">订阅信息</string>
     <string name="sub_info_confirm">订阅信息确认</string>
     <string name="online_pay">在线支付</string>
+    <string name="voice_class">语音教室</string>
     <string name="choose_tip">请从下面列表中选择想要的专家进行提问。</string>
     <string name="public_message">发表</string>
     <string name="free">免费信息</string>

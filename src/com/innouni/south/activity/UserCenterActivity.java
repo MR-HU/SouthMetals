@@ -22,6 +22,7 @@ import com.innouni.south.base.BaseActivity;
 import com.innouni.south.entity.QQAccessToken;
 import com.innouni.south.entity.UserInfo;
 import com.innouni.south.net.HttpPostRequest;
+import com.innouni.south.push.SouthMessageService;
 import com.innouni.south.util.QQAccessTokenKeeper;
 import com.innouni.south.util.ShareUtil;
 import com.innouni.south.util.SinaAccessTokenKeeper;
@@ -120,7 +121,7 @@ public class UserCenterActivity extends BaseActivity implements OnClickListener 
 			application.clearPreference();
 			application.setUserInfo(null);
 			//用户退出后停止后台推送服务
-			//stopService(new Intent(UserCenterActivity.this, MessageService.class));
+			stopService(new Intent(UserCenterActivity.this, SouthMessageService.class));
 			finish();
 			break;
 		case R.id.lay_modify_pwd:
