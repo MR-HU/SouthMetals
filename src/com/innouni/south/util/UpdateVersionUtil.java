@@ -90,7 +90,7 @@ public class UpdateVersionUtil {
 				conn.setConnectTimeout(5000);
 				conn.setDoOutput(true); 
 		        conn.setDoInput(true); 
-		        conn.setRequestMethod("POST"); 
+		        conn.setRequestMethod("GET"); 
 		        conn.setUseCaches(false); 
 		        conn.setInstanceFollowRedirects(true);
 		        conn.setRequestProperty("Content-Type", "text/html;UTF-8"); 
