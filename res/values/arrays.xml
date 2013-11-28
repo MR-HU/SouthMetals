@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="indicator_type">
+        <item>MACD指标</item>
+        <item>BOLL布林线</item>
+        <item>KDJ随机指标</item>
+        <item>RSI强弱指标</item>
+        <item>SMA均线</item>
+        <item>EMA均线</item>
+        <item>ENV指标</item>
+    </string-array>
+    
+    <string-array name="stock_indicator">
+        <item>1分钟</item>
+        <item>5分钟</item>
+        <item>15分钟</item>
+        <item>30分钟</item>
+        <item>60分钟</item>
+        <item>4小时</item>
+        <item>日线</item>
+        <item>周线</item>
+        <item>月线</item>
+    </string-array>
+    
+</resources>

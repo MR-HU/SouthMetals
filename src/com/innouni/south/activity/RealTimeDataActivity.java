@@ -8,10 +8,13 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,7 +28,21 @@ import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.ShareUtil;
 
-public class RealTimeDataActivity extends BaseActivity implements OnClickListener {
+/**
+ * 实时数据详情页面
+ * 
+ * @author HuGuojun
+ * @date 2013-11-28 下午2:25:46
+ * @modify
+ * @version 1.0.0
+ */
+public class RealTimeDataActivity extends BaseActivity implements OnClickListener, OnItemClickListener {
+	
+	private String mChartCode, mChartName;
+	private String[] SpotChartName = {"现货黄金", "现货白银", "现货铂金", "现货钯金"};
+	private String[] SpotChartCode = {"XAUUSD", "XAGUSD", "XPTUSD", "XPDUSD"};
+	private String[] TtjChartName = {"天通铂金", "天通钯金", "天通白银"};
+	private String[] TtjChartCode = {"XPT", "XPD", "XAG"};
 	
 	//按钮
 	private TextView goldBtn, chargeBtn, tiantongBtn, yueguiBtn;
@@ -70,6 +87,8 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 				new int[] { R.id.tvName, R.id.tvNow, R.id.tvStart, R.id.tvHigh, 
 							R.id.tvLow, R.id.tvRange, R.id.tvPercent });
 		mListView.setAdapter(adapter);
+		mListView.setOnItemClickListener(this);
+		
 		if (NetUtil.isNetworkAvailable(RealTimeDataActivity.this)) {
 			if(getRealtimeDataTask != null) 
 				getRealtimeDataTask.cancel(true);
@@ -194,7 +213,6 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 			case 1: getSpotData(); break;//获取现货
 			case 2: getTtjData(); break;//获取天通
 			case 3: getYgyData(); break;//获取粤贵
-			
 			}
 			return null;
 		}
@@ -212,7 +230,7 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 		}
 	}
 	
-	//获取粤贵
+	//获取粤贵数据
     private void getYgyData() {
     	String getstr = HttpPostRequest.getDataFromWebServer(this, "http://zhj8.sinaapp.com/Mobi/Data/ygy");
     	try {
@@ -244,7 +262,7 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
     	} catch (Exception e) {}
     }
     
-    //获取天通
+    //获取天通数据
     private void getTtjData(){
     	String getstr = HttpPostRequest.getDataFromWebServer(this, "http://zhj8.sinaapp.com/Mobi/Data/ttj");
     	try {
@@ -282,7 +300,7 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
     	} catch (Exception e) {}
     }
     
-    //获取现货
+    //获取现货数据
     private void getSpotData() {
     	String getstr = HttpPostRequest.getDataFromWebServer(this, "http://zhj8.sinaapp.com/Mobi/Data/spot");
     	mListData.clear();
@@ -365,5 +383,61 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 	    } catch (Exception localException) {}
 	    return localObject;
 	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int index, long id) {
+		switch (position) {
+		//case 0: setIntentPutExtra_Paper(index); break;//纸金
+		//case 4: setIntentPutExtra_TD(index); break;//T+D
+		//case 5: setIntentPutExtra_QH(index);break;//期货
+		case 1: setIntentPutExtra_Spot(index); break;//现货
+		case 2: setIntentPutExtra_Ttj(index); break;//天通
+		case 3: setIntentPutExtra_Ygy(index); break;//粤贵
+		}
+	}
+	
+	//现货K线
+	private void setIntentPutExtra_Spot(int index){
+		if(index == 4) {
+			//现货中的港金
+		} else {
+			mChartName = SpotChartName[index];
+			mChartCode = SpotChartCode[index];
+			toIntentStockChart();
+		}
+	}
     
+	//天通K线
+	private void setIntentPutExtra_Ttj(int index){
+		if(index != 3) {
+			mChartName = TtjChartName[index];
+			mChartCode = TtjChartCode[index];
+			toIntentStockChart();
+		}
+	}
+		
+	//粤贵K线
+	private void setIntentPutExtra_Ygy(int index){
+		if(index < 2) {
+			mChartName = (index == 0 ? "粤贵银9999" : "粤贵银9995");
+			mChartCode = (index == 0 ? "Ygy9999" : "Ygy9995");
+			toIntentStockChart();
+		}
+	}
+		
+	/** 跳转到K线图页面 */
+	private void toIntentStockChart(){
+		Intent intent = new Intent(this, StockChartsActivity.class);
+		intent.putExtra("ChartCode", mChartCode);
+		intent.putExtra("ChartName", mChartName);
+		startActivity(intent);
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (getRealtimeDataTask != null) {
+			getRealtimeDataTask.cancel(true);
+		}
+	}
 }

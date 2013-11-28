@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" 
+    android:background="@drawable/textview_box" 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content">
+    <TextView 
+        android:textSize="14.0sp" 
+        android:textColor="@color/grey3" 
+        android:gravity="center" 
+        android:id="@+id/chart_time_tab" 
+        android:background="@drawable/data_paper_btn_rounded"
+   		android:paddingLeft="2.0px" 
+   		android:paddingTop="5.0px" 
+   		android:paddingRight="1.0px" 
+   		android:paddingBottom="5.0px" 
+   		android:layout_width="0.0dip" 
+   		android:layout_height="wrap_content" 
+   		android:layout_margin="3.0dip" 
+   		android:text="@string/time_chart" 
+   		android:layout_weight="1.0" />
+    <TextView 
+        android:textSize="14.0sp" 
+        android:textColor="@color/grey3" 
+        android:gravity="center" 
+        android:id="@+id/chart_k_tab" 
+        android:background="@drawable/data_paper_btn_rounded" 
+        android:paddingLeft="1.0px" 
+        android:paddingTop="5.0px" 
+        android:paddingRight="1.0px" 
+        android:paddingBottom="5.0px" 
+        android:layout_width="0.0dip" 
+        android:layout_height="wrap_content" 
+        android:layout_margin="3.0dip" 
+        android:text="@string/k_line" 
+        android:layout_weight="1.0" />
+   	<!-- <TextView android:textSize="14.0sp" android:textColor="@color/grey3" android:gravity="center" android:id="@+id/local_remind" android:background="@drawable/data_paper_btn_rounded" android:paddingLeft="1.0px" android:paddingTop="5.0px" android:paddingRight="1.0px" android:paddingBottom="5.0px" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_margin="3.0dip" android:text="@string/local_remind" android:layout_weight="1.0" />
+    		<TextView android:textSize="14.0sp" android:textColor="@color/grey3" android:gravity="center" android:id="@+id/sms_remind" android:background="@drawable/data_paper_btn_rounded" android:paddingLeft="1.0px" android:paddingTop="5.0px" android:paddingRight="1.0px" android:paddingBottom="5.0px" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_margin="3.0dip" android:text="@string/sms_remind" android:layout_weight="1.0" />
+   	-->
+    <TextView 
+        android:textSize="14.0sp" 
+        android:textColor="@color/grey3" 
+        android:gravity="center" 
+        android:id="@+id/tv_change_indicator" 
+        android:background="@drawable/data_paper_btn_rounded" 
+        android:paddingLeft="1.0px" 
+        android:paddingTop="5.0px" 
+        android:paddingRight="1.0px" 
+        android:paddingBottom="5.0px" 
+        android:layout_width="0.0dip" 
+        android:layout_height="wrap_content" 
+        android:layout_margin="3.0dip" 
+        android:text="@string/indicator_op" 
+        android:layout_weight="1.0" />
+</LinearLayout>

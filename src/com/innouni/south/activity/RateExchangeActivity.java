@@ -19,7 +19,6 @@ import com.innouni.south.base.BaseActivity;
 import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.NetUtil;
 
-
 /**
  * »ãÂÊ×ª»»Ò³Ãæ
  * @author HuGuojun
