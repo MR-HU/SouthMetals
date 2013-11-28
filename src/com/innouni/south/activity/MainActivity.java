@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		Intent intent = new Intent();
 		switch (position) {
 		case 0:
-			intent.setClass(MainActivity.this, MarketNewsActivity.class);
+			intent.setClass(MainActivity.this, RealTimeDataActivity.class);
 			break;
 		case 1:
 			intent.setClass(MainActivity.this, MarketNewsActivity.class);

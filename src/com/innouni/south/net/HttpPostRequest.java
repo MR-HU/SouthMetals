@@ -82,4 +82,22 @@ public class HttpPostRequest {
 		}
 		return result;
 	}
+	
+	public static String getDataFromWebServer(Context context, String url){
+		HttpPost request = HttpPostRequest.getHttpPost(url);
+		String result = null;
+		try{
+			HttpResponse response = HttpPostRequest.getHttpResponse(request);
+			if(response.getStatusLine().getStatusCode() == 200){
+				result = EntityUtils.toString(response.getEntity(),"UTF-8");
+			}
+		}catch(ClientProtocolException e){
+			result = "net_err";
+		}catch(IOException e){
+			result = "net_err";
+		}catch(Exception e){
+			result = "net_err";
+		}
+		return result;
+	}
 }

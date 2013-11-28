@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="12.0dip" android:text="@string/data_name" android:textColor="#ffcccccc" android:gravity="center" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="46.0" />
+        <TextView android:textSize="12.0dip" android:text="@string/data_new" android:textColor="#ffcccccc" android:gravity="center" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="49.0" />
+        <TextView android:textSize="12.0dip" android:text="@string/data_close" android:textColor="#ffcccccc" android:gravity="center" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="49.0" />
+        <TextView android:textSize="12.0dip" android:text="@string/data_high" android:textColor="#ffcccccc" android:gravity="center"  android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="49.0" />
+        <TextView android:textSize="12.0dip" android:text="@string/data_low"  android:textColor="#ffcccccc" android:gravity="center"  android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="49.0" />
+        <TextView android:textSize="12.0dip" android:text="@string/data_up" android:textColor="#ffcccccc" android:gravity="center" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="34.0" />
+        <TextView android:textSize="12.0dip" android:text="@string/data_percent" android:textColor="#ffcccccc" android:gravity="center"  android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="44.0" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="12.0sp" android:textColor="#ffcccccc" android:gravity="center" android:id="@+id/tvName" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:text="RMB金" android:layout_weight="46.0" />
+        <TextView android:textSize="12.0sp" android:textColor="#ffcccccc" android:gravity="center" android:id="@+id/tvNow" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="49.0" />
+        <TextView android:textSize="12.0sp" android:textColor="#ffcccccc" android:gravity="center" android:id="@+id/tvStart" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="49.0" />
+        <TextView android:textSize="12.0sp" android:textColor="#ffcccccc" android:gravity="center" android:id="@+id/tvHigh" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="49.0" />
+        <TextView android:textSize="12.0sp" android:textColor="#ffcccccc" android:gravity="center" android:id="@+id/tvLow" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="49.0" />
+        <TextView android:textSize="12.0sp" android:textColor="#ffcccccc" android:gravity="center" android:id="@+id/tvRange" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="34.0" />
+        <TextView android:textSize="12.0sp" android:textColor="#ffcccccc" android:gravity="center" android:id="@+id/tvPercent" android:background="@drawable/textview_box" android:layout_width="0.0dip" android:layout_height="30.0dip" android:layout_weight="44.0" />
+    </LinearLayout>
+</LinearLayout>
