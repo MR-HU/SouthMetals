@@ -97,6 +97,29 @@
 		    			android:layout_centerVertical="true"/>
 		    	</RelativeLayout>
 		    	<RelativeLayout 
+		    		android:id="@+id/lay_commemt"
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="50.0dip"
+		    		android:clickable="true"
+		    		android:background="@drawable/list_middle_click">
+		    		<TextView 
+		    			android:layout_width="wrap_content"
+		    			android:layout_height="fill_parent"
+		    			android:layout_marginLeft="5.0dip"
+		    			android:layout_centerVertical="true"
+		    			android:gravity="center_vertical"
+		    			android:text="早中晚独家评论"
+		    			android:textColor="@color/black"
+		    			android:textSize="18.0sp"/>
+		    		<ImageView 
+		    			android:layout_width="wrap_content"
+		    			android:layout_height="wrap_content"
+		    			android:src="@drawable/list_arrow_selector"
+		    			android:layout_alignParentRight="true"
+		    			android:layout_marginRight="5.0dip"
+		    			android:layout_centerVertical="true"/>
+		    	</RelativeLayout>
+		    	<RelativeLayout 
 		    		android:id="@+id/lay_voice_class"
 		    		android:layout_width="fill_parent"
 		    		android:layout_height="50.0dip"

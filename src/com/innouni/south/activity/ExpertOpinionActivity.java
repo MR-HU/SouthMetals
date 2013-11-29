@@ -13,7 +13,8 @@ import com.innouni.south.base.BaseActivity;
 
 
 /**
- * 专家解盘页面
+ * 独家策略页面 
+ *
  * @author HuGuojun
  * @data 2013-09-03
  */
@@ -21,6 +22,7 @@ public class ExpertOpinionActivity extends BaseActivity implements OnClickListen
 	
 	private RelativeLayout questionLay, buyLay, payLay;
 	private RelativeLayout voiceClassLay;
+	private RelativeLayout commentLay;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +45,12 @@ public class ExpertOpinionActivity extends BaseActivity implements OnClickListen
 		buyLay = (RelativeLayout) findViewById(R.id.lay_buy_info);
 		payLay = (RelativeLayout) findViewById(R.id.lay_online_pay);
 		voiceClassLay = (RelativeLayout) findViewById(R.id.lay_voice_class);
+		commentLay = (RelativeLayout) findViewById(R.id.lay_commemt);
 		questionLay.setOnClickListener(this);
 		buyLay.setOnClickListener(this);
 		payLay.setOnClickListener(this);
 		voiceClassLay.setOnClickListener(this);
+		commentLay.setOnClickListener(this);
 	}
 
 	@Override
@@ -64,23 +68,13 @@ public class ExpertOpinionActivity extends BaseActivity implements OnClickListen
 			intent = new Intent(ExpertOpinionActivity.this, VoiceClassActivity.class);
 			startActivity(intent);
 			break;
-//		case R.id.lay_buy_info:
-//			if (null == user) {
-//				showToast(R.string.load_first);
-//			} else {
-//				intent = new Intent(ExpertOpinionActivity.this, SubscribeInfoActivity.class);
-//				startActivity(intent);
-//			}
-//			break;
-//		case R.id.lay_online_pay:
-//			if (null == user) {
-//				showToast(R.string.load_first);
-//			} else {
-//				intent = new Intent(ExpertOpinionActivity.this, InputMoneyActivity.class);
-//				startActivity(intent);
-//			}
-//			break;
-		default:
+		case R.id.lay_commemt:
+			if (application.getUserInfo() == null) {
+				showToast(R.string.load_first);
+			} else {
+				Intent innIntent = new Intent(ExpertOpinionActivity.this, CommentActivity.class);
+				startActivity(innIntent);
+			}
 			break;
 		}
 	}

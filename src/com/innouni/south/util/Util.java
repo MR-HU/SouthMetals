@@ -1,5 +1,8 @@
 package com.innouni.south.util;
 
+import java.io.DataInputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -7,6 +10,8 @@ import java.util.regex.Pattern;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Environment;
 
@@ -202,4 +207,32 @@ public class Util {
         return (int) (dpValue * scale + 0.5f);  
     }   
     
+    /**
+	 * 根据路径下载图片
+	 * @param imageUrl
+	 * @return Bitmap
+	 */
+    public static Bitmap downloadImage(String imageUrl) {
+		byte[] buffer = null;
+		Bitmap bit= null;
+		try {
+			URL url = new URL(imageUrl);
+			HttpURLConnection connectoin = (HttpURLConnection) url.openConnection();
+			DataInputStream dis = new DataInputStream(connectoin.getInputStream());
+			if (connectoin.getContentLength() > 0){
+				buffer = new byte[connectoin.getContentLength()];
+				dis.readFully(buffer);
+			}
+			dis.close();
+			connectoin.disconnect();
+			if(null != buffer && buffer.length > 0){
+				BitmapFactory.Options options = new BitmapFactory.Options();
+		        options.inPreferredConfig = Bitmap.Config.RGB_565; 
+				options.inPurgeable = true;
+				options.inInputShareable = true;  
+				bit = BitmapFactory.decodeByteArray(buffer, 0, buffer.length, options);
+			}
+		} catch (Exception e) {}
+		return bit;
+	}
 }

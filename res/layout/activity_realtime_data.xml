@@ -108,7 +108,7 @@
 			        android:id="@+id/btn_gold_usd_history"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="金银/美元/石油历史"
+			        android:text="金银/美元/石油比"
 			        android:textColor="@color/dark_yellow"
 			        android:padding="5dp"
 			        android:background="@drawable/data_paper_btn_rounded"/>
@@ -117,6 +117,7 @@
 	         	android:layout_width="0dp"
 		        android:layout_height="wrap_content"
 		        android:gravity="center"
+		        android:visibility="gone"
 		        android:layout_weight="1">
 			    <TextView 
 			        android:id="@+id/btn_gold_history"

@@ -109,6 +109,9 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			String json = HttpPostRequest.getDataFromWebServer(MainActivity.this, "getAnnouncement", null);
 			System.out.println("请求通知返回: " + json);
 			try {
+				if (json == null) {
+					return null;
+				}
 				List<String> list = new ArrayList<String>();
 				JSONObject object = new JSONObject(json);
 				JSONArray array = object.getJSONArray("list");
@@ -171,7 +174,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			intent.setClass(MainActivity.this, VirtualAccountActivity.class);
 			break;
 		case 5:
-			intent.setClass(MainActivity.this, MarketNewsActivity.class);
+			intent.setClass(MainActivity.this, ETFActivity.class);
 			break;
 		case 6:
 			intent.setClass(MainActivity.this, MarketNewsActivity.class);
@@ -180,7 +183,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			intent.setClass(MainActivity.this, ServerActivity.class);
 			break;
 		case 8:
-			intent.setClass(MainActivity.this, MarketNewsActivity.class);
+			intent.setClass(MainActivity.this, AccountApplyActivity.class);
 			break;
 		default:
 			break;

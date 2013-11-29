@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.innouni.south.adapter.AllRealTimeDataAdapter;
 import com.innouni.south.app.MainApplication;
@@ -59,7 +60,7 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 	private AllRealTimeDataAdapter adapter;
 	
 	//用于标示实时数据的类别(0到5对应纸金 现货 天通 粤贵 T+D 期货)
-	private String[] titles = {"纸金", "现货", "天通", "粤贵", "T+D", "期货"};
+	private String[] titles = {"纸金", "现货", "天通", "粤贵", "T+D", "期货", "美指"};
 	private int position = 1;
 	
 	private GetRealtimeDataTask getRealtimeDataTask;
@@ -161,6 +162,17 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 			}
 			break;
 		case R.id.btn_cahrge:
+			position = 6;
+			shareUtil.setIntValues("type_position", position);
+			app_list_title_bar_1.setVisibility(View.GONE);
+			app_list_title_bar_2.setVisibility(View.GONE);
+			app_list_title_bar_3.setVisibility(View.VISIBLE);
+			if (NetUtil.isNetworkAvailable(RealTimeDataActivity.this)) {
+				if(getRealtimeDataTask != null)
+					getRealtimeDataTask.cancel(true);
+				getRealtimeDataTask = new GetRealtimeDataTask();
+				getRealtimeDataTask.execute();
+			}
 			break;
 		case R.id.btn_tiantong:
 			position = 2;
@@ -189,6 +201,8 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 			}
 			break;
 		case R.id.btn_gold_usd_history:
+			Intent intent = new Intent(RealTimeDataActivity.this, HistoryImageActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.btn_gold_history:
 			break;
@@ -207,12 +221,13 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 		@Override
 		protected String doInBackground(String... params) {
 			switch (position) {
-			//case 0: getPaperData(); break;//获取纸金
-			//case 4: getTDData(); break;//获取T+D
-			//case 5: getQHData();break;//获取期货
-			case 1: getSpotData(); break;//获取现货
-			case 2: getTtjData(); break;//获取天通
-			case 3: getYgyData(); break;//获取粤贵
+			//case 0: getPaperData(); break;  //获取纸金
+			//case 4: getTDData(); break;     //获取T+D
+			//case 5: getQHData();break;      //获取期货
+			case 1: getSpotData(); break;     //获取现货
+			case 2: getTtjData(); break;      //获取天通
+			case 3: getYgyData(); break;      //获取粤贵
+			case 6: getMeizhi(); break;       //获取美元指数
 			}
 			return null;
 		}
@@ -228,6 +243,34 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 				adapter.notifyDataSetChanged();
 			} 
 		}
+	}
+	
+	//获取美元指数
+	private void getMeizhi() {
+		String getstr = HttpPostRequest.getDataFromWebServer(this, "http://zhj8.sinaapp.com/Mobi/Data/base");
+		try {
+			mListData.clear();
+			HashMap<String, String> map = new HashMap<String, String>();
+	    	String[] strArray = getstr.split("@");
+	    	String[] arrayOfString;
+	    	String str1,str2,str3,str4,str5,str6;
+    		arrayOfString = strArray[strArray.length -1].split(",");
+    		
+            str1 = formatFloat(Float.valueOf(arrayOfString[0]));
+            str2 = formatFloat(Float.valueOf(arrayOfString[1]));
+            str3 = formatFloat(Float.valueOf(arrayOfString[2]));
+            str4 = formatFloat(Float.valueOf(arrayOfString[3]));
+            str5 = String.valueOf(formatFloat(Float.valueOf(str1) - Float.valueOf(str2)));
+            str6 = String.valueOf(formatFloat((Float.valueOf(str5)/Float.valueOf(str2))))+"%";
+            map.put("name", "美指");
+            map.put("now", str1);
+            map.put("start", str2);
+            map.put("high", str3);
+            map.put("low", str4);
+            map.put("range", str5);
+            map.put("percent", str6);
+    		mListData.add(map);
+		} catch (Exception e) {}
 	}
 	
 	//获取粤贵数据
@@ -387,17 +430,18 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int index, long id) {
 		switch (position) {
-		//case 0: setIntentPutExtra_Paper(index); break;//纸金
-		//case 4: setIntentPutExtra_TD(index); break;//T+D
-		//case 5: setIntentPutExtra_QH(index);break;//期货
-		case 1: setIntentPutExtra_Spot(index); break;//现货
-		case 2: setIntentPutExtra_Ttj(index); break;//天通
-		case 3: setIntentPutExtra_Ygy(index); break;//粤贵
+		//case 0: setIntentPutExtra_Paper(index); break; //纸金
+		//case 4: setIntentPutExtra_TD(index); break;    //T+D
+		//case 5: setIntentPutExtra_QH(index);break;     //期货
+		case 1: setIntentPutExtra_Spot(index); break;    //现货
+		case 2: setIntentPutExtra_Ttj(index); break;     //天通
+		case 3: setIntentPutExtra_Ygy(index); break;     //粤贵
+		case 6: setIntentPutExtra_Meizhi(index); break;  //美元指数
 		}
 	}
 	
 	//现货K线
-	private void setIntentPutExtra_Spot(int index){
+	private void setIntentPutExtra_Spot(int index) {
 		if(index == 4) {
 			//现货中的港金
 		} else {
@@ -408,7 +452,7 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 	}
     
 	//天通K线
-	private void setIntentPutExtra_Ttj(int index){
+	private void setIntentPutExtra_Ttj(int index) {
 		if(index != 3) {
 			mChartName = TtjChartName[index];
 			mChartCode = TtjChartCode[index];
@@ -417,7 +461,7 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 	}
 		
 	//粤贵K线
-	private void setIntentPutExtra_Ygy(int index){
+	private void setIntentPutExtra_Ygy(int index) {
 		if(index < 2) {
 			mChartName = (index == 0 ? "粤贵银9999" : "粤贵银9995");
 			mChartCode = (index == 0 ? "Ygy9999" : "Ygy9995");
@@ -426,16 +470,24 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 	}
 		
 	/** 跳转到K线图页面 */
-	private void toIntentStockChart(){
+	private void toIntentStockChart() {
 		Intent intent = new Intent(this, StockChartsActivity.class);
 		intent.putExtra("ChartCode", mChartCode);
 		intent.putExtra("ChartName", mChartName);
 		startActivity(intent);
 	}
 	
+	//美元指数
+	private void setIntentPutExtra_Meizhi(int index) {
+		Intent intent = new Intent(RealTimeDataActivity.this, MeizhiImageActivity.class);
+		startActivity(intent);
+	}
+	
 	@Override
 	protected void onPause() {
 		super.onPause();
+		titleRightBtn.setVisibility(View.VISIBLE);
+		titleRefreshBar.setVisibility(View.GONE);
 		if (getRealtimeDataTask != null) {
 			getRealtimeDataTask.cancel(true);
 		}
