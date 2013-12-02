@@ -40,7 +40,7 @@ public class VirtualAccountActivity extends BaseActivity implements OnClickListe
 		titleContentView.setText("Ä£ÄâÕË»§");
 		
 		webView = (WebView) findViewById(R.id.webview_virtual);
-		webView.loadUrl("http://www.innouni.com");
+		webView.loadUrl("http://192.168.1.100/nfgjs_app_server/index.php?c=apply&a=index");
 	}
 
 	@Override

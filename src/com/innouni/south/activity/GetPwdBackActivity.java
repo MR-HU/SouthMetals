@@ -77,8 +77,8 @@ public class GetPwdBackActivity extends BaseActivity implements OnClickListener 
 			String text = emailOrPhoneText.getText().toString();
 			if (text.equals("")) {
 				showToast(R.string.no_input);
-			} else if (!Util.checkEmail(text)) {
-				showToast(R.string.email_error);
+			} else if (!Util.checkEmail(text) && !Util.checkMobile(text)) {
+				showToast("邮箱或者手机号码格式不正确");
 			} else {
 				if (task != null) task.cancel(true);
 				task = new GetPwdTask();

@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -32,16 +33,16 @@ import com.innouni.south.util.Util;
  */
 public class RegisterActivity extends BaseActivity implements OnClickListener {
 	
-	private EditText usernameText, passwordText, checkPwdText, emailText, phoneText;
-	private Button submitButton;
+	private EditText usernameText, passwordText, checkPwdText;
+	private EditText emailText, phoneText, captchaText;
+	private Button submitButton, captchaButton;
 	private ProgressDialog dialog;
 	
 	private RegisterTask registerTask;
-	
-	private String name, password, doublePwd, email, phone;
-	
-	private String token, expires;
 	private int type;
+	private String token, expires;
+	private String name, password, doublePwd, email, phone, captcha;
+	private MyCounterUtil counter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +84,11 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		checkPwdText = (EditText) findViewById(R.id.edit_reg_again_pwd);
 		emailText = (EditText) findViewById(R.id.edit_reg_email);
 		phoneText = (EditText) findViewById(R.id.edit_reg_phone);
+		captchaText = (EditText) findViewById(R.id.edit_reg_captcha);
 		submitButton = (Button) findViewById(R.id.btn_reg_submit);
+		captchaButton = (Button) findViewById(R.id.btn_reg_captcha);
 		submitButton.setOnClickListener(this);
+		captchaButton.setOnClickListener(this);
 	}
 	
 	@Override
@@ -96,7 +100,13 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		case R.id.btn_reg_submit:
 			handleSubmitBtn();
 			break;
-		default:
+		case R.id.btn_reg_captcha:
+			//获取验证码
+			if (counter != null) {
+				counter.cancel();
+			}
+			counter = new MyCounterUtil(60000, 1000, captchaButton);
+			counter.start();
 			break;
 		}
 	}
@@ -107,24 +117,25 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		doublePwd = checkPwdText.getText().toString();
 		email = emailText.getText().toString();
 		phone = phoneText.getText().toString();
+		captcha = captchaText.getText().toString();
 		if("".equals(name)||"".equals(password)||"".equals(doublePwd)
-				||"".equals(email)||"".equals(phone)){
+				||"".equals(email)||"".equals(phone)||"".equals(captcha)) {
 			showToast(R.string.register_info_incomplete);
 			return;
 		}
-		if(!password.equals(doublePwd)){
+		if(!password.equals(doublePwd)) {
 			showToast(R.string.pwd_not_same);
 			return;
 		}
-		if(!Util.checkEmail(email)){
+		if(!Util.checkEmail(email)) {
 			showToast(R.string.email_error);
 			return;
 		}
-		if(!Util.checkMobile(phone)){
+		if(!Util.checkMobile(phone)) {
 			showToast(R.string.phone_error);
 			return;
 		}
-		if(null == registerTask){
+		if(null == registerTask) {
 			registerTask = new RegisterTask();
 			registerTask.execute();
 		}
@@ -145,7 +156,10 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 			pairs.add(new BasicNameValuePair("token", token));
 			pairs.add(new BasicNameValuePair("expires", expires));
 			pairs.add(new BasicNameValuePair("type", String.valueOf(type)));
+			pairs.add(new BasicNameValuePair("captcha", captcha));
 			showDialog();
+			if (counter != null) counter.cancel();
+			captchaButton.setEnabled(true);
 		}
 		
 		@Override
@@ -177,13 +191,6 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		}
 	}
 	
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if(null != registerTask)
-			registerTask.cancel(true);
-	}
-
 	private void showDialog() {
 		dialog = new ProgressDialog(RegisterActivity.this);
 		dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); 
@@ -193,4 +200,39 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		dialog.setCancelable(true); 
 		dialog.show();
 	}
+	
+	/**
+	 * 计时器
+	 */
+	private class MyCounterUtil extends CountDownTimer {
+		
+		private Button button;
+		
+		public MyCounterUtil(long millisInFuture, long countDownInterval, Button button) {
+			super(millisInFuture, countDownInterval);
+			this.button = button;
+			this.button.setEnabled(false);
+		}
+
+		@Override
+		public void onFinish() {
+			this.button.setEnabled(true);
+			this.button.setText("获取验证码");
+		}
+
+		@Override
+		public void onTick(long millisUntilFinished) {
+			this.button.setText((millisUntilFinished / 1000) + "");
+		}
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if(null != registerTask)
+			registerTask.cancel(true);
+		if (null != counter) 
+			counter.cancel();
+	}
 }
+

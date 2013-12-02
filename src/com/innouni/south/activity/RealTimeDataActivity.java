@@ -20,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.innouni.south.adapter.AllRealTimeDataAdapter;
 import com.innouni.south.app.MainApplication;
@@ -261,7 +260,7 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
             str3 = formatFloat(Float.valueOf(arrayOfString[2]));
             str4 = formatFloat(Float.valueOf(arrayOfString[3]));
             str5 = String.valueOf(formatFloat(Float.valueOf(str1) - Float.valueOf(str2)));
-            str6 = String.valueOf(formatFloat((Float.valueOf(str5)/Float.valueOf(str2))))+"%";
+            str6 = String.valueOf(100*Float.valueOf(formatFloat((Float.valueOf(str5)/Float.valueOf(str2)))))+"%";
             map.put("name", "√¿÷∏");
             map.put("now", str1);
             map.put("start", str2);

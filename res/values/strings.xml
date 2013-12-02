@@ -203,7 +203,7 @@
    	<string name="record_time">时间</string>
    	<string name="gold_red">金币</string>
    	<string name="rmb">人名币</string>
-   	<string name="input_tip">请输入邮箱地址</string>
+   	<string name="input_tip">请输入邮箱地址或手机号码</string>
    	<string name="next_step">下一步</string>
    	<string name="modify_email">修改邮箱</string>
    	<string name="modify_phone">修改电话</string>
