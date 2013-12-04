@@ -12,6 +12,8 @@ import android.view.WindowManager;
 
 import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
+import com.innouni.south.entity.UserInfo;
+import com.innouni.south.push.SouthMessageService;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.ShareUtil;
 
@@ -52,10 +54,10 @@ public class WelcomeActivity extends BaseActivity {
 		}
 		
 		//开启推送信息监听的服务
-//		UserInfo user = application.getUserInfo();
-//		if (null != user) {
-//			startService(new Intent(this, MessageService.class));
-//		}
+		UserInfo user = application.getUserInfo();
+		if (null != user) {
+			startService(new Intent(this, SouthMessageService.class));
+		}
 	}
 
 

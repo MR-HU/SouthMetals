@@ -32,7 +32,6 @@
 	    android:orientation="horizontal"
 	    android:layout_margin="5dp"
 	    android:layout_below="@id/txt_economic_title_index">
-
 		<TextView
 		    android:id="@+id/txt_economic_preview_index"
 		    android:layout_width="0dp"
@@ -40,7 +39,6 @@
 		    android:layout_weight="1"
 		    android:textColor="@color/black"
 		    android:textSize="14sp" />
-
 	    <TextView
 		    android:id="@+id/txt_economic_predict_index"
 	        android:layout_width="0dp"

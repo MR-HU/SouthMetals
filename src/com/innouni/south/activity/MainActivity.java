@@ -25,7 +25,6 @@ import android.widget.TextView;
 import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
 import com.innouni.south.net.HttpPostRequest;
-import com.innouni.south.push.SouthMessageService;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.UpdateVersionUtil;
 import com.innouni.south.widget.MsgBox;
@@ -62,9 +61,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		initData();
 		initView();
 		if (NetUtil.isNetworkAvailable(this)) {
-			if (application.getUserInfo() != null) {
-				startService(new Intent(this, SouthMessageService.class));
-			}
 			UpdateVersionUtil versionUtil = UpdateVersionUtil.getInstance(MainActivity.this);
 			versionUtil.setShowLoading(false);
 			versionUtil.startCheckVersion();
@@ -177,7 +173,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			intent.setClass(MainActivity.this, ETFActivity.class);
 			break;
 		case 6:
-			intent.setClass(MainActivity.this, MarketNewsActivity.class);
+			intent.setClass(MainActivity.this, AnalysisActivity.class);
 			break;
 		case 7:
 			intent.setClass(MainActivity.this, ServerActivity.class);

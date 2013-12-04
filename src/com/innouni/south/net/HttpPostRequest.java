@@ -7,6 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
@@ -96,6 +97,20 @@ public class HttpPostRequest {
 		}catch(IOException e){
 			result = "net_err";
 		}catch(Exception e){
+			result = "net_err";
+		}
+		return result;
+	}
+	
+	public static String getDataFromWebServerByGet(String url) {
+		String result = "net_err";
+		try {
+			HttpGet httpGet = new HttpGet(url);
+			HttpResponse httpResponse = new DefaultHttpClient().execute(httpGet);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				result = EntityUtils.toString(httpResponse.getEntity());
+			}
+		} catch (Exception e) {
 			result = "net_err";
 		}
 		return result;

@@ -140,6 +140,7 @@ public class ETFActivity extends BaseActivity implements OnClickListener {
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 			pairs.add(new BasicNameValuePair("type", String.valueOf(type)));
 			String json = HttpPostRequest.getDataFromWebServer(ETFActivity.this, "getETF", pairs);
+			System.out.println(json);
 			if (json == null || json.equals("net_err")) {
 				return null;
 			} else {

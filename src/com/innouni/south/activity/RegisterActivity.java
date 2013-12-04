@@ -102,9 +102,21 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.btn_reg_captcha:
 			//获取验证码
-			if (counter != null) {
-				counter.cancel();
+			final String phoneNum = phoneText.getText().toString();
+			if (phoneNum == null || phoneNum.equals("")) {
+				showToast("请先输入手机号");
+			} else {
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+						pairs.add(new BasicNameValuePair("telephone", phoneNum));
+						HttpPostRequest.getDataFromWebServer(RegisterActivity.this, "getCode", pairs);
+					}
+				}).start();
 			}
+			if (counter != null)  
+				counter.cancel();
 			counter = new MyCounterUtil(60000, 1000, captchaButton);
 			counter.start();
 			break;
@@ -148,6 +160,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		
 		@Override
 		protected void onPreExecute() {
+			showDialog();
 			pairs = new ArrayList<NameValuePair>();
 			pairs.add(new BasicNameValuePair("username", name));
 			pairs.add(new BasicNameValuePair("password", MD5.getMD5(password)));
@@ -156,9 +169,9 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 			pairs.add(new BasicNameValuePair("token", token));
 			pairs.add(new BasicNameValuePair("expires", expires));
 			pairs.add(new BasicNameValuePair("type", String.valueOf(type)));
-			pairs.add(new BasicNameValuePair("captcha", captcha));
-			showDialog();
-			if (counter != null) counter.cancel();
+			pairs.add(new BasicNameValuePair("code", captcha));
+			if (counter != null) 
+				counter.cancel();
 			captchaButton.setEnabled(true);
 		}
 		
@@ -205,8 +218,8 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 	 * 计时器
 	 */
 	private class MyCounterUtil extends CountDownTimer {
-		
 		private Button button;
+		
 		
 		public MyCounterUtil(long millisInFuture, long countDownInterval, Button button) {
 			super(millisInFuture, countDownInterval);

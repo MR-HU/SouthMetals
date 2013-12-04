@@ -478,8 +478,9 @@ public class RealTimeDataActivity extends BaseActivity implements OnClickListene
 	
 	//美元指数
 	private void setIntentPutExtra_Meizhi(int index) {
-		Intent intent = new Intent(RealTimeDataActivity.this, MeizhiImageActivity.class);
-		startActivity(intent);
+		mChartName = "美指";
+		mChartCode = "ZSUSD";
+		toIntentStockChart();
 	}
 	
 	@Override

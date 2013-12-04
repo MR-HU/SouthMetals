@@ -74,6 +74,9 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 	private BollingerBandsIndicator mBOLLIndicator;
 	private StochasticIndicator mKDJIndicator;
 	private RsiIndicator mRSI12Indicator,mRSI24Indicator,mRSI6Indicator;
+	//--------------------------------
+	private String[] mKLineTypes2 = { "1001", "1005", "1015", "1030", "1060", "2004", "3001", "4001", "5001" };
+	
 	private String[] mKLineTypes = { "001", "005", "015", "030", "060", "240", "100", "200", "300" };
 	private String[] mTimChartTypes = { "", "24小时", "48小时", "72小时", "96小时"};
 	private ArrayList<LinearSeries> mLinearSeries;
@@ -94,14 +97,15 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
         indicatorBgChange(2);
         try {
         	Bundle localBundle = getIntent().getExtras();
-        	//int i = localBundle.getInt("viewID");
         	mCurrentChartCode = localBundle.getString("ChartCode");
         	mChartTitle = localBundle.getString("ChartName");
 		} catch (Exception e) {
-			// TODO: handle exception
 			mCurrentChartCode  = "XAUUSD";//现货黄金
 			mChartTitle = "现货黄金";
 		}
+        //-------------------------------
+        if(mCurrentChartCode.equals("ZSUSD")) mCurrentKLineType = mKLineTypes2[2];
+        
         mStockIndicatorTiemStrings = getResources().getStringArray(R.array.stock_indicator);
         tv_title.setText(mChartTitle + "-" + "K线" + " " + mStockIndicatorTiemStrings[mCurrentKLineTYP_index]);
         initTimeChart();//分时图初始化
@@ -529,8 +533,15 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 		String p_now,p_updwon,p_updown_str,p_high,p_low,p_today,p_yesterday;
 	    @Override
 	    protected void onPreExecute() {
-	        mUrl = "http://zhj8.sinaapp.com/Mobi/Data/real/s/"+mCurrentChartCode+"";
-	        errorString = null;
+	        //mUrl = "http://zhj8.sinaapp.com/Mobi/Data/real/s/"+mCurrentChartCode+"";
+	        //---------------------------------------------
+	    	if(mCurrentChartCode.equals("ZSUSD")){//妹纸
+	    		mUrl = "http://apphome.sinaapp.com/dc/A/Api/tdata?os=android&tid=ZSUSD&apitoken=";
+	    	}else{
+	    		mUrl = "http://zhj8.sinaapp.com/Mobi/Data/real/s/"+mCurrentChartCode+"";
+	    	}
+	    	
+	    	errorString = null;
 	        //mDataRefreshView.setVisibility(View.VISIBLE);
 		}
 
@@ -546,13 +557,32 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 	 			return null;
 	 		}
 	        strAarray = json.split(",");
-	        p_now = strAarray[1];
-	        p_updwon = strAarray[2];
-	        p_updown_str = strAarray[5];
-	        p_high = strAarray[8];
-	        p_low = strAarray[9];
-	        p_today = strAarray[7];
-	        p_yesterday = strAarray[10];
+//	        p_now = strAarray[1];
+//	        p_updwon = strAarray[2];
+//	        p_updown_str = strAarray[5];
+//	        p_high = strAarray[8];
+//	        p_low = strAarray[9];
+//	        p_today = strAarray[7];
+//	        p_yesterday = strAarray[10];
+	        //-----------------------------------------
+	        if(mCurrentChartCode.equals("ZSUSD")){//妹纸
+	        	p_now = strAarray[2];
+	        	p_updwon = strAarray[7];
+	 	        p_updown_str = strAarray[8];
+	 	        p_high = strAarray[5];
+	 	        p_low = strAarray[6];
+	 	        p_today = strAarray[4];
+	 	        p_yesterday = strAarray[9];
+	        }else{
+	        	p_now = strAarray[1];
+	 	        p_updwon = strAarray[2];
+	 	        p_updown_str = strAarray[5];
+	 	        p_high = strAarray[8];
+	 	        p_low = strAarray[9];
+	 	        p_today = strAarray[7];
+	 	        p_yesterday = strAarray[10];
+	        }
+	        
 			} catch (Exception e) {}
 			return null;
 		} 
@@ -592,11 +622,22 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 	    @Override
 	    protected void onPreExecute() {
 	    	//String tmp1 = 
-	    	if ((mCurrentTimeChartTYP == 1) && (!mCurrentChartCode.equals("Au(T%2BD)")) && (!mCurrentChartCode.equals("Ag(T%2BD)"))){
-	    		 mUrl = "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"+mCurrentChartCode+"/d/2";
+//	    	if ((mCurrentTimeChartTYP == 1) && (!mCurrentChartCode.equals("Au(T%2BD)")) && (!mCurrentChartCode.equals("Ag(T%2BD)"))){
+//	    		 mUrl = "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"+mCurrentChartCode+"/d/2";
+//	    	}else{
+//	    		 mUrl = "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"+mCurrentChartCode+"/d/"+mCurrentTimeChartTYP+"";
+//	    	}
+	    	//------------------------------------------
+	    	if(mCurrentChartCode.equals("ZSUSD")){
+	    		mUrl = "http://apphome.sinaapp.com/dc/A/Api/trendData?os=android&tid=ZSUSD&t="+mCurrentTimeChartTYP+"";
 	    	}else{
-	    		 mUrl = "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"+mCurrentChartCode+"/d/"+mCurrentTimeChartTYP+"";
+	    		if ((mCurrentTimeChartTYP == 1) && (!mCurrentChartCode.equals("Au(T%2BD)")) && (!mCurrentChartCode.equals("Ag(T%2BD)"))){
+		    		 mUrl = "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"+mCurrentChartCode+"/d/2";
+		    	}else{
+		    		 mUrl = "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"+mCurrentChartCode+"/d/"+mCurrentTimeChartTYP+"";
+		    	}
 	    	}
+	    	
 	    	//Log.i("tag", "tag mUrl"+mUrl);
 	    	//Log.i("tag", "tag mCurrentChartCode"+mCurrentChartCode);
 	        errorString = null;
@@ -612,16 +653,61 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
                 errorString = "nodata";
 	 			return null;
 	 		}
-	        strAarray1 = json.split("\n");
-	        
+//	        strAarray1 = json.split("\n");
+        
 	        //LinePoint iLinePoint;
-		    len = strAarray1.length;
+//		    len = strAarray1.length;
+//		    String strLast_data = "";
+//		    //Log.i("tag", "tag len="+len);
+//		    if(mCurrentTimeChartTYP == 1)
+//		    	strLast_data = strAarray1[len - 1].split(",")[0];
+//		    mChartBeans.clear();
+//		    TimeChartBean localTimeChartBean = new TimeChartBean();
+//		    LinePoint localLinePoint;
+//		    for (int i = 3; i < len; i++){
+//		    	strAarray2 = strAarray1[i].split(",");
+//		    	
+//		    	str2 = metalDateFormat2(strAarray2[0], strAarray2[1]);
+//		    	//Log.i("tag", "tag str2="+str2);
+//		    	
+//		    	localTimeChartBean.setDate(strAarray2[0]);
+//		    	double d = Double.parseDouble(strAarray2[2]);
+//		    	if ((mCurrentTimeChartTYP ==1) && (!mCurrentChartCode.equals("Au(T+D)")) && (!mCurrentChartCode.equals("Ag(T+D)"))){
+//		            if (strLast_data.equals(strAarray2[0])){
+//		            	localLinePoint = new LinePoint(d);
+//		            	localLinePoint.setID(str2);
+//		                localTimeChartBean.getLinePoints().add(localLinePoint);
+//		            }
+//		        }else{
+//		        	localLinePoint = new LinePoint(d);
+//		        	localLinePoint.setID(str2);
+//		            localTimeChartBean.getLinePoints().add(localLinePoint);
+//		        }
+//		    	mChartBeans.add(localTimeChartBean);
+//		    }
+		    //-----------------------------------
+		    strAarray1 = json.split("\n");
+	        len = strAarray1.length;
+	        
+	        mChartBeans.clear();
+		    TimeChartBean localTimeChartBean = new TimeChartBean();
+	        if(mCurrentChartCode.equals("ZSUSD")){
+	        	LinePoint localLinePoint2;
+	        for (int i = 0; i < len; i++){
+	        	strAarray2 = strAarray1[i].split(",");
+	        	
+	        	str2 = metalDateFormat3(strAarray2[0], strAarray2[1]);
+	        	localLinePoint2 = new LinePoint(Double.parseDouble(strAarray2[2]));
+	        	localLinePoint2.setID(str2);
+	        	localTimeChartBean.getLinePoints().add(localLinePoint2);
+	        	mChartBeans.add(localTimeChartBean);
+	        }
+	        }else{
 		    String strLast_data = "";
 		    //Log.i("tag", "tag len="+len);
 		    if(mCurrentTimeChartTYP == 1)
 		    	strLast_data = strAarray1[len - 1].split(",")[0];
-		    mChartBeans.clear();
-		    TimeChartBean localTimeChartBean = new TimeChartBean();
+		   
 		    LinePoint localLinePoint;
 		    for (int i = 3; i < len; i++){
 		    	strAarray2 = strAarray1[i].split(",");
@@ -644,7 +730,7 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 		        }
 		    	mChartBeans.add(localTimeChartBean);
 		    }
-	        
+	        }
 			return null;
 		} 
 		@Override
@@ -698,6 +784,19 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 			} catch (Exception e) {}
 			
 		}
+	}
+	
+	private String metalDateFormat3(String date, String time){
+		if (Integer.parseInt(time) == 0)
+			return date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6, 8);
+		switch (time.length()){
+		case 1:time = "00000"+time;break;
+		case 2:time = "0000"+time;break;
+	    case 3:time = "000"+time;break;
+	    case 4:time = "00"+time;break;
+	    case 5:time = "0"+time;break;
+	    }
+	    return date.substring(4, 6)+ "-" + date.substring(6, 8) + " " + time.substring(0, 2) + ":" + time.substring(2, 4);
 	}
 	/*
 	private void handleTimeChartLine(ArrayList<LinePoint> paramArrayList1, ArrayList<LinePoint> paramArrayList2, 
@@ -753,8 +852,15 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 	    @Override
 	    protected void onPreExecute() {
 	        //String url = "http://zhj8.sinaapp.com/Mobi/Data/kline/s/XAGUSD/p/015";
-	        mUrl = "http://zhj8.sinaapp.com/Mobi/Data/kline/s/"+mCurrentChartCode+"/p/"+mCurrentKLineType+"";
+	        //mUrl = "http://zhj8.sinaapp.com/Mobi/Data/kline/s/"+mCurrentChartCode+"/p/"+mCurrentKLineType+"";
 	        //Log.i("", "tag murl="+mUrl);
+	    	//----------------------------------------------
+	    	if(mCurrentChartCode.equals("ZSUSD")) {//妹纸
+	    	    mUrl = "http://apphome.sinaapp.com/dc/A/Api/kdata?os=android&tid=ZSUSD&tt="+mCurrentKLineType+"&apitoken=";
+	    	} else {
+	    		mUrl = "http://zhj8.sinaapp.com/Mobi/Data/kline/s/"+mCurrentChartCode+"/p/"+mCurrentKLineType+"";
+	    	}
+	    	
 	        errorString = null;
 	        mDataRefreshView.setVisibility(View.VISIBLE);
 		}
@@ -785,10 +891,10 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 				iLinePoint.setID(iStockPoint.getID());
 					
 				mCloseSeries.getPoints().add(iLinePoint);
-			    mVolumnSeries.addPoint(0.0D, Double.parseDouble(strAarray2[6]));
+//			    mVolumnSeries.addPoint(0.0D, Double.parseDouble(strAarray2[6]));
 					
 				if(i == (len -1)){
-					mVolumnSeries.setLastValue(100.0D);
+//					mVolumnSeries.setLastValue(100.0D);
 					//mVolumnSeries.setVisible(true);
 					mKChartSeries.setLastValue(iStockPoint.getClose());
 					mIndicatorSeries.setLastValue(iStockPoint.getClose());
@@ -798,7 +904,12 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 			return null;
 		} 
 		@Override
-		protected void onPostExecute(ArrayList<Object> result) {
+		protected void onPostExecute(ArrayList<Object> result) { 
+			if(len < 1) {
+				tv_change_indicator.setEnabled(false);
+			} else {
+				tv_change_indicator.setEnabled(true);
+			}
 			iGetGoldTask = null;
 			try {
 				 mDataRefreshView.setVisibility(View.GONE);
@@ -1207,7 +1318,14 @@ public class StockChartsActivity extends Activity implements OnClickListener, On
 	//K线图 几分线 时间选择
     private void changeKLineType(int iKLineType){
     	tv_title.setText(mChartTitle + "-" + "K线" + " " + mStockIndicatorTiemStrings[iKLineType]);
-    	mCurrentKLineType = mKLineTypes[iKLineType];
+    	//mCurrentKLineType = mKLineTypes[iKLineType];
+    	//---------------------------------------------------
+    	if(mCurrentChartCode.equals("ZSUSD")){//妹纸
+    		mCurrentKLineType = mKLineTypes2[iKLineType];
+    	}else{
+    		mCurrentKLineType = mKLineTypes[iKLineType];
+    	}
+    	
     	mCurrentKLineTYP_index = iKLineType;
 	    indicatorBgChange(iKLineType);
 	    getStockChartData();
