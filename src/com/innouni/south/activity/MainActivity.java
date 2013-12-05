@@ -12,36 +12,51 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.innouni.south.adapter.ViewPagerAdapter;
 import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
 import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.UpdateVersionUtil;
 import com.innouni.south.widget.MsgBox;
+import com.yintong.secure.f.i;
 
 /**
  * 主页  九宫格展示各个模块
  * @author HuGuojun
  * @data 2013-09-02
  */
-public class MainActivity extends BaseActivity implements OnClickListener, OnItemClickListener{
+public class MainActivity extends BaseActivity implements OnClickListener, OnItemClickListener, OnPageChangeListener {
 
+	private LinearLayout indicatorLayout;
 	private TextView announcementView;
-	private GridView gridView;
+	private GridView gridView1;
+	private GridView gridView2;
+	private ViewPager viewPager;
+	private List<View> views;
 	
-	private List<HashMap<String, Object>> data;
+	private List<HashMap<String, Object>> data1;
+	private List<HashMap<String, Object>> data2;
 	private int[] icons;
 	private String[] titles;
+	private int[] icons2;
+	private String[] titles2;
+	
+	private int currentPage = 0;
 	
 	private GetAnnouncementTask task;
 		
@@ -58,6 +73,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 				R.drawable.icon_home_news, R.drawable.icon_home_expert, R.drawable.icon_home_exchange, 
 				R.drawable.icon_home_about, R.drawable.icon_home_serve, R.drawable.icon_home_help};
 		titles = getResources().getStringArray(R.array.home_icon);
+		icons2 = new int[]{R.drawable.icon_home_realtime, R.drawable.icon_home_market, R.drawable.icon_home_finance};
+		titles2 = new String[]{"即时新闻", "价格转换", "关于我们"};
 		initData();
 		initView();
 		if (NetUtil.isNetworkAvailable(this)) {
@@ -71,14 +88,23 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	}
 
 	private void initData() {
-		HashMap<String, Object> map;
-		data = new ArrayList<HashMap<String,Object>>();
+		HashMap<String, Object> map1;
+		data1 = new ArrayList<HashMap<String,Object>>();
 		for (int i = 0; i < icons.length; i++) {
-			map = new HashMap<String, Object>();
-			map.put("icon", icons[i]);
-			map.put("title", titles[i]);
-			data.add(map);
-			map = null;
+			map1 = new HashMap<String, Object>();
+			map1.put("icon", icons[i]);
+			map1.put("title", titles[i]);
+			data1.add(map1);
+			map1 = null;
+		}
+		HashMap<String, Object> map2;
+		data2 = new ArrayList<HashMap<String,Object>>();
+		for (int i = 0; i < icons2.length; i++) {
+			map2 = new HashMap<String, Object>();
+			map2.put("icon", icons2[i]);
+			map2.put("title", titles2[i]);
+			data2.add(map2);
+			map2 = null;
 		}
 	}
 
@@ -91,11 +117,28 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
 		titleContentView.setBackgroundResource(R.drawable.toolbar_logo);
 		announcementView = (TextView) findViewById(R.id.txt_announcement);
-		gridView = (GridView) findViewById(R.id.gridview_main_icon);
-		gridView.setOnItemClickListener(this);
-		gridView.setAdapter(new SimpleAdapter(MainActivity.this, data,
+		indicatorLayout = (LinearLayout) findViewById(R.id.main_page_indicator);
+		
+		View view1 = LayoutInflater.from(this).inflate(R.layout.main_pager_gridview1, null);
+		gridView1 = (GridView) view1.findViewById(R.id.gridview_main_icon);
+		gridView1.setOnItemClickListener(this);
+		gridView1.setAdapter(new SimpleAdapter(MainActivity.this, data1,
 				R.layout.item_main_gridview, new String[]{"icon", "title"}, 
 				new int[]{R.id.image_main_gridview, R.id.txt_main_gridview}));
+		View view2 = LayoutInflater.from(this).inflate(R.layout.main_pager_gridview1, null);
+		gridView2 = (GridView) view2.findViewById(R.id.gridview_main_icon);
+		gridView2.setOnItemClickListener(this);
+		gridView2.setAdapter(new SimpleAdapter(MainActivity.this, data2,
+				R.layout.item_main_gridview, new String[]{"icon", "title"}, 
+				new int[]{R.id.image_main_gridview, R.id.txt_main_gridview}));
+		
+		views = new ArrayList<View>();
+		views.add(view1);
+		views.add(view2);
+		viewPager = (ViewPager) findViewById(R.id.view_pager);
+		viewPager.setAdapter(new ViewPagerAdapter(views));
+		viewPager.setCurrentItem(0);
+		viewPager.setOnPageChangeListener(this);
 	}
 	
 	private class GetAnnouncementTask extends AsyncTask<Void, Void, List<String>>{
@@ -145,8 +188,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 				startActivity(intent);
 			}
 			break;
-		default:
-			break;
 		}
 	}
 
@@ -155,13 +196,25 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		Intent intent = new Intent();
 		switch (position) {
 		case 0:
-			intent.setClass(MainActivity.this, RealTimeDataActivity.class);
+			if (currentPage == 0) {
+				intent.setClass(MainActivity.this, RealTimeDataActivity.class);
+			} else {
+				intent.setClass(MainActivity.this, InstantNewsActivity.class);
+			}
 			break;
 		case 1:
-			intent.setClass(MainActivity.this, MarketNewsActivity.class);
+			if (currentPage == 0) {
+				intent.setClass(MainActivity.this, MarketNewsActivity.class);
+			} else {
+				intent.setClass(MainActivity.this, RateExchangeActivity.class);
+			}
 			break;
 		case 2:
-			intent.setClass(MainActivity.this, EconomicCalendarGroupActivity.class);
+			if (currentPage == 0) {
+				intent.setClass(MainActivity.this, EconomicCalendarGroupActivity.class);
+			} else {
+				intent.setClass(MainActivity.this, AboutActivity.class);
+			}
 			break;
 		case 3:
 			intent.setClass(MainActivity.this, ExpertOpinionActivity.class);
@@ -240,6 +293,25 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			}
 		});
 		mg.show(this);
+	}
+
+	/** ViewPager.OnPageChangeListener */
+	@Override
+	public void onPageScrollStateChanged(int arg0) {}
+
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {}
+
+	@Override
+	public void onPageSelected(int position) {
+		currentPage = position;
+		if (currentPage == 0) {
+			indicatorLayout.getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.welcome_tab_hover));
+			indicatorLayout.getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.welcome_tab));
+		} else {
+			indicatorLayout.getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.welcome_tab_hover));
+			indicatorLayout.getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.welcome_tab));
+		}
 	}
 	
 }

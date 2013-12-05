@@ -216,6 +216,9 @@ public class AnalysisActivity extends BaseActivity implements OnClickListener {
 			avgSell = 0;
 			techBuy = 0;
 			techSell = 0;
+			list1.clear();
+			list2.clear();
+			list3.clear();
 		}
 
 		@Override

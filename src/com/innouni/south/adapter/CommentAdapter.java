@@ -41,7 +41,16 @@ public class CommentAdapter extends ArrayListAdapter<Object> {
 		}
 		news = (MarketNews) mList.get(position);
 		viewHolder.titleView.setText(news.getTitle().toString());
-		viewHolder.contentView.setText(news.getDescription().toString());
+		String description = news.getDescription().toString();
+		//如果描述为空,则截取内容的前30个字作为描述
+		if (description.equals("")) { 
+			String content = news.getContent().toString();
+			if (content.length() > 30) {
+				content = content.substring(0, 30);
+			}
+			description = content;
+		}
+		viewHolder.contentView.setText(description);
 		viewHolder.timeView.setText(news.getTime().toString());
 		return convertView;
 	}
