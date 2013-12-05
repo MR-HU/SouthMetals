@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -45,25 +46,17 @@
 	   	<RelativeLayout 
 	   	    android:layout_width="fill_parent"
 	   	    android:layout_height="wrap_content">
-	   		<LinearLayout 
-	   		    android:id="@+id/main_page_indicator"
-	   		    android:layout_width="wrap_content"
-	   		    android:layout_height="wrap_content"
-	   		    android:orientation="horizontal"
-	   		    android:layout_centerHorizontal="true"
-	   		    android:gravity="center"
-	   		    android:layout_alignParentBottom="true"
-	   		    android:layout_margin="5dp">
-	   		    <ImageView 
-	   		        android:layout_width="wrap_content"
-	   		        android:layout_height="wrap_content"
-	   		        android:background="@drawable/welcome_tab_hover"/>
-	   		   	<ImageView 
-	   		        android:layout_width="wrap_content"
-	   		        android:layout_height="wrap_content"
-	   		        android:layout_marginLeft="10dp"
-	   		        android:background="@drawable/welcome_tab"/>
-	   		</LinearLayout>
+	   		<com.viewpagerindicator.CirclePageIndicator
+				android:id="@+id/main_page_indicator"
+			   	android:padding="2dp"
+			   	android:layout_alignParentBottom="true"
+			  	android:layout_height="wrap_content"
+			 	android:layout_width="fill_parent"
+			 	app:radius="5dp"
+        		app:fillColor="#FF888888"
+        		app:pageColor="#88FF0000"
+        		app:strokeColor="#FF000000"
+        		app:strokeWidth="0.5dp"/>
 		   	<android.support.v4.view.ViewPager
 	        	android:id="@+id/view_pager"
 		        android:layout_width="match_parent"

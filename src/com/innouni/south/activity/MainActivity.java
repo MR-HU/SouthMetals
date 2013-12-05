@@ -33,6 +33,7 @@ import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.UpdateVersionUtil;
 import com.innouni.south.widget.MsgBox;
+import com.viewpagerindicator.PageIndicator;
 import com.yintong.secure.f.i;
 
 /**
@@ -42,7 +43,7 @@ import com.yintong.secure.f.i;
  */
 public class MainActivity extends BaseActivity implements OnClickListener, OnItemClickListener, OnPageChangeListener {
 
-	private LinearLayout indicatorLayout;
+	private PageIndicator indicatorLayout;
 	private TextView announcementView;
 	private GridView gridView1;
 	private GridView gridView2;
@@ -117,7 +118,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
 		titleContentView.setBackgroundResource(R.drawable.toolbar_logo);
 		announcementView = (TextView) findViewById(R.id.txt_announcement);
-		indicatorLayout = (LinearLayout) findViewById(R.id.main_page_indicator);
 		
 		View view1 = LayoutInflater.from(this).inflate(R.layout.main_pager_gridview1, null);
 		gridView1 = (GridView) view1.findViewById(R.id.gridview_main_icon);
@@ -139,6 +139,9 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		viewPager.setAdapter(new ViewPagerAdapter(views));
 		viewPager.setCurrentItem(0);
 		viewPager.setOnPageChangeListener(this);
+		
+		indicatorLayout = (PageIndicator) findViewById(R.id.main_page_indicator);
+		indicatorLayout.setViewPager(viewPager);
 	}
 	
 	private class GetAnnouncementTask extends AsyncTask<Void, Void, List<String>>{
@@ -305,13 +308,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	@Override
 	public void onPageSelected(int position) {
 		currentPage = position;
-		if (currentPage == 0) {
-			indicatorLayout.getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.welcome_tab_hover));
-			indicatorLayout.getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.welcome_tab));
-		} else {
-			indicatorLayout.getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.welcome_tab_hover));
-			indicatorLayout.getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.welcome_tab));
-		}
 	}
 	
 }
