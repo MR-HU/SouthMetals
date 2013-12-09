@@ -142,6 +142,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		
 		indicatorLayout = (PageIndicator) findViewById(R.id.main_page_indicator);
 		indicatorLayout.setViewPager(viewPager);
+		indicatorLayout.setOnPageChangeListener(this);
 	}
 	
 	private class GetAnnouncementTask extends AsyncTask<Void, Void, List<String>>{
