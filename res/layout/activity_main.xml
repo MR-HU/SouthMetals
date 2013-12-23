@@ -27,7 +27,8 @@
 	   			android:layout_height="wrap_content"
 	   			android:layout_gravity="center_vertical"
 	   			android:layout_marginRight="4.0dip"
-	   			android:textColor="@color/white"
+	   			android:textColor="#4ED2E6"
+	   			android:textSize="15sp"
 	   			android:text="@string/announcement"/>
 	   		<com.innouni.south.widget.AlwaysMarqueeTextView
 	   			android:id="@+id/txt_announcement"
@@ -35,13 +36,15 @@
 	   			android:layout_height="wrap_content"
 	   			android:layout_gravity="center_vertical"
 	   			android:layout_marginRight="15.0dip"
+	   			android:textColor="#4ED2E6"
 	   			android:singleLine="true"
 	   			android:ellipsize="marquee"
+	   			android:textSize="15sp"
+	   			android:text="欢迎来到南方贵金属"
 	   			android:marqueeRepeatLimit="marquee_forever"
 	   			android:focusable="true"
 	   			android:focusableInTouchMode="true"
-				android:scrollHorizontally="true"
-	   			android:textColor="@color/white"/>
+				android:scrollHorizontally="true"/>
 	   	</LinearLayout>
 	   	<RelativeLayout 
 	   	    android:layout_width="fill_parent"

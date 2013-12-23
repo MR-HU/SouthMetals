@@ -12,13 +12,13 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="←←"/>
+			android:background="@drawable/left"/>
 	    <Button 
 	        android:id="@+id/btn_calenda_right"
 	        android:layout_alignParentRight="true"
 	        android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="→→"/>
+			android:background="@drawable/right"/>
 	    <Button 
 	        android:id="@+id/btn_calenda_center"
 	        android:layout_toLeftOf="@id/btn_calenda_right"

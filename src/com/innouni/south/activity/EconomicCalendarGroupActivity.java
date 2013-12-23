@@ -79,9 +79,13 @@ public class EconomicCalendarGroupActivity extends BaseActivityGroup implements 
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		switch (checkedId) {
 		case R.id.radio_calendar:
+			calendarButton.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+			indexButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			openView(EconomicCalendaActivity.class);
 			break;
 		case R.id.radio_index:
+			calendarButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+			indexButton.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
 			openView(MarketIndexActivity.class);
 			break;
 		default:

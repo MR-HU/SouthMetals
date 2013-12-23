@@ -40,7 +40,7 @@ public class AnalysisActivity extends BaseActivity implements OnClickListener {
 	private String[] periods = {"300", "900", "1800", "3600", "18000", "86400"};
 	private String[] types = {"gold", "silver", "usd"};
 	private String type = types[0];
-	private String period = periods[3];
+	private String period = periods[0];
 	
 	private ListView pivotListView, avgListView, techListView;
 	private List<Object> list1; //pivotList
@@ -158,46 +158,65 @@ public class AnalysisActivity extends BaseActivity implements OnClickListener {
 			getData();
 			break;
 		case R.id.btn_5m:
+			changeBtnBg(0);
 			period = periods[0];
 			getData();
 			break;
 		case R.id.btn_15m:
+			changeBtnBg(1);
 			period = periods[1];
 			getData();
 			break;
 		case R.id.btn_30m:
+			changeBtnBg(2);
 			period = periods[2];
 			getData();
 			break;
 		case R.id.btn_60m:
+			changeBtnBg(3);
 			period = periods[3];
 			getData();
 			break;
 		case R.id.btn_300m:
+			changeBtnBg(4);
 			period = periods[4];
 			getData();
 			break;
 		case R.id.btn_1440m:
+			changeBtnBg(5);
 			period = periods[5];
 			getData();
 			break;
 		case R.id.btn_analyse_gold:
+			goldButton.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+			silverButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+			dollarButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			type = types[0];
 			getData();
 			break;
 		case R.id.btn_analyse_silver:
+			goldButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+			silverButton.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+			dollarButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			type = types[1];
 			getData();
 			break;
 		case R.id.btn_analyse_dollar:
+			goldButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+			silverButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+			dollarButton.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
 			type = types[2];
 			getData();
 			break;
 		case R.id.btn_analyse_tech:
+			techButton.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+			avgButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			techListView.setVisibility(View.VISIBLE);
 			avgListView.setVisibility(View.GONE);
 			break;
 		case R.id.btn_analyse_avg:
+			techButton.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+			avgButton.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
 			techListView.setVisibility(View.GONE);
 			avgListView.setVisibility(View.VISIBLE);
 			break;
@@ -336,6 +355,17 @@ public class AnalysisActivity extends BaseActivity implements OnClickListener {
 		titleRefreshBar.setVisibility(View.GONE);
 		if (null != task) {
 			task.cancel(true);
+		}
+	}
+	
+	private void changeBtnBg(int index) {
+		Button array[] = {button1, button2, button3 ,button4 ,button5 ,button6};
+		for (int i = 0; i < array.length; i++) {
+			if (index == i) {
+				array[i].setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+			} else {
+				array[i].setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+			}
 		}
 	}
 }

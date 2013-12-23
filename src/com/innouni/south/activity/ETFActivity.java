@@ -48,7 +48,7 @@ public class ETFActivity extends BaseActivity implements OnClickListener {
 	private static final int TYPE_GOLD = 1;
 	private static final int TYPE_SILVER = 2;
 	
-	private Button goldBtn, silverBtn;
+	private TextView goldBtn, silverBtn;
 	
 	private ListView listView;
 	private ETFAdapter adapter;
@@ -82,8 +82,8 @@ public class ETFActivity extends BaseActivity implements OnClickListener {
 		titleRightBtn.setOnClickListener(this);
 		titleContentView.setText("ETF³Ö²Ö");
 		
-		goldBtn = (Button) findViewById(R.id.btn_gold_etf);
-		silverBtn = (Button) findViewById(R.id.btn_silver_etf);
+		goldBtn = (TextView) findViewById(R.id.btn_gold_etf);
+		silverBtn = (TextView) findViewById(R.id.btn_silver_etf);
 		goldBtn.setOnClickListener(this);
 		silverBtn.setOnClickListener(this);
 		
@@ -111,6 +111,8 @@ public class ETFActivity extends BaseActivity implements OnClickListener {
 			task.execute();
 			break;
 		case R.id.btn_gold_etf:
+			goldBtn.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+			silverBtn.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			type = TYPE_GOLD;
 			currentType = "gold";
 			if (task != null) task.cancel(true);
@@ -118,6 +120,8 @@ public class ETFActivity extends BaseActivity implements OnClickListener {
 			task.execute();
 			break;
 		case R.id.btn_silver_etf:
+			silverBtn.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+			goldBtn.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			type = TYPE_SILVER;
 			currentType = "silver";
 			if (task != null) task.cancel(true);

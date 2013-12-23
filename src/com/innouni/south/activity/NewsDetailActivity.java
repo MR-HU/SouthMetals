@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
@@ -22,7 +23,6 @@ import com.innouni.south.base.BaseActivity;
 public class NewsDetailActivity extends BaseActivity implements OnClickListener{
 	
 	private TextView titleView, sourceView, timeView;
-	private Button backButton;
 	private WebView webView;
 	
 	private String title, time, content, source;
@@ -43,15 +43,19 @@ public class NewsDetailActivity extends BaseActivity implements OnClickListener{
 	}
 
 	private void initView() {
+		titleLeftBtn = (Button) findViewById(R.id.btn_title_left);
+		titleRightBtn = (Button) findViewById(R.id.btn_title_right);
+		titleContentView = (TextView) findViewById(R.id.txt_title_content);
+		titleLeftBtn.setOnClickListener(this);
+		titleRightBtn.setVisibility(View.GONE);
+		titleContentView.setVisibility(View.GONE);
+		
 		titleView = (TextView) findViewById(R.id.txt_news_detail_title);
 		sourceView = (TextView) findViewById(R.id.txt_news_detail_source);
 		timeView = (TextView) findViewById(R.id.txt_news_detail_time);
 		titleView.setText(title);
 		sourceView.setText(source);
 		timeView.setText(time);
-		
-		backButton = (Button) findViewById(R.id.btn_news_detail_back);
-		backButton.setOnClickListener(this);
 		
 		webView = (WebView) findViewById(R.id.webview_news_detail_content);
 		WebSettings sets = webView.getSettings();
@@ -72,7 +76,7 @@ public class NewsDetailActivity extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId() == R.id.btn_news_detail_back){
+		if(v.getId() == R.id.btn_title_left){
 			finish();
 		}
 	}

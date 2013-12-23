@@ -12,6 +12,7 @@
         <ImageView 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:background="@drawable/title_low_background"/>
         <LinearLayout 
 	    	android:layout_width="fill_parent"

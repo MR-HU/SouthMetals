@@ -13,13 +13,14 @@
     	<ImageView 
     		android:layout_width="fill_parent"
     		android:layout_height="wrap_content"
+    		android:visibility="gone"
     		android:background="@drawable/title_low_background"/>
     	<ImageView 
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:layout_gravity="center_horizontal"
     		android:layout_marginTop="30.0dip"
-    		android:src="@drawable/welcome_logo"/>
+    		android:src="@drawable/welcome_img"/>
     	<LinearLayout
     		android:id="@+id/lay_telephone"
     		android:layout_width="fill_parent"
@@ -29,6 +30,8 @@
     		android:layout_marginRight="10dp"
     		android:gravity="center"
     		android:clickable="true"
+    		android:paddingTop="5dp"
+    		android:paddingBottom="5dp"
     		android:background="@drawable/send_btn_selector">
     		<ImageView 
     			android:layout_width="wrap_content"

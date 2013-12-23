@@ -6,42 +6,50 @@
 	android:layout_height="match_parent">
     <include layout="@layout/app_title_bar"/>
     <RelativeLayout 
-    	android:layout_width="fill_parent"
-    	android:layout_height="fill_parent"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
     	android:background="@drawable/app_background">
-	    <RadioGroup 
-	    	android:id="@+id/radiogroup_info_related"
-	    	android:layout_alignParentBottom="true"
-	    	android:gravity="center"
-	    	android:orientation="horizontal" 
-	  		android:background="@drawable/title_high_background"
-	  		android:layout_width="fill_parent"
-	        android:layout_height="wrap_content">
-	        <RadioButton 
-	        	android:id="@+id/radio_calendar"
-	        	android:layout_width="wrap_content"
-	        	android:layout_height="wrap_content"
-	        	android:layout_marginLeft="10.0dip"
-	        	android:checked="true" 
-	        	android:gravity="center"
-	        	android:singleLine="true"
-	        	android:textSize="16.0sp"
-	        	android:textColor="@color/white"
-	        	android:text="财经日历"/>
-	        <RadioButton 
-	        	android:id="@+id/radio_index"
-	        	android:layout_width="wrap_content"
-	        	android:layout_height="wrap_content"
-	        	android:layout_marginLeft="10.0dip"
-	        	android:gravity="center"
-	        	android:singleLine="true"
-	        	android:textSize="16.0sp"
-	        	android:text="财经指数"/>
-	    </RadioGroup>
+    	<LinearLayout 
+    	    android:id="@+id/lay_info_related"
+    	    android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:background="@drawable/title_high_background"
+    		android:orientation="horizontal">
+		    <RadioGroup 
+		    	android:id="@+id/radiogroup_info_related"
+		    	android:gravity="center"
+		    	android:orientation="horizontal" 
+		  		android:layout_width="match_parent"
+		        android:layout_height="wrap_content">
+		        <RadioButton 
+		        	android:id="@+id/radio_calendar"
+		        	android:layout_width="0dp"
+		        	android:layout_height="wrap_content"
+		        	android:layout_weight="1"
+		        	android:checked="true" 
+		        	android:gravity="center"
+		        	android:singleLine="true"
+		        	android:textSize="16.0sp"
+		        	android:textColor="@color/white"
+		        	android:background="@drawable/title_btn_bg_orange_pressed"
+		        	android:text="财经日历"/>
+		        <RadioButton 
+		        	android:id="@+id/radio_index"
+		        	android:layout_width="0dp"
+		        	android:layout_height="wrap_content"
+		        	android:layout_weight="1"
+		        	android:background="@drawable/title_btn_bg_orange_normal"
+		        	android:gravity="center"
+		        	android:singleLine="true"
+		        	android:textSize="16.0sp"
+		        	android:text="财经指数"/>
+		    </RadioGroup>
+	    </LinearLayout>
 	    <FrameLayout 
 	    	android:id="@+id/lay_info_related_frame"
 	    	android:background="@color/transparent"
-	    	android:layout_above="@id/radiogroup_info_related"
+	    	android:layout_marginTop="5dp"
+	    	android:layout_below="@id/lay_info_related"
 	    	android:layout_width="fill_parent"
 	    	android:layout_height="fill_parent"/>
 	</RelativeLayout>

@@ -115,7 +115,7 @@ public class SouthMessageService extends Service {
 		
 		notification = new Notification();
 		//提示文字
-		notification.icon = R.drawable.logo72;
+		notification.icon = R.drawable.logo;
 		notification.flags = Notification.FLAG_AUTO_CANCEL;
 		notification.contentView = new RemoteViews(getPackageName(),R.layout.notification_message);
 		//设置声音

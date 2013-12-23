@@ -3,16 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background">
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true">
+        <TextView 
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Copyright © Nanfang.com"
+            android:textSize="15sp"
+            android:textColor="@color/white"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_right"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:textSize="15sp"
+            android:text="All rights reserved."
+            android:textColor="@color/white"/>
+    </RelativeLayout>
     <ImageView 
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:src="@drawable/welcome_logo"
-    	android:layout_marginTop="20.0dip"
-    	android:layout_centerHorizontal="true"/>
-    <ImageView 
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:src="@drawable/welcom_img"
-    	android:layout_alignParentBottom="true"
+    	android:src="@drawable/welcome_img"
+    	android:layout_centerInParent="true"
     	android:layout_centerHorizontal="true"/>
 </RelativeLayout>

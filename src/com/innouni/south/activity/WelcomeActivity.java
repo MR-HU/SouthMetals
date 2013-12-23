@@ -99,7 +99,7 @@ public class WelcomeActivity extends BaseActivity {
 	private void alertMsg(String msg) {
 		new AlertDialog.Builder(this)
 			.setTitle(R.string.alter_title).setMessage(msg)
-			.setMessage(msg).setIcon(R.drawable.logo72)
+			.setMessage(msg).setIcon(R.drawable.logo)
 			.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,	int whichButton) {
 					finish();

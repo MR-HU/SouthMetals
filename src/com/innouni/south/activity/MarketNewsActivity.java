@@ -236,93 +236,93 @@ public class MarketNewsActivity extends BaseActivity implements OnClickListener,
 		@Override
 		public void onClick(View v) {
 			if(index == 0){
-				fastInfoView.setBackgroundResource(R.drawable.title_btn_bg_orange);
-				agencyCommentView.setBackgroundResource(0);
-				marketNewsView.setBackgroundResource(0);
-				frexNewsView.setBackgroundResource(0);
-				worldFianceView.setBackgroundResource(0);
-				famousColumnView.setBackgroundResource(0);
-				fastInfoView.setTextColor(resources.getColor(R.color.dark_orange));
-				agencyCommentView.setTextColor(resources.getColor(R.color.white));
-				marketNewsView.setTextColor(resources.getColor(R.color.white));
-				frexNewsView.setTextColor(resources.getColor(R.color.white));
-				worldFianceView.setTextColor(resources.getColor(R.color.white));
-				famousColumnView.setTextColor(resources.getColor(R.color.white));
+				fastInfoView.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+				agencyCommentView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				marketNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				frexNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				worldFianceView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				famousColumnView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+//				fastInfoView.setTextColor(resources.getColor(R.color.dark_orange));
+//				agencyCommentView.setTextColor(resources.getColor(R.color.white));
+//				marketNewsView.setTextColor(resources.getColor(R.color.white));
+//				frexNewsView.setTextColor(resources.getColor(R.color.white));
+//				worldFianceView.setTextColor(resources.getColor(R.color.white));
+//				famousColumnView.setTextColor(resources.getColor(R.color.white));
 				type = FAST_INFO;
 			}
 			if(index == 1){
-				fastInfoView.setBackgroundResource(0);
-				agencyCommentView.setBackgroundResource(R.drawable.title_btn_bg_orange);
-				marketNewsView.setBackgroundResource(0);
-				frexNewsView.setBackgroundResource(0);
-				worldFianceView.setBackgroundResource(0);
-				famousColumnView.setBackgroundResource(0);
-				fastInfoView.setTextColor(resources.getColor(R.color.white));
-				agencyCommentView.setTextColor(resources.getColor(R.color.dark_orange));
-				marketNewsView.setTextColor(resources.getColor(R.color.white));
-				frexNewsView.setTextColor(resources.getColor(R.color.white));
-				worldFianceView.setTextColor(resources.getColor(R.color.white));
-				famousColumnView.setTextColor(resources.getColor(R.color.white));
+				fastInfoView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				agencyCommentView.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+				marketNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				frexNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				worldFianceView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				famousColumnView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+//				fastInfoView.setTextColor(resources.getColor(R.color.white));
+//				agencyCommentView.setTextColor(resources.getColor(R.color.dark_orange));
+//				marketNewsView.setTextColor(resources.getColor(R.color.white));
+//				frexNewsView.setTextColor(resources.getColor(R.color.white));
+//				worldFianceView.setTextColor(resources.getColor(R.color.white));
+//				famousColumnView.setTextColor(resources.getColor(R.color.white));
 				type = AGENCY_COMMENT;
 			}
 			if(index == 2){
-				fastInfoView.setBackgroundResource(0);
-				agencyCommentView.setBackgroundResource(0);
-				marketNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange);
-				frexNewsView.setBackgroundResource(0);
-				worldFianceView.setBackgroundResource(0);
-				famousColumnView.setBackgroundResource(0);
-				fastInfoView.setTextColor(resources.getColor(R.color.white));
-				agencyCommentView.setTextColor(resources.getColor(R.color.white));
-				marketNewsView.setTextColor(resources.getColor(R.color.dark_orange));
-				frexNewsView.setTextColor(resources.getColor(R.color.white));
-				worldFianceView.setTextColor(resources.getColor(R.color.white));
-				famousColumnView.setTextColor(resources.getColor(R.color.white));
+				fastInfoView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				agencyCommentView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				marketNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+				frexNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				worldFianceView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				famousColumnView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+//				fastInfoView.setTextColor(resources.getColor(R.color.white));
+//				agencyCommentView.setTextColor(resources.getColor(R.color.white));
+//				marketNewsView.setTextColor(resources.getColor(R.color.dark_orange));
+//				frexNewsView.setTextColor(resources.getColor(R.color.white));
+//				worldFianceView.setTextColor(resources.getColor(R.color.white));
+//				famousColumnView.setTextColor(resources.getColor(R.color.white));
 				type = NEWS;
 			}
 			if(index == 3){
-				fastInfoView.setBackgroundResource(0);
-				agencyCommentView.setBackgroundResource(0);
-				marketNewsView.setBackgroundResource(0);
-				frexNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange);
-				worldFianceView.setBackgroundResource(0);
-				famousColumnView.setBackgroundResource(0);
-				fastInfoView.setTextColor(resources.getColor(R.color.white));
-				agencyCommentView.setTextColor(resources.getColor(R.color.white));
-				marketNewsView.setTextColor(resources.getColor(R.color.white));
-				frexNewsView.setTextColor(resources.getColor(R.color.dark_orange));
-				worldFianceView.setTextColor(resources.getColor(R.color.white));
-				famousColumnView.setTextColor(resources.getColor(R.color.white));
+				fastInfoView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				agencyCommentView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				marketNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				frexNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+				worldFianceView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				famousColumnView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+//				fastInfoView.setTextColor(resources.getColor(R.color.white));
+//				agencyCommentView.setTextColor(resources.getColor(R.color.white));
+//				marketNewsView.setTextColor(resources.getColor(R.color.white));
+//				frexNewsView.setTextColor(resources.getColor(R.color.dark_orange));
+//				worldFianceView.setTextColor(resources.getColor(R.color.white));
+//				famousColumnView.setTextColor(resources.getColor(R.color.white));
 				type = FROEX_NEWS;
 			}
 			if(index == 4){
-				fastInfoView.setBackgroundResource(0);
-				agencyCommentView.setBackgroundResource(0);
-				marketNewsView.setBackgroundResource(0);
-				frexNewsView.setBackgroundResource(0);
-				worldFianceView.setBackgroundResource(R.drawable.title_btn_bg_orange);
-				famousColumnView.setBackgroundResource(0);
-				fastInfoView.setTextColor(resources.getColor(R.color.white));
-				agencyCommentView.setTextColor(resources.getColor(R.color.white));
-				marketNewsView.setTextColor(resources.getColor(R.color.white));
-				frexNewsView.setTextColor(resources.getColor(R.color.white));
-				worldFianceView.setTextColor(resources.getColor(R.color.dark_orange));
-				famousColumnView.setTextColor(resources.getColor(R.color.white));
+				fastInfoView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				agencyCommentView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				marketNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				frexNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				worldFianceView.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+				famousColumnView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+//				fastInfoView.setTextColor(resources.getColor(R.color.white));
+//				agencyCommentView.setTextColor(resources.getColor(R.color.white));
+//				marketNewsView.setTextColor(resources.getColor(R.color.white));
+//				frexNewsView.setTextColor(resources.getColor(R.color.white));
+//				worldFianceView.setTextColor(resources.getColor(R.color.dark_orange));
+//				famousColumnView.setTextColor(resources.getColor(R.color.white));
 				type = WORLD_FINANCE;
 			}
 			if(index == 5){
-				fastInfoView.setBackgroundResource(0);
-				agencyCommentView.setBackgroundResource(0);
-				marketNewsView.setBackgroundResource(0);
-				frexNewsView.setBackgroundResource(0);
-				worldFianceView.setBackgroundResource(0);
-				famousColumnView.setBackgroundResource(R.drawable.title_btn_bg_orange);
-				fastInfoView.setTextColor(resources.getColor(R.color.white));
-				agencyCommentView.setTextColor(resources.getColor(R.color.white));
-				marketNewsView.setTextColor(resources.getColor(R.color.white));
-				frexNewsView.setTextColor(resources.getColor(R.color.white));
-				worldFianceView.setTextColor(resources.getColor(R.color.white));
-				famousColumnView.setTextColor(resources.getColor(R.color.dark_orange));
+				fastInfoView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				agencyCommentView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				marketNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				frexNewsView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				worldFianceView.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
+				famousColumnView.setBackgroundResource(R.drawable.title_btn_bg_orange_pressed);
+//				fastInfoView.setTextColor(resources.getColor(R.color.white));
+//				agencyCommentView.setTextColor(resources.getColor(R.color.white));
+//				marketNewsView.setTextColor(resources.getColor(R.color.white));
+//				frexNewsView.setTextColor(resources.getColor(R.color.white));
+//				worldFianceView.setTextColor(resources.getColor(R.color.white));
+//				famousColumnView.setTextColor(resources.getColor(R.color.dark_orange));
 				type = FAMOUS_COLUMN;
 			}
 			if (null != adapter && adapter.getCount() > 0) {

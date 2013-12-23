@@ -55,7 +55,7 @@ public class HistoryImageActivity extends BaseActivity {
 		layout = (LinearLayout) findViewById(R.id.lay_images);
 		for (int i = 0; i < urls.length; i++) {
 			ImageView view = new ImageView(this);
-			view.setImageResource(R.drawable.logo72);
+			view.setImageResource(R.drawable.logo);
 			view.setScaleType(ScaleType.FIT_XY);
 			view.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, 
 					Util.dip2px(HistoryImageActivity.this, 250)));

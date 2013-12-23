@@ -12,6 +12,7 @@
 		<ImageView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
+			android:visibility="gone"
 			android:background="@drawable/title_low_background"/>
 		<com.innouni.south.widget.ReboundScrollView
 	   		android:layout_width="fill_parent"
@@ -115,12 +116,13 @@
 	   				    android:textSize="18.0sp" />
 	   				<Button
 	   				    android:id="@+id/btn_reg_captcha"
-	   				    android:layout_width="65dp"
+	   				    android:layout_width="70dp"
 	   				    android:layout_height="wrap_content"
 	   				    android:layout_alignParentRight="true"
 	   				    android:layout_centerVertical="true"
 	   				    android:background="@drawable/send_btn_selector"
 	   				    android:gravity="center"
+	   				    android:textSize="13sp"
 	   				    android:text="获取验证码" />
 	   				<EditText 
 	   					android:id="@+id/edit_reg_captcha"

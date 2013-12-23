@@ -70,11 +70,11 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		application.setActivity(this);
 		
 		icons = new int[]{
-				R.drawable.icon_home_realtime, R.drawable.icon_home_market, R.drawable.icon_home_finance, 
-				R.drawable.icon_home_news, R.drawable.icon_home_expert, R.drawable.icon_home_exchange, 
-				R.drawable.icon_home_about, R.drawable.icon_home_serve, R.drawable.icon_home_help};
+				R.drawable.icon_home_offer, R.drawable.icon_home_information, R.drawable.icon_home_calendar, 
+				R.drawable.icon_home_strategy, R.drawable.icon_home_simulation, R.drawable.icon_home_etf, 
+				R.drawable.icon_home_analyze, R.drawable.icon_home_service, R.drawable.icon_home_account};
 		titles = getResources().getStringArray(R.array.home_icon);
-		icons2 = new int[]{R.drawable.icon_home_realtime, R.drawable.icon_home_market, R.drawable.icon_home_finance};
+		icons2 = new int[]{R.drawable.icon_home_news, R.drawable.icon_home_exchange, R.drawable.icon_home_about};
 		titles2 = new String[]{"即时新闻", "价格转换", "关于我们"};
 		initData();
 		initView();
@@ -111,12 +111,13 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 	private void initView() {
 		titleLeftBtn = (Button) findViewById(R.id.btn_title_left);
-		titleLeftBtn.setVisibility(View.GONE);
+		titleLeftBtn.setText(null);
+		titleLeftBtn.setBackgroundResource(R.drawable.toolbar_logo);
 		titleRightBtn = (Button) findViewById(R.id.btn_title_right);
 		titleRightBtn.setBackgroundResource(R.drawable.toolbar_btn_user);
 		titleRightBtn.setOnClickListener(this);
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
-		titleContentView.setBackgroundResource(R.drawable.toolbar_logo);
+		titleContentView.setVisibility(View.GONE);
 		announcementView = (TextView) findViewById(R.id.txt_announcement);
 		
 		View view1 = LayoutInflater.from(this).inflate(R.layout.main_pager_gridview1, null);

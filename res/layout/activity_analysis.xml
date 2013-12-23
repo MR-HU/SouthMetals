@@ -7,42 +7,44 @@
 	<LinearLayout 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal">
+	    android:orientation="horizontal"
+	    android:background="@drawable/title_high_background">
 	    <Button 
 	        android:id="@+id/btn_analyse_gold"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
 	        android:gravity="center"
 	        android:text="黃金"
+	        android:textColor="@color/white"
 	        android:textSize="16sp"
-	        android:background="@drawable/send_btn_selector"
+	        android:background="@drawable/title_btn_bg_orange_pressed"
 	        android:layout_weight="1"/>
 	    <Button 
 	        android:id="@+id/btn_analyse_silver"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
 	        android:gravity="center"
 	        android:text="白銀"
+	        android:textColor="@color/white"
 	        android:textSize="16sp"
-	        android:background="@drawable/send_btn_selector"
+	        android:background="@drawable/title_btn_bg_orange_normal"
 	        android:layout_weight="1"/>
 	    <Button 
 	        android:id="@+id/btn_analyse_dollar"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
 	        android:gravity="center"
 	        android:text="美元"
+	        android:textColor="@color/white"
 	        android:textSize="16sp"
-	        android:background="@drawable/send_btn_selector"
+	        android:background="@drawable/title_btn_bg_orange_normal"
 	        android:layout_weight="1"/>
 	</LinearLayout>
 	<LinearLayout 
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal">
+	    android:orientation="horizontal"
+	    android:layout_marginTop="6dp">
 	    <LinearLayout 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -216,15 +218,16 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal"
+	    android:background="@drawable/title_high_background"
 	    android:layout_marginTop="3dp">
 	    <Button 
 	        android:id="@+id/btn_analyse_tech"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:background="@drawable/send_btn_selector"
-	        android:layout_marginLeft="10dp"
-	        android:layout_marginRight="5dp"
+	        android:textSize="15sp"
+	        android:textColor="@color/white"
+	        android:background="@drawable/title_btn_bg_orange_pressed"
 	        android:gravity="center"
 	        android:text="技术指标"/>
 	    <Button 
@@ -232,9 +235,9 @@
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:background="@drawable/send_btn_selector"
-	        android:layout_marginLeft="5dp"
-	        android:layout_marginRight="10dp"
+	        android:textColor="@color/white"
+	        android:textSize="15sp"
+	        android:background="@drawable/title_btn_bg_orange_normal"
 	        android:gravity="center"
 	        android:text="移动平均指标"/>
 	</LinearLayout>
@@ -246,6 +249,7 @@
 	   	    android:layout_width="wrap_content"
 	   	    android:layout_height="wrap_content"
 	   	    android:scrollbars="none"
+	   	    android:background="@drawable/title_high_background"
 	   	    android:layout_alignParentBottom="true">
 	        <LinearLayout 
 	            android:layout_width="wrap_content"
@@ -253,51 +257,51 @@
 	   	   	 	android:orientation="horizontal">
 		   	    <Button 
 		   	        android:id="@+id/btn_5m"
-		   	        android:layout_width="60dp"
-		   	        android:layout_height="35dp"
+		   	        android:layout_width="wrap_content"
+		   	        android:layout_height="wrap_content"
 		   	        android:gravity="center"
-		   	        android:layout_marginLeft="5dp"
-		   	        android:background="@drawable/send_btn_selector"
+		   	        android:textColor="@color/white"
+		   	        android:background="@drawable/title_btn_bg_orange_pressed"
 		   	        android:text="5分钟"/>
 		   	    <Button
 		   	        android:id="@+id/btn_15m" 
-		   	        android:layout_width="60dp"
-		   	        android:layout_height="35dp"
+		   	        android:layout_width="wrap_content"
+		   	        android:layout_height="wrap_content"
 		   	        android:gravity="center"
-		   	        android:layout_marginLeft="5dp"
-		   	        android:background="@drawable/send_btn_selector"
+		   	        android:textColor="@color/white"
+		   	        android:background="@drawable/title_btn_bg_orange_normal"
 		   	        android:text="15分钟"/>
 		   	    <Button 
 		   	        android:id="@+id/btn_30m"
-		   	        android:layout_width="60dp"
-		   	        android:layout_height="35dp"
+		   	        android:layout_width="wrap_content"
+		   	        android:layout_height="wrap_content"
 		   	        android:gravity="center"
-		   	        android:layout_marginLeft="5dp"
-		   	        android:background="@drawable/send_btn_selector"
+		   	        android:textColor="@color/white"
+		   	        android:background="@drawable/title_btn_bg_orange_normal"
 		   	        android:text="30分钟"/>
 		   	    <Button 
 		   	        android:id="@+id/btn_60m"
-		   	        android:layout_width="60dp"
-		   	        android:layout_height="35dp"
+		   	        android:layout_width="wrap_content"
+		   	        android:layout_height="wrap_content"
 		   	        android:gravity="center"
-		   	        android:layout_marginLeft="5dp"
-		   	        android:background="@drawable/send_btn_selector"
+		   	        android:textColor="@color/white"
+		   	        android:background="@drawable/title_btn_bg_orange_normal"
 		   	        android:text="1小时"/>
 		   	    <Button 
 		   	        android:id="@+id/btn_300m"
-		   	        android:layout_width="60dp"
-		   	        android:layout_height="35dp"
+		   	        android:layout_width="wrap_content"
+		   	        android:layout_height="wrap_content"
 		   	        android:gravity="center"
-		   	        android:layout_marginLeft="5dp"
-		   	        android:background="@drawable/send_btn_selector"
+		   	        android:textColor="@color/white"
+		   	        android:background="@drawable/title_btn_bg_orange_normal"
 		   	        android:text="5小时"/>
 		   	    <Button 
 		   	        android:id="@+id/btn_1440m"
-		   	        android:layout_width="60dp"
-		   	        android:layout_height="35dp"
+		   	        android:layout_width="wrap_content"
+		   	        android:layout_height="wrap_content"
 		   	        android:gravity="center"
-		   	        android:layout_marginLeft="5dp"
-		   	        android:background="@drawable/send_btn_selector"
+		   	        android:textColor="@color/white"
+		   	        android:background="@drawable/title_btn_bg_orange_normal"
 		   	        android:text="每日"/>
 		  	</LinearLayout>
 	   	</HorizontalScrollView>
