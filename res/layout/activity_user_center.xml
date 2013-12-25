@@ -343,7 +343,7 @@
 	    				android:id="@+id/btn_exit"
 	    				android:layout_width="fill_parent"
 	    				android:layout_height="wrap_content"
-	    				android:text="@string/btn_exit"
+	    				android:text="@string/btn_exit_user"
 	    				android:textSize="20.0sp"
 	    				android:gravity="center"
 	    				android:textColor="@color/white"

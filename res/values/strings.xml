@@ -30,6 +30,7 @@
    	<string name="user_login">用户登录</string>
    	<string name="user_reg">用户注册</string>
    	<string name="complement_info">完善账户信息</string>
+   	<string name="btn_exit_user">注  销</string>
     
     <!-- 网络设置资源配置 -->
     <string name="net_time_out">网络连接超时</string>

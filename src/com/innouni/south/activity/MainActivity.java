@@ -44,6 +44,9 @@ import com.yintong.secure.f.i;
  */
 public class MainActivity extends BaseActivity implements OnClickListener, OnItemClickListener, OnPageChangeListener {
 
+	private ImageView titleLeftImage;
+	private ImageView titlerightImage;
+	
 	private PageIndicator indicatorLayout;
 	private TextView announcementView;
 	private GridView gridView1;
@@ -116,8 +119,10 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		titleLeftImage = (ImageView) findViewById(R.id.image_title_left);
 		titleLeftImage.setVisibility(View.VISIBLE);
 		titleRightBtn = (Button) findViewById(R.id.btn_title_right);
-		titleRightBtn.setBackgroundResource(R.drawable.toolbar_btn_user);
-		titleRightBtn.setOnClickListener(this);
+		titleRightBtn.setVisibility(View.GONE);
+		titlerightImage = (ImageView) findViewById(R.id.image_title_right);
+		titlerightImage.setVisibility(View.VISIBLE);
+		titlerightImage.setOnClickListener(this);
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
 		titleContentView.setVisibility(View.GONE);
 		announcementView = (TextView) findViewById(R.id.txt_announcement);
@@ -186,7 +191,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_title_right:
+		case R.id.image_title_right:
 			if (null != application.getUserInfo() && !"-1".equals(application.getUserInfo().getUserId().toString())) {
 				Intent intent = new Intent(MainActivity.this, UserCenterActivity.class);
 				startActivity(intent);
