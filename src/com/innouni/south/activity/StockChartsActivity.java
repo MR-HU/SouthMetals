@@ -1646,13 +1646,11 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 	@Override
 	public boolean onTouch(View arg0, MotionEvent arg1) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
 		switch (arg0.getId()) {
 		case R.id.btn_back:
 			finish();
@@ -1730,4 +1728,17 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		}
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (iGetGoldTask != null) {
+			iGetGoldTask.cancel(true);
+		}
+		if (iGetMetalPriceTask != null) {
+			iGetMetalPriceTask.cancel(true);
+		}
+		if (iGetTimeGoldTask != null) {
+			iGetTimeGoldTask.cancel(true);
+		}
+	}
 }

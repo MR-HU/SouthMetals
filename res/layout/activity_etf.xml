@@ -12,11 +12,12 @@
         <LinearLayout 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:background="@drawable/title_high_background">
             <TextView 
                 android:id="@+id/btn_gold_etf"
                 android:layout_width="0dp"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:text="黄金ETF"
                 android:textSize="17sp"
                 android:textColor="@color/white"
@@ -27,7 +28,7 @@
             <TextView 
                 android:id="@+id/btn_silver_etf"
                 android:layout_width="0dp"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:text="白银ETF"
                 android:textColor="@color/white"
                 android:textSize="17sp"

@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -111,8 +112,9 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 	private void initView() {
 		titleLeftBtn = (Button) findViewById(R.id.btn_title_left);
-		titleLeftBtn.setText(null);
-		titleLeftBtn.setBackgroundResource(R.drawable.toolbar_logo);
+		titleLeftBtn.setVisibility(View.GONE);
+		titleLeftImage = (ImageView) findViewById(R.id.image_title_left);
+		titleLeftImage.setVisibility(View.VISIBLE);
 		titleRightBtn = (Button) findViewById(R.id.btn_title_right);
 		titleRightBtn.setBackgroundResource(R.drawable.toolbar_btn_user);
 		titleRightBtn.setOnClickListener(this);

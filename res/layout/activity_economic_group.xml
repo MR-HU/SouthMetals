@@ -18,14 +18,16 @@
 		    <RadioGroup 
 		    	android:id="@+id/radiogroup_info_related"
 		    	android:gravity="center"
+		    	android:layout_gravity="center"
 		    	android:orientation="horizontal" 
 		  		android:layout_width="match_parent"
-		        android:layout_height="wrap_content">
+		        android:layout_height="41.875dp">
 		        <RadioButton 
 		        	android:id="@+id/radio_calendar"
 		        	android:layout_width="0dp"
 		        	android:layout_height="wrap_content"
 		        	android:layout_weight="1"
+		        	android:button="@null"
 		        	android:checked="true" 
 		        	android:gravity="center"
 		        	android:singleLine="true"
@@ -40,8 +42,10 @@
 		        	android:layout_weight="1"
 		        	android:background="@drawable/title_btn_bg_orange_normal"
 		        	android:gravity="center"
+		        	android:button="@null"
 		        	android:singleLine="true"
 		        	android:textSize="16.0sp"
+		        	android:textColor="@color/white"
 		        	android:text="财经指数"/>
 		    </RadioGroup>
 	    </LinearLayout>

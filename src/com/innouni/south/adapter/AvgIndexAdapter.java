@@ -1,6 +1,7 @@
 package com.innouni.south.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,22 @@ public class AvgIndexAdapter extends ArrayListAdapter<Object> {
 		holder.nameView.setText(index.getName());
 		holder.price1View.setText(index.getPrice1());
 		holder.suggest1View.setText(index.getSuggest1());
+		if (index.getSuggest1().equals("购买")) {
+			holder.suggest1View.setTextColor(Color.RED);
+		} else if (index.getSuggest1().equals("出售")) {
+			holder.suggest1View.setTextColor(Color.GREEN);
+		} else {
+			holder.suggest1View.setTextColor(Color.WHITE);
+		}
 		holder.price2View.setText(index.getPrice2());
 		holder.suggest2View.setText(index.getSuggest2());
+		if (index.getSuggest2().equals("购买")) {
+			holder.suggest2View.setTextColor(Color.RED);
+		} else if (index.getSuggest2().equals("出售")) {
+			holder.suggest2View.setTextColor(Color.GREEN);
+		} else {
+			holder.suggest2View.setTextColor(Color.WHITE);
+		}
 		return convertView;
 	}
 

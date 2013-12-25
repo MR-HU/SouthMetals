@@ -1,6 +1,7 @@
 package com.innouni.south.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,13 @@ public class TechIndexAdapter extends ArrayListAdapter<Object> {
 		holder.nameView.setText(index.getName());
 		holder.priceView.setText(index.getPrice1());
 		holder.suggestView.setText(index.getSuggest1());
+		if (index.getSuggest1().equals("¹ºÂò")) {
+			holder.suggestView.setTextColor(Color.RED);
+		} else if (index.getSuggest1().equals("³öÊÛ")) {
+			holder.suggestView.setTextColor(Color.GREEN);
+		} else {
+			holder.suggestView.setTextColor(Color.WHITE);
+		}
 		return convertView;
 	}
 

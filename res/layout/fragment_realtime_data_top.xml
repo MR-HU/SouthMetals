@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+		<LinearLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginBottom="10dp"
+		    android:background="@drawable/title_high_background">
+		    <TextView 
+		        android:id="@+id/btn_gold"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+	    		android:layout_gravity="center_vertical"
+		        android:text="外黄金"
+		        android:textColor="@color/white"
+		        android:textSize="16.0sp"
+		        android:padding="5dp"
+		        android:background="@drawable/title_btn_bg_orange_pressed"/>
+		    <TextView 
+		        android:id="@+id/btn_cahrge"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+	    		android:layout_gravity="center_vertical"
+		        android:text="外汇"
+		        android:textColor="@color/white"
+		        android:textSize="16.0sp"
+		        android:padding="5dp"
+		        android:background="@drawable/title_btn_bg_orange_normal"/>
+		    <TextView 
+		        android:id="@+id/btn_tiantong"
+		       	android:layout_width="0dp"
+        		android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+	    		android:layout_gravity="center_vertical"
+		        android:text="天通"
+		        android:visibility="gone"
+		        android:textColor="@color/white"
+		        android:textSize="16.0sp"
+		        android:padding="5dp"
+		        android:background="@drawable/title_btn_bg_orange_normal"/>
+		    <TextView 
+		        android:id="@+id/btn_yuegui"
+		        android:layout_width="0dp"
+	        	android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+	    		android:layout_gravity="center_vertical"
+	    		android:visibility="gone"
+		        android:text="粤贵"
+		        android:textColor="@color/white"
+		        android:textSize="16.0sp"
+		        android:padding="5dp"
+		        android:background="@drawable/title_btn_bg_orange_normal"/>
+		    <TextView 
+		        android:id="@+id/btn_gold_usd_history"
+		        android:layout_width="0dp"
+	        	android:layout_weight="1"
+		        android:layout_height="wrap_content"
+	         	android:gravity="center"
+	         	android:visibility="gone"
+	    		android:layout_gravity="center_vertical"
+		        android:text="金银/美元/石油比"
+		        android:textColor="@color/white"
+		        android:textSize="16.0sp"
+		        android:padding="5dp"
+		        android:background="@drawable/title_btn_bg_orange_normal"/>
+		</LinearLayout>
+	<!-- 纸金 -->
+    <include 
+        layout="@layout/app_list_title_bar_1" 
+        android:id="@+id/app_list_title_bar_1"
+        android:visibility="gone" />
+    <!-- 天通 粤贵 -->
+    <include 
+        layout="@layout/app_list_title_bar_2" 
+        android:id="@+id/app_list_title_bar_2"  
+        android:visibility="gone" />
+    <!-- 现货 期货 T+D-->
+    <include 
+        layout="@layout/app_list_title_bar_3" 
+        android:id="@+id/app_list_title_bar_3" 
+        android:visibility="gone" />
+    <ListView 
+        android:id="@+id/listview_realtime_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:cacheColorHint="@null"
+        android:listSelector="@color/transparent"
+        android:fadingEdge="none"
+        android:scrollbars="none"/>
+</LinearLayout>

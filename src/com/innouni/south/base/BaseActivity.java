@@ -3,6 +3,7 @@ package com.innouni.south.base;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ public class BaseActivity extends Activity {
 	protected Button titleLeftBtn;
 	protected Button titleRightBtn;
 	protected TextView titleContentView;
+	protected ImageView titleLeftImage;
 	protected ProgressBar titleRefreshBar;
 	
 	protected MainApplication application;
