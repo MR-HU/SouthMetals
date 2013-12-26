@@ -21,11 +21,11 @@ import android.widget.TextView;
  * @modify
  * @version 1.0.0
  */
-public class AllRealTimeDataAdapter extends SimpleAdapter{
+public class AllRealTimeDataTopAdapter extends SimpleAdapter{
 	
 	private ShareUtil shareUtil;
 	
-	public AllRealTimeDataAdapter(Context paramContext, List<HashMap<String, String>> paramList, int paramInt, String[] paramArrayOfString, int[] paramArrayOfInt){
+	public AllRealTimeDataTopAdapter(Context paramContext, List<HashMap<String, String>> paramList, int paramInt, String[] paramArrayOfString, int[] paramArrayOfInt){
 	    super(paramContext, paramList, paramInt, paramArrayOfString, paramArrayOfInt);
 	    shareUtil = ShareUtil.getInstance(paramContext);
 	}

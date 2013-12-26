@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.innouni.south.activity.HistoryImageActivity;
 import com.innouni.south.activity.R;
 import com.innouni.south.activity.StockChartsActivity;
-import com.innouni.south.adapter.AllRealTimeDataAdapter;
+import com.innouni.south.adapter.AllRealTimeDataTopAdapter;
 import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.ShareUtil;
@@ -60,7 +60,7 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 	// 列表数据和适配器
 	private ListView mListView;
 	private List<HashMap<String, String>> mListData;
-	private AllRealTimeDataAdapter adapter;
+	private AllRealTimeDataTopAdapter adapter;
 
 	private int position = 1; // 默认外黄金
 
@@ -84,7 +84,7 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 
 	private void initData() {
 		mListView = (ListView) view.findViewById(R.id.listview_realtime_data);
-		adapter = new AllRealTimeDataAdapter(getActivity(), mListData,
+		adapter = new AllRealTimeDataTopAdapter(getActivity(), mListData,
 				R.layout.item_data_list, new String[] { "name", "now", "start",
 						"high", "low", "range", "percent" }, new int[] {
 						R.id.tvName, R.id.tvNow, R.id.tvStart, R.id.tvHigh,

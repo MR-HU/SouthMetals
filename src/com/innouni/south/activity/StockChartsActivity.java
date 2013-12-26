@@ -29,13 +29,10 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -84,8 +81,8 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 	private BollingerBandsIndicator mBOLLIndicator;
 	private StochasticIndicator mKDJIndicator;
 	private RsiIndicator mRSI12Indicator, mRSI24Indicator, mRSI6Indicator;
-	private String[] mKLineTypes = { "001", "005", "015", "030", "060", "240",
-			"100", "200", "300" };
+	private String[] mKLineTypes = { "1001", "1005", "1015", "1030", "1060",
+			"2004", "3001", "4001", "5001" };
 	private String[] mTimChartTypes = { "", "24小时", "48小时", "72小时", "96小时" };
 	private ArrayList<LinearSeries> mLinearSeries;
 	private ArrayList<TimeChartBean> mChartBeans = new ArrayList<TimeChartBean>();
@@ -97,7 +94,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stockchart);
 		isPreferences = new GlobalConfigPreferences(this);
-		/** 界面初始化 **/
+		/** 界面初始化 */
 		initContentView();
 		mCurrentKLineType = "1015"; // K线默认15分线
 		mCurrentKLineTYPIndex = 2;
@@ -124,7 +121,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 	/** 界面头部初始化 **/
 	private void initHeaderView() {
-		// title
+		// 标题
 		tv_title = (TextView) findViewById(R.id.tv_title);
 		// 返回按钮
 		btn_back = (TextView) findViewById(R.id.btn_back);
@@ -560,7 +557,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		@Override
 		protected ArrayList<Object> doInBackground(Void... params) {
 			try {
-
 				String json = HttpPostRequest.getDataFromWebServer(
 						StockChartsActivity.this, mUrl);
 				if (json == null) {
@@ -584,7 +580,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		protected void onPostExecute(ArrayList<Object> result) {
 			iGetMetalPriceTask = null;
 			try {
-				Log.i("tag", "tag p_now=" + p_now);
 				if (errorString == null) {
 					stock_price_now.setText(p_now);
 					if (p_updown_str != null)
@@ -732,7 +727,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		protected ArrayList<Object> doInBackground(Void... params) {
 			String json = HttpPostRequest.getDataFromWebServer(
 					StockChartsActivity.this, mUrl);
-			Log.i("tag", "tag mjson1=" + json);
 			if (json == null) {
 				errorString = "nodata";
 				return null;

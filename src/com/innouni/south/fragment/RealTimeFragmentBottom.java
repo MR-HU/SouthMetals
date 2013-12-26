@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.innouni.south.activity.HistoryImageActivity;
 import com.innouni.south.activity.R;
 import com.innouni.south.activity.StockChartsActivity;
-import com.innouni.south.adapter.AllRealTimeDataAdapter;
+import com.innouni.south.adapter.AllRealTimeDataBottomAdapter;
 import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.ShareUtil;
@@ -60,7 +60,7 @@ public class RealTimeFragmentBottom extends Fragment implements
 	// 列表数据和适配器
 	private ListView mListView;
 	private List<HashMap<String, String>> mListData;
-	private AllRealTimeDataAdapter adapter;
+	private AllRealTimeDataBottomAdapter adapter;
 
 	private int position = 2; // 默认天通
 
@@ -74,7 +74,7 @@ public class RealTimeFragmentBottom extends Fragment implements
 		view = inflater.inflate(R.layout.fragment_realtime_data_bottom,
 				container, false);
 		shareUtil = ShareUtil.getInstance(getActivity());
-		shareUtil.setIntValues("type_position", position);
+		shareUtil.setIntValues("type_position_bottom", position);
 		mListData = new ArrayList<HashMap<String, String>>();
 		initBtn();
 		initListTitle();
@@ -84,7 +84,7 @@ public class RealTimeFragmentBottom extends Fragment implements
 
 	private void initData() {
 		mListView = (ListView) view.findViewById(R.id.listview_realtime_data);
-		adapter = new AllRealTimeDataAdapter(getActivity(), mListData,
+		adapter = new AllRealTimeDataBottomAdapter(getActivity(), mListData,
 				R.layout.item_data_list, new String[] { "name", "now", "start",
 						"high", "low", "range", "percent" }, new int[] {
 						R.id.tvName, R.id.tvNow, R.id.tvStart, R.id.tvHigh,
@@ -141,7 +141,7 @@ public class RealTimeFragmentBottom extends Fragment implements
 					.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			// 现货
 			position = 1;
-			shareUtil.setIntValues("type_position", position);
+			shareUtil.setIntValues("type_position_bottom", position);
 			app_list_title_bar_1.setVisibility(View.GONE);
 			app_list_title_bar_2.setVisibility(View.GONE);
 			app_list_title_bar_3.setVisibility(View.VISIBLE);
@@ -163,7 +163,7 @@ public class RealTimeFragmentBottom extends Fragment implements
 			usdHistoryBtn
 					.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			position = 6;
-			shareUtil.setIntValues("type_position", position);
+			shareUtil.setIntValues("type_position_bottom", position);
 			app_list_title_bar_1.setVisibility(View.GONE);
 			app_list_title_bar_2.setVisibility(View.GONE);
 			app_list_title_bar_3.setVisibility(View.VISIBLE);
@@ -185,7 +185,7 @@ public class RealTimeFragmentBottom extends Fragment implements
 			usdHistoryBtn
 					.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			position = 2;
-			shareUtil.setIntValues("type_position", position);
+			shareUtil.setIntValues("type_position_bottom", position);
 			app_list_title_bar_1.setVisibility(View.GONE);
 			app_list_title_bar_2.setVisibility(View.VISIBLE);
 			app_list_title_bar_3.setVisibility(View.GONE);
@@ -207,7 +207,7 @@ public class RealTimeFragmentBottom extends Fragment implements
 			usdHistoryBtn
 					.setBackgroundResource(R.drawable.title_btn_bg_orange_normal);
 			position = 3;
-			shareUtil.setIntValues("type_position", position);
+			shareUtil.setIntValues("type_position_bottom", position);
 			app_list_title_bar_1.setVisibility(View.GONE);
 			app_list_title_bar_2.setVisibility(View.VISIBLE);
 			app_list_title_bar_3.setVisibility(View.GONE);
