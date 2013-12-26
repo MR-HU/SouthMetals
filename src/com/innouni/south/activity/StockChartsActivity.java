@@ -66,7 +66,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 	private TextView btn_refresh;
 	private StockChartView mTimeChartView, mStockChartView;
 	private String mChartTitle, mCurrentKLineType, mCurrentChartCode;
-	private int mCurrentKLineTYP_index, mShowUpIndicator, mShowDownIndicate,
+	private int mCurrentKLineTYPIndex, mShowUpIndicator, mShowDownIndicate,
 			mCurrentTimeChartTYP;
 	private Area mKChartArea, mIndicatorArea, mTimeChartArea;
 	private StockSeries mKChartSeries;
@@ -84,15 +84,11 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 	private BollingerBandsIndicator mBOLLIndicator;
 	private StochasticIndicator mKDJIndicator;
 	private RsiIndicator mRSI12Indicator, mRSI24Indicator, mRSI6Indicator;
-	// --------------------------------
-	private String[] mKLineTypes2 = { "1001", "1005", "1015", "1030", "1060",
-			"2004", "3001", "4001", "5001" };
-
 	private String[] mKLineTypes = { "001", "005", "015", "030", "060", "240",
 			"100", "200", "300" };
 	private String[] mTimChartTypes = { "", "24小时", "48小时", "72小时", "96小时" };
 	private ArrayList<LinearSeries> mLinearSeries;
-	private ArrayList<TimeChartBean> mChartBeans = new ArrayList();
+	private ArrayList<TimeChartBean> mChartBeans = new ArrayList<TimeChartBean>();
 	private GetMetalPriceTask iGetMetalPriceTask;
 	private GlobalConfigPreferences isPreferences;
 
@@ -103,28 +99,24 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		isPreferences = new GlobalConfigPreferences(this);
 		/** 界面初始化 **/
 		initContentView();
-		mCurrentKLineType = "015";
-		mCurrentKLineTYP_index = 2;
-		mCurrentTimeChartTYP = 3;// 默认72小时
+		mCurrentKLineType = "1015"; // K线默认15分线
+		mCurrentKLineTYPIndex = 2;
+		mCurrentTimeChartTYP = 3; // 分时图默认72小时
 		indicatorBgChange(2);
 		try {
 			Bundle localBundle = getIntent().getExtras();
 			mCurrentChartCode = localBundle.getString("ChartCode");
 			mChartTitle = localBundle.getString("ChartName");
 		} catch (Exception e) {
-			mCurrentChartCode = "XAUUSD";// 现货黄金
+			mCurrentChartCode = "XAUUSD";
 			mChartTitle = "现货黄金";
 		}
-		// -------------------------------
-		if (mCurrentChartCode.equals("ZSUSD"))
-			mCurrentKLineType = mKLineTypes2[2];
-
 		mStockIndicatorTiemStrings = getResources().getStringArray(
 				R.array.stock_indicator);
 		tv_title.setText(mChartTitle + "-" + "K线" + " "
-				+ mStockIndicatorTiemStrings[mCurrentKLineTYP_index]);
-		initTimeChart();// 分时图初始化
-		initKChart();// k线图初始化
+				+ mStockIndicatorTiemStrings[mCurrentKLineTYPIndex]);
+		initTimeChart(); // 分时图初始化
+		initKChart(); // k线图初始化
 		getMetalPriceData();
 		getStockChartData();
 
@@ -171,7 +163,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 		// k线图的 时间选项 60分 060
 		indicator_sixtyM = (TextView) findViewById(R.id.indicator_sixtyM);
-		// indicator_fourHour,indicator_oneDay,indicator_oneWeek,indicator_oneMonth;
 		// k线图的 时间选项 24小时 240
 		indicator_fourHour = (TextView) findViewById(R.id.indicator_fourHour);
 		// k线图的 时间选项 一日 100
@@ -313,7 +304,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 				new Axis.ILabelFormatProvider() {
 					public String getAxisLabel(Axis paramAnonymousAxis,
 							double paramAnonymousDouble) {
-						// Object localObject1;
 						try {
 							Area localArea = paramAnonymousAxis.getParent();
 
@@ -332,7 +322,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 							}
 						} catch (Exception localException) {
 							localException.printStackTrace();
-							// localObject1 = null;
 						}
 						return null;
 					}
@@ -360,8 +349,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		initIndicatorSeries();// K线图下部 指标区系列
 		mKChartArea.getSeries().add(mKChartSeries);
 		initKChartIndicatorLine();// K线图指示符线条初始化
-		// showSMAIndicator();//显示SMA指示符
-		// showMACDIndicator();//显示MACD指示符
 		AxisRange localAxisRange = new AxisRange();
 		localAxisRange.setMovable(true);
 		localAxisRange.setZoomable(true);
@@ -394,7 +381,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 	// K线图下部 指标区域
 	private void initIndicatorArea() {
-		this.mIndicatorArea = new Area();// 指标区 定义
+		this.mIndicatorArea = new Area(); // 指标区 定义
 		this.mIndicatorArea.setName("IndicatorArea");
 		this.mIndicatorArea.getTopAxis().setVisible(false);
 		this.mIndicatorArea.getLeftAxis().setVisible(false);
@@ -412,7 +399,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		this.mKChartSeries = new StockSeries();
 		this.mKChartSeries.setName("KChartSeries");
 		this.mKChartSeries.setViewType(StockSeries.ViewType.CANDLESTICK);
-		// this.mKChartSeries.setViewType(StockSeries.ViewType.CANDLESTICK);
 		this.mKChartSeries.setYAxisSide(Axis.Side.RIGHT);
 		Appearance localAppearance1 = this.mKChartSeries.getRiseAppearance();
 		localAppearance1.setOutlineStyle(Appearance.OutlineStyle.SOLID);
@@ -478,7 +464,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 				new Axis.ILabelFormatProvider() {
 					@Override
 					public String getAxisLabel(Axis sender, double value) {
-						// TODO Auto-generated method stub
 						try {
 							Area localArea = sender.getParent();
 							for (int i = 0; i < localArea.getSeries().size(); i++) {
@@ -527,27 +512,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 						return null;
 					}
 				});
-		// 设置k线 触摸事件
-		/*
-		 * this.mStockChartView.setTouchEventUpListener(new
-		 * StockChartView.ITouchEventListener() { public void
-		 * onTouchEvent(MotionEvent paramAnonymousMotionEvent) {
-		 * StockChartView.HitTestInfo localHitTestInfo =
-		 * mStockChartView.getHitTestInfo(paramAnonymousMotionEvent.getX(),
-		 * paramAnonymousMotionEvent.getY()); String str; if
-		 * (localHitTestInfo.element != null) { str =
-		 * ((Area)localHitTestInfo.element.getParent()).getName();
-		 * if(str.equals("KChartArea")){ mShowUpIndicator +=1;
-		 * if(mShowUpIndicator > 3)mShowUpIndicator = 0; switch
-		 * (mShowUpIndicator){ case 0:showSMAIndicator();break; //case
-		 * 1:showEMAIndicator();break; //case 2:showBOLLIndicator();break;
-		 * //case 3:showENVIndicator(); } } mShowDownIndicate +=1; if
-		 * (mShowDownIndicate > 2)mShowDownIndicate = 0;
-		 * mIndicatorArea.getSeries().clear();
-		 * mIndicatorArea.getLines().clear(); switch (mShowDownIndicate){
-		 * default:stockViewRecalc();break; case 0:showMACDIndicator(); // case
-		 * 1:showKDJIndicator(); // case 2:showRSIIndicator();break; } } } });
-		 */
 	}
 
 	private void getStockChartData() {
@@ -588,18 +552,9 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 		@Override
 		protected void onPreExecute() {
-			// mUrl =
-			// "http://zhj8.sinaapp.com/Mobi/Data/real/s/"+mCurrentChartCode+"";
-			// ---------------------------------------------
-			if (mCurrentChartCode.equals("ZSUSD")) {// 妹纸
-				mUrl = "http://apphome.sinaapp.com/dc/A/Api/tdata?os=android&tid=ZSUSD&apitoken=";
-			} else {
-				mUrl = "http://zhj8.sinaapp.com/Mobi/Data/real/s/"
-						+ mCurrentChartCode + "";
-			}
-
+			mUrl = "http://apphome.sinaapp.com/dc/A/Api/tdata?os=android&tid="
+					+ mCurrentChartCode + "&apitoken=";
 			errorString = null;
-			// mDataRefreshView.setVisibility(View.VISIBLE);
 		}
 
 		@Override
@@ -608,38 +563,18 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 				String json = HttpPostRequest.getDataFromWebServer(
 						StockChartsActivity.this, mUrl);
-				// Log.i("tag", "tag mjson1="+json);
 				if (json == null) {
 					errorString = "nodata";
 					return null;
 				}
 				strAarray = json.split(",");
-				// p_now = strAarray[1];
-				// p_updwon = strAarray[2];
-				// p_updown_str = strAarray[5];
-				// p_high = strAarray[8];
-				// p_low = strAarray[9];
-				// p_today = strAarray[7];
-				// p_yesterday = strAarray[10];
-				// -----------------------------------------
-				if (mCurrentChartCode.equals("ZSUSD")) {// 妹纸
-					p_now = strAarray[2];
-					p_updwon = strAarray[7];
-					p_updown_str = strAarray[8];
-					p_high = strAarray[5];
-					p_low = strAarray[6];
-					p_today = strAarray[4];
-					p_yesterday = strAarray[9];
-				} else {
-					p_now = strAarray[1];
-					p_updwon = strAarray[2];
-					p_updown_str = strAarray[5];
-					p_high = strAarray[8];
-					p_low = strAarray[9];
-					p_today = strAarray[7];
-					p_yesterday = strAarray[10];
-				}
-
+				p_now = strAarray[2];
+				p_updwon = strAarray[7];
+				p_updown_str = strAarray[8];
+				p_high = strAarray[5];
+				p_low = strAarray[6];
+				p_today = strAarray[4];
+				p_yesterday = strAarray[9];
 			} catch (Exception e) {
 			}
 			return null;
@@ -650,7 +585,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 			iGetMetalPriceTask = null;
 			try {
 				Log.i("tag", "tag p_now=" + p_now);
-				// mDataRefreshView.setVisibility(View.GONE);
 				if (errorString == null) {
 					stock_price_now.setText(p_now);
 					if (p_updown_str != null)
@@ -677,139 +611,41 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 	private class GetTimeGoldTask extends
 			AsyncTask<Void, Void, ArrayList<Object>> {
-		// StockPoint iStockPoint;
 		String errorString, str2, mUrl;
 		String[] strAarray2, strAarray1;
 		int len;
 
 		@Override
 		protected void onPreExecute() {
-			// String tmp1 =
-			// if ((mCurrentTimeChartTYP == 1) &&
-			// (!mCurrentChartCode.equals("Au(T%2BD)")) &&
-			// (!mCurrentChartCode.equals("Ag(T%2BD)"))){
-			// mUrl =
-			// "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"+mCurrentChartCode+"/d/2";
-			// }else{
-			// mUrl =
-			// "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"+mCurrentChartCode+"/d/"+mCurrentTimeChartTYP+"";
-			// }
-			// ------------------------------------------
-			if (mCurrentChartCode.equals("ZSUSD")) {
-				mUrl = "http://apphome.sinaapp.com/dc/A/Api/trendData?os=android&tid=ZSUSD&t="
-						+ mCurrentTimeChartTYP + "";
-			} else {
-				if ((mCurrentTimeChartTYP == 1)
-						&& (!mCurrentChartCode.equals("Au(T%2BD)"))
-						&& (!mCurrentChartCode.equals("Ag(T%2BD)"))) {
-					mUrl = "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"
-							+ mCurrentChartCode + "/d/2";
-				} else {
-					mUrl = "http://zhj8.sinaapp.com/Mobi/Data/minute/s/"
-							+ mCurrentChartCode + "/d/" + mCurrentTimeChartTYP
-							+ "";
-				}
-			}
-
-			// Log.i("tag", "tag mUrl"+mUrl);
-			// Log.i("tag", "tag mCurrentChartCode"+mCurrentChartCode);
+			mUrl = "http://apphome.sinaapp.com/dc/A/Api/trendData?os=android&tid=ZSUSD&t="
+					+ mCurrentTimeChartTYP + "";
 			errorString = null;
 			mDataRefreshView.setVisibility(View.VISIBLE);
 		}
 
 		@Override
 		protected ArrayList<Object> doInBackground(Void... params) {
-			// Log.i("tag", "tag mUrl"+mUrl);
 			String json = HttpPostRequest.getDataFromWebServer(
 					StockChartsActivity.this, mUrl);
-			// Log.i("tag", "tag mjson="+json);
 			if (json == null) {
 				errorString = "nodata";
 				return null;
 			}
-			// strAarray1 = json.split("\n");
-
-			// LinePoint iLinePoint;
-			// len = strAarray1.length;
-			// String strLast_data = "";
-			// //Log.i("tag", "tag len="+len);
-			// if(mCurrentTimeChartTYP == 1)
-			// strLast_data = strAarray1[len - 1].split(",")[0];
-			// mChartBeans.clear();
-			// TimeChartBean localTimeChartBean = new TimeChartBean();
-			// LinePoint localLinePoint;
-			// for (int i = 3; i < len; i++){
-			// strAarray2 = strAarray1[i].split(",");
-			//
-			// str2 = metalDateFormat2(strAarray2[0], strAarray2[1]);
-			// //Log.i("tag", "tag str2="+str2);
-			//
-			// localTimeChartBean.setDate(strAarray2[0]);
-			// double d = Double.parseDouble(strAarray2[2]);
-			// if ((mCurrentTimeChartTYP ==1) &&
-			// (!mCurrentChartCode.equals("Au(T+D)")) &&
-			// (!mCurrentChartCode.equals("Ag(T+D)"))){
-			// if (strLast_data.equals(strAarray2[0])){
-			// localLinePoint = new LinePoint(d);
-			// localLinePoint.setID(str2);
-			// localTimeChartBean.getLinePoints().add(localLinePoint);
-			// }
-			// }else{
-			// localLinePoint = new LinePoint(d);
-			// localLinePoint.setID(str2);
-			// localTimeChartBean.getLinePoints().add(localLinePoint);
-			// }
-			// mChartBeans.add(localTimeChartBean);
-			// }
-			// -----------------------------------
 			strAarray1 = json.split("\n");
 			len = strAarray1.length;
 
 			mChartBeans.clear();
 			TimeChartBean localTimeChartBean = new TimeChartBean();
-			if (mCurrentChartCode.equals("ZSUSD")) {
-				LinePoint localLinePoint2;
-				for (int i = 0; i < len; i++) {
-					strAarray2 = strAarray1[i].split(",");
+			LinePoint localLinePoint2;
+			for (int i = 0; i < len; i++) {
+				strAarray2 = strAarray1[i].split(",");
 
-					str2 = metalDateFormat3(strAarray2[0], strAarray2[1]);
-					localLinePoint2 = new LinePoint(
-							Double.parseDouble(strAarray2[2]));
-					localLinePoint2.setID(str2);
-					localTimeChartBean.getLinePoints().add(localLinePoint2);
-					mChartBeans.add(localTimeChartBean);
-				}
-			} else {
-				String strLast_data = "";
-				// Log.i("tag", "tag len="+len);
-				if (mCurrentTimeChartTYP == 1)
-					strLast_data = strAarray1[len - 1].split(",")[0];
-
-				LinePoint localLinePoint;
-				for (int i = 3; i < len; i++) {
-					strAarray2 = strAarray1[i].split(",");
-
-					str2 = metalDateFormat2(strAarray2[0], strAarray2[1]);
-					// Log.i("tag", "tag str2="+str2);
-
-					localTimeChartBean.setDate(strAarray2[0]);
-					double d = Double.parseDouble(strAarray2[2]);
-					if ((mCurrentTimeChartTYP == 1)
-							&& (!mCurrentChartCode.equals("Au(T+D)"))
-							&& (!mCurrentChartCode.equals("Ag(T+D)"))) {
-						if (strLast_data.equals(strAarray2[0])) {
-							localLinePoint = new LinePoint(d);
-							localLinePoint.setID(str2);
-							localTimeChartBean.getLinePoints().add(
-									localLinePoint);
-						}
-					} else {
-						localLinePoint = new LinePoint(d);
-						localLinePoint.setID(str2);
-						localTimeChartBean.getLinePoints().add(localLinePoint);
-					}
-					mChartBeans.add(localTimeChartBean);
-				}
+				str2 = metalDateFormat3(strAarray2[0], strAarray2[1]);
+				localLinePoint2 = new LinePoint(
+						Double.parseDouble(strAarray2[2]));
+				localLinePoint2.setID(str2);
+				localTimeChartBean.getLinePoints().add(localLinePoint2);
+				mChartBeans.add(localTimeChartBean);
 			}
 			return null;
 		}
@@ -823,12 +659,8 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 					int len = mChartBeans.size();
 					int j = string2Int((String) ((LinePoint) ((TimeChartBean) mChartBeans
 							.get(0)).getLinePoints().get(0)).getID());
-					// Log.i("", "tag jsss="
-					// +(String)((LinePoint)((TimeChartBean)mChartBeans.get(0)).getLinePoints().get(0)).getID());
 					TimeChartBean localTimeChartBean;
 					LinearSeries localLinearSeries;
-					// localLinearSeries.getPoints().addAll(localTimeChartBean.getLinePoints());
-					// localLinearSeries.setVisible(true);
 					boolean bool1 = false;
 					boolean bool2;
 					if (j == 0)
@@ -846,30 +678,9 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 						int m = string2Int((String) ((LinePoint) localTimeChartBean
 								.getLinePoints().get(0)).getID());
-						// Log.i("", "tag jsm=" +m);
 						if (m == 0)
 							bool2 = true;
-						/*
-						 * if(i == 0){ localLinearSeries =
-						 * (LinearSeries)mLinearSeries.get(i);
-						 * localLinearSeries.
-						 * getPoints().addAll(localTimeChartBean
-						 * .getLinePoints());
-						 * localLinearSeries.setVisible(true); }else{ int m =
-						 * string2Int
-						 * ((String)((LinePoint)localTimeChartBean.getLinePoints
-						 * ().get(0)).getID()); if (m == 0) bool2 = true; }
-						 */
-						// handleTimeChartLine(((TimeChartBean)mChartBeans.get(0)).getLinePoints(),
-						// localTimeChartBean.getLinePoints(), bool1, bool2,
-						// localLinearSeries);
-
 					}
-
-					// this.mTimeChartOffset = -1;
-					// //this.mKChartArea.setTitle("");
-					// timeChartRecalc();
-
 				}
 
 			} catch (Exception e) {
@@ -903,35 +714,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 				+ time.substring(0, 2) + ":" + time.substring(2, 4);
 	}
 
-	/*
-	 * private void handleTimeChartLine(ArrayList<LinePoint> paramArrayList1,
-	 * ArrayList<LinePoint> paramArrayList2, boolean paramBoolean1, boolean
-	 * paramBoolean2, LinearSeries paramLinearSeries){
-	 * paramLinearSeries.setIndexOffset(0); int i4,i6,i7; if (paramBoolean1){ if
-	 * (!paramBoolean2){ i4 =
-	 * string2Int((String)((LinePoint)paramArrayList2.get(0)).getID()); int i5 =
-	 * paramArrayList1.size(); i6 = 0; i7 = 0; if(i6 > i5){ if (i7 ==
-	 * 0)paramLinearSeries.setIndexOffset(i5); }else{ int i = 0,j = 0; do{ if
-	 * (string2Int((String)((LinePoint)paramArrayList1.get(i6)).getID()) == i4){
-	 * i7 = 1; paramLinearSeries.setIndexOffset(i6); if (i7 ==
-	 * 0)paramLinearSeries.setIndexOffset(i5); }else{
-	 * 
-	 * } paramLinearSeries.getPoints().addAll(paramArrayList2);
-	 * paramLinearSeries.setVisible(true);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * i6++; }while(j >= i);
-	 * 
-	 * 
-	 * } // if (i6 < i5) // break label83; //label54: if (i7 == 0) //
-	 * paramLinearSeries.setIndexOffset(i5); }
-	 * 
-	 * } //int i = 0,j = 0; }
-	 */
-
 	private class GetGoldTask extends AsyncTask<Void, Void, ArrayList<Object>> {
 		StockPoint iStockPoint;
 		String errorString, str2, mUrl;
@@ -940,20 +722,8 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 		@Override
 		protected void onPreExecute() {
-			// String url =
-			// "http://zhj8.sinaapp.com/Mobi/Data/kline/s/XAGUSD/p/015";
-			// mUrl =
-			// "http://zhj8.sinaapp.com/Mobi/Data/kline/s/"+mCurrentChartCode+"/p/"+mCurrentKLineType+"";
-			// Log.i("", "tag murl="+mUrl);
-			// ----------------------------------------------
-			if (mCurrentChartCode.equals("ZSUSD")) {// 妹纸
-				mUrl = "http://apphome.sinaapp.com/dc/A/Api/kdata?os=android&tid=ZSUSD&tt="
-						+ mCurrentKLineType + "&apitoken=";
-			} else {
-				mUrl = "http://zhj8.sinaapp.com/Mobi/Data/kline/s/"
-						+ mCurrentChartCode + "/p/" + mCurrentKLineType + "";
-			}
-
+			mUrl = "http://apphome.sinaapp.com/dc/A/Api/kdata?os=android&tid=ZSUSD&tt="
+					+ mCurrentKLineType + "&apitoken=";
 			errorString = null;
 			mDataRefreshView.setVisibility(View.VISIBLE);
 		}
@@ -980,17 +750,12 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 				iStockPoint.setClose(Double.parseDouble(strAarray2[5]));
 				iStockPoint.setID(str2);
 				mKChartSeries.getPoints().add(iStockPoint);
-				// mKChartSeries.setLastValue(value)
 				iLinePoint = mIndicatorSeries.addPoint(iStockPoint.getClose());
 				iLinePoint.setID(iStockPoint.getID());
 
 				mCloseSeries.getPoints().add(iLinePoint);
-				// mVolumnSeries.addPoint(0.0D,
-				// Double.parseDouble(strAarray2[6]));
 
 				if (i == (len - 1)) {
-					// mVolumnSeries.setLastValue(100.0D);
-					// mVolumnSeries.setVisible(true);
 					mKChartSeries.setLastValue(iStockPoint.getClose());
 					mIndicatorSeries.setLastValue(iStockPoint.getClose());
 				}
@@ -1016,9 +781,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 								.setViewValues(
 										AxisRange.ViewValues.SCROLL_TO_FIRST);
 					} else {
-						// mStockChartView.getGlobalAxisRange(Axis.Side.BOTTOM).setMaxMinViewLength(len,
-						// Double.NaN);
-						// force set auto calculating values to 10
 						mStockChartView.getGlobalAxisRange(Axis.Side.BOTTOM)
 								.expandAutoValues(len, -50 + len);
 						mStockChartView.getGlobalAxisRange(Axis.Side.BOTTOM)
@@ -1055,18 +817,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 	// 显示SMA指示符
 	private void showSMAIndicator() {
-		/*
-		 * mStockChartView.getIndicatorManager().removeIndicator(mEnvelopesIndicator
-		 * );
-		 * mStockChartView.getIndicatorManager().removeIndicator(mBOLLIndicator
-		 * );
-		 * mStockChartView.getIndicatorManager().removeIndicator(mEMA5Indicator
-		 * );
-		 * mStockChartView.getIndicatorManager().removeIndicator(mEMA10Indicator
-		 * );
-		 * mStockChartView.getIndicatorManager().removeIndicator(mEMA20Indicator
-		 * );
-		 */
 		if (this.mSMA5Indicator == null) {
 			LinearSeries localLinearSeries3 = (LinearSeries) this.mKChartArea
 					.findSeriesByName("line1");
@@ -1098,11 +848,9 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		this.mStockChartView.getIndicators().add(mSMA10Indicator);
 		this.mStockChartView.getIndicators().add(mSMA20Indicator);
 		stockViewRecalc();// K线图表等重新计算
-		// Log.i("","tag ss");
 		double d1, d2, d3;
 		String str = "";
 		if (this.mKChartArea.findSeriesByName("line1").hasPoints()) {
-			// Log.i("","tag ss11");
 			double[] arrayOfDouble1 = this.mKChartArea
 					.findSeriesByName("line1").getLastPoint().getValues();
 			double[] arrayOfDouble2 = this.mKChartArea
@@ -1113,11 +861,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 			d1 = round(arrayOfDouble1[0], 2);
 			d2 = round(arrayOfDouble2[0], 2);
 			d3 = round(arrayOfDouble3[0], 2);
-			// str = "<font color=\"#\">SMA5(" + d1 + ")</font> <font color=\""
-			// + getResources().getColor(R.color.yellow) + "\">SMA10(" + d2 +
-			// ")</font> <font color=\"" +
-			// getResources().getColor(R.color.green) + "\">SMA20(" + d3 +
-			// ")</font>";
 			str = "<font color=\"" + getResources().getColor(R.color.white)
 					+ "\">SMA5(" + d1 + ")</font> <font color=\""
 					+ getResources().getColor(R.color.yellow) + "\">SMA10("
@@ -1126,19 +869,13 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 					+ ")</font>";
 
 		} else {
-			// Log.i("","tag ss13");
-			// str =
-			// "<font color=\"#000000\">SMA5</font> <font color=\"#FFFF00\">SMA10</font> <font color=\"#008000\">SMA20</font>"
-			// ;//+ "(点击该图形切换指标)";
 			str = "<font color=\"" + getResources().getColor(R.color.white)
 					+ "\">SMA5</font> <font color=\""
 					+ getResources().getColor(R.color.yellow)
 					+ "\">SMA10</font> <font color=\""
 					+ getResources().getColor(R.color.green)
 					+ "\">SMA20</font>";// + "(点击该图形切换指标)";
-			// Log.i("","tag ss13=str"+str);
 		}
-		// Log.i("","tag ss3");
 		this.mTitleView.setVisibility(View.VISIBLE);
 		this.mTitleView.setText(Html.fromHtml(str));
 	}
@@ -1146,16 +883,10 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 	// 显示MACD指示符
 	private void showMACDIndicator() {
 		LinearSeries localLinearSeries1 = new LinearSeries();
-		// localLinearSeries1.getAppearance().setAllColors(-0);
-		// localLinearSeries1.getAppearance().setOutlineColor(-256);
-		// localLinearSeries1.getAppearance().setOutlineStyle(Appearance.OutlineStyle.SOLID);
 		localLinearSeries1.getAppearance().setAllColors(-256);
 		localLinearSeries1.getAppearance().setOutlineWidth(1.0F);
 		LinearSeries localLinearSeries2 = new LinearSeries();
-		// localLinearSeries2.getAppearance().setAllColors(-0);
-		// localLinearSeries2.getAppearance().setOutlineColor(-16711936);
 		localLinearSeries2.getAppearance().setAllColors(-1);
-		// localLinearSeries2.getAppearance().setOutlineStyle(Appearance.OutlineStyle.SOLID);
 		localLinearSeries2.getAppearance().setOutlineWidth(1.0F);
 		BarSeries localBarSeries = new BarSeries();
 		this.mIndicatorArea.getSeries().add(localLinearSeries1);
@@ -1165,31 +896,19 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		MacdIndicator localMacdIndicator = new MacdIndicator(
 				this.mIndicatorSeries, 0, localLinearSeries1,
 				localLinearSeries2, localBarSeries);
-		// this.mIndicatorArea.getAppearance().setTextSize(20.0F);
 		this.mStockChartView.getIndicators().add(localMacdIndicator);
-		// this.mStockChartView.getIndicatorManager().getIndicators().add(localMacdIndicator);
 		stockViewRecalc();
 		if (localMacdIndicator.getDstMacd().hasPoints()) {
 			double d = round(localMacdIndicator.getDstMacd().getLastPoint()
 					.getValues()[0], 3);
-			// this.mIndicatorArea.setTitle("MACD(12,26,9) DIF(黄" + d + ")" +
-			// "(点击该图形切换指标)");
 			this.mIndicatorArea.setTitle("MACD(12,26,9) DIF(黄" + d + ")");
 		} else {
-			// this.mIndicatorArea.setTitle("MACD(12,26,9) DIF(黄)(点击该图形切换指标)");
 			this.mIndicatorArea.setTitle("MACD(12,26,9) DIF(黄)");
 		}
 	}
 
 	// 显示EMA指示符
 	private void showEMAIndicator() {
-		/*
-		 * this.mStockChartView.getIndicators().remove(this.mEnvelopesIndicator);
-		 * this.mStockChartView.getIndicators().remove(this.mBOLLIndicator);
-		 * this.mStockChartView.getIndicators().remove(this.mSMA5Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mSMA10Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mSMA20Indicator);
-		 */
 		if (this.mEMA5Indicator == null) {
 			LinearSeries localLinearSeries3 = (LinearSeries) this.mKChartArea
 					.findSeriesByName("line1");
@@ -1250,15 +969,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 	// 显示BOLL指示符
 	private void showBOLLIndicator() {
-		/*
-		 * this.mStockChartView.getIndicators().remove(this.mEnvelopesIndicator);
-		 * this.mStockChartView.getIndicators().remove(this.mSMA5Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mSMA10Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mSMA20Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mEMA5Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mEMA10Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mEMA20Indicator);
-		 */
 		if (mBOLLIndicator == null) {
 			LinearSeries localLinearSeries1 = (LinearSeries) this.mKChartArea
 					.findSeriesByName("line1");
@@ -1266,10 +976,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 					.findSeriesByName("line2");
 			LinearSeries localLinearSeries3 = (LinearSeries) this.mKChartArea
 					.findSeriesByName("line3");
-			// mBOLLIndicator = new BollingerBandsIndicator(localLinearSeries3,
-			// 0, localLinearSeries3, null);
-			// mBOLLIndicator = new BollingerBandsIndicator(mKChartSeries, 0,
-			// localLinearSeries1);
 			mBOLLIndicator = new BollingerBandsIndicator(mKChartSeries, 0,
 					localLinearSeries1, localLinearSeries2, localLinearSeries3);
 		}
@@ -1296,7 +1002,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 					+ ")</font>";
 		} else {
 			str = "<font color=\"" + getResources().getColor(R.color.white)
-					+ "\">BOLL布林线</font>";// + "(点击该图形切换指标)")
+					+ "\">BOLL布林线</font>";
 		}
 		this.mTitleView.setVisibility(View.VISIBLE);
 		this.mTitleView.setText(Html.fromHtml(str));
@@ -1304,15 +1010,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 	// 显示ENV指示符
 	private void showENVIndicator() {
-		/*
-		 * this.mStockChartView.getIndicators().remove(this.mBOLLIndicator);
-		 * this.mStockChartView.getIndicators().remove(this.mEMA5Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mEMA10Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mEMA20Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mSMA5Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mSMA10Indicator);
-		 * this.mStockChartView.getIndicators().remove(this.mSMA20Indicator);
-		 */
 		if (this.mEnvelopesIndicator == null) {
 			LinearSeries localLinearSeries1 = (LinearSeries) this.mKChartArea
 					.findSeriesByName("line1");
@@ -1342,7 +1039,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		} else {
 
 			str = "<font color=\"" + getResources().getColor(R.color.white)
-					+ "\"> " + "ENV轨道线" + "</font>";// "(点击该图形切换指标)")
+					+ "\"> " + "ENV轨道线" + "</font>";
 		}
 		this.mTitleView.setVisibility(View.VISIBLE);
 		this.mTitleView.setText(Html.fromHtml(str));
@@ -1371,7 +1068,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 			this.mIndicatorArea
 					.setTitle("KDJ(9) K(红" + d1 + ") D(绿" + d2 + ")");
 		} else {
-			// this.mIndicatorArea.setTitle("KDJ(9)(点击该图形切换指标)");
 			this.mIndicatorArea.setTitle("KDJ(9)");
 		}
 	}
@@ -1380,7 +1076,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 	private void showRSIIndicator() {
 		LinearSeries localLinearSeries1 = new LinearSeries();
 		localLinearSeries1.getAppearance().setAllColors(-1);
-		// localLinearSeries1.getAppearance().setAllColors(-16777216);
 		localLinearSeries1.getAppearance().setOutlineWidth(1.0F);
 		LinearSeries localLinearSeries2 = new LinearSeries();
 		localLinearSeries2.getAppearance().setOutlineWidth(1.0F);
@@ -1413,12 +1108,9 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 					.getValues()[0], 2);
 			double d3 = round(this.mRSI24Indicator.getDst().getLastPoint()
 					.getValues()[0], 2);
-			// this.mIndicatorArea.setTitle("RSI(6(白 " + d1 + "),12(黄 " + d2 +
-			// "),24(绿 " + d3 + "))");
 			this.mIndicatorArea.setTitle("RSI(6(白 " + d1 + "),12(黄 " + d2
 					+ "),24(绿 " + d3 + "))");
 		} else {
-			// this.mIndicatorArea.setTitle("RSI(6(白 ),12(黄),24(绿))(点击该图形切换指标)");
 			this.mIndicatorArea.setTitle("RSI(6(白),12(黄),24(绿))");
 		}
 	}
@@ -1464,105 +1156,77 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 	// 指标选择
 	private void changeIndicator() {
 		// 新建AlertDialog对话框 指标选择 对话框
-		new AlertDialog.Builder(this)
-		// .setTitle(R.string.string_alert_title)
-				.setItems(R.array.indicator_type,
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								// 取出响应字符串资源
-								// final String[]
-								// colors=StockChartsActivity.this.getResources().getStringArray(R.array.indicator_type);
-								switch (which) {
-								// case 0://VOL成交量 下区 0
-								// if(isPreferences.getSp().getInt("mShowDownIndicator",
-								// 1) != 0){
-								// showVolumnSeries();
-								// isPreferences.updateSp("mShowDownIndicator",
-								// 0);
-								// }
-								// break;
-								case 0:// MACD指标 下区 1
-									if (isPreferences.getSp().getInt(
-											"mShowDownIndicator", 1) != 1) {
-										mIndicatorArea.getSeries().clear();
-										mIndicatorArea.getLines().clear();
-										showMACDIndicator();
-										isPreferences.updateSp(
-												"mShowDownIndicator", 1);
-									}
-									break;
-								case 1:// BOLL布林线 上区 1
-									if (isPreferences.getSp().getInt(
-											"mShowUpIndicator", 0) != 1) {
-										showBOLLIndicator();
-										isPreferences.updateSp(
-												"mShowUpIndicator", 1);
-									}
-									break;
-								case 2:// KDJ随机指标 下区 2
-									if (isPreferences.getSp().getInt(
-											"mShowDownIndicator", 1) != 2) {
-										mIndicatorArea.getSeries().clear();
-										mIndicatorArea.getLines().clear();
-										showKDJIndicator();
-										isPreferences.updateSp(
-												"mShowDownIndicator", 2);
-									}
-									break;
-								case 3:// RSI强弱指标 下区 3
-									if (isPreferences.getSp().getInt(
-											"mShowDownIndicator", 1) != 3) {
-										mIndicatorArea.getSeries().clear();
-										mIndicatorArea.getLines().clear();
-										showRSIIndicator();
-										isPreferences.updateSp(
-												"mShowDownIndicator", 3);
-									}
-									break;
-								case 4:// SMA均线 上区 0
-									if (isPreferences.getSp().getInt(
-											"mShowUpIndicator", 0) != 0) {
-										showSMAIndicator();
-										isPreferences.updateSp(
-												"mShowUpIndicator", 0);
-									}
-									break;
-								case 5:// EMA均线 上区 2
-									if (isPreferences.getSp().getInt(
-											"mShowUpIndicator", 0) != 2) {
-										showEMAIndicator();
-										isPreferences.updateSp(
-												"mShowUpIndicator", 2);
-									}
-									break;
-								case 6:// ENV指标 上区 3
-									if (isPreferences.getSp().getInt(
-											"mShowUpIndicator", 0) != 3) {
-										showENVIndicator();
-										isPreferences.updateSp(
-												"mShowUpIndicator", 3);
-									}
-									break;
-								}
+		new AlertDialog.Builder(this).setItems(R.array.indicator_type,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						switch (which) {
+						case 0:// MACD指标 下区 1
+							if (isPreferences.getSp().getInt(
+									"mShowDownIndicator", 1) != 1) {
+								mIndicatorArea.getSeries().clear();
+								mIndicatorArea.getLines().clear();
+								showMACDIndicator();
+								isPreferences.updateSp("mShowDownIndicator", 1);
 							}
-						}).show();
+							break;
+						case 1:// BOLL布林线 上区 1
+							if (isPreferences.getSp().getInt(
+									"mShowUpIndicator", 0) != 1) {
+								showBOLLIndicator();
+								isPreferences.updateSp("mShowUpIndicator", 1);
+							}
+							break;
+						case 2:// KDJ随机指标 下区 2
+							if (isPreferences.getSp().getInt(
+									"mShowDownIndicator", 1) != 2) {
+								mIndicatorArea.getSeries().clear();
+								mIndicatorArea.getLines().clear();
+								showKDJIndicator();
+								isPreferences.updateSp("mShowDownIndicator", 2);
+							}
+							break;
+						case 3:// RSI强弱指标 下区 3
+							if (isPreferences.getSp().getInt(
+									"mShowDownIndicator", 1) != 3) {
+								mIndicatorArea.getSeries().clear();
+								mIndicatorArea.getLines().clear();
+								showRSIIndicator();
+								isPreferences.updateSp("mShowDownIndicator", 3);
+							}
+							break;
+						case 4:// SMA均线 上区 0
+							if (isPreferences.getSp().getInt(
+									"mShowUpIndicator", 0) != 0) {
+								showSMAIndicator();
+								isPreferences.updateSp("mShowUpIndicator", 0);
+							}
+							break;
+						case 5:// EMA均线 上区 2
+							if (isPreferences.getSp().getInt(
+									"mShowUpIndicator", 0) != 2) {
+								showEMAIndicator();
+								isPreferences.updateSp("mShowUpIndicator", 2);
+							}
+							break;
+						case 6:// ENV指标 上区 3
+							if (isPreferences.getSp().getInt(
+									"mShowUpIndicator", 0) != 3) {
+								showENVIndicator();
+								isPreferences.updateSp("mShowUpIndicator", 3);
+							}
+							break;
+						}
+					}
+				}).show();
 	}
 
 	// K线图 几分线 时间选择
 	private void changeKLineType(int iKLineType) {
 		tv_title.setText(mChartTitle + "-" + "K线" + " "
 				+ mStockIndicatorTiemStrings[iKLineType]);
-		// mCurrentKLineType = mKLineTypes[iKLineType];
-		// ---------------------------------------------------
-		if (mCurrentChartCode.equals("ZSUSD")) {// 妹纸
-			mCurrentKLineType = mKLineTypes2[iKLineType];
-		} else {
-			mCurrentKLineType = mKLineTypes[iKLineType];
-		}
-
-		mCurrentKLineTYP_index = iKLineType;
+		mCurrentKLineType = mKLineTypes[iKLineType];
+		mCurrentKLineTYPIndex = iKLineType;
 		indicatorBgChange(iKLineType);
 		getStockChartData();
 	}
@@ -1585,7 +1249,6 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		tv_title.setText(mChartTitle + "-" + "实时走势" + " "
 				+ mTimChartTypes[iTLineType]);
 		mCurrentTimeChartTYP = iTLineType;
-		// indicatorTimeBgChange(iTLineType - 1);
 		getTimeStockChartData();
 	}
 
@@ -1712,13 +1375,10 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 			mStockChartView.setVisibility(View.GONE);
 			mTimeChartView.setVisibility(View.VISIBLE);
 			changeTLineType(mCurrentTimeChartTYP);
-			// tv_title.setText(mChartTitle + "-" + "K线" + " " +
-			// mStockIndicatorTiemStrings[mCurrentTimeChartTYP]);
-			// getTimeStockChartData();
 			break;
 		case R.id.chart_k_tab:
 			tv_title.setText(mChartTitle + "-" + "K线" + " "
-					+ mStockIndicatorTiemStrings[mCurrentKLineTYP_index]);
+					+ mStockIndicatorTiemStrings[mCurrentKLineTYPIndex]);
 			time_chart_layout.setVisibility(View.GONE);
 			indicator_layout.setVisibility(View.VISIBLE);
 			mTimeTitleView.setVisibility(View.GONE);

@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
@@ -32,11 +30,6 @@ public class RealTimeDataActivity extends FragmentActivity implements OnClickLis
 		application = MainApplication.getApplication();
 		application.setActivity(this);
 		initView();
-//		FragmentManager fragmentManager = getSupportFragmentManager();  
-//		FragmentTransaction fragmentTransaction =fragmentManager.beginTransaction();
-//		RealTimeFragment fragment = new RealTimeFragment();
-//		fragmentTransaction.add(R.id.fragment_container, fragment);
-//		fragmentTransaction.commit();
 	}
 
 	private void initView() {
