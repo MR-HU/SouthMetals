@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
@@ -32,9 +33,9 @@ public class VirtualAccountActivity extends BaseActivity implements OnClickListe
 	}
 
 	private void initView() {
-		titleLeftBtn = (Button) findViewById(R.id.btn_title_left);
+		titleLeftBtn = (TextView) findViewById(R.id.btn_title_left);
 		titleLeftBtn.setOnClickListener(this);
-		titleRightBtn = (Button) findViewById(R.id.btn_title_right);
+		titleRightBtn = (TextView) findViewById(R.id.btn_title_right);
 		titleRightBtn.setVisibility(View.GONE);
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
 		titleContentView.setText("Ä£ÄâÕË»§");

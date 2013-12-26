@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -56,8 +57,8 @@ public class OnLineQuestionActivity extends BaseActivity implements OnClickListe
 	}
 
 	private void initView() {
-		titleLeftBtn = (Button) findViewById(R.id.btn_title_left);
-		titleRightBtn = (Button) findViewById(R.id.btn_title_right);
+		titleLeftBtn = (TextView) findViewById(R.id.btn_title_left);
+		titleRightBtn = (TextView) findViewById(R.id.btn_title_right);
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
 		titleRefreshBar = (ProgressBar) findViewById(R.id.progress_title_right);
 		titleLeftBtn.setOnClickListener(this);

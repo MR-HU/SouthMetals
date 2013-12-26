@@ -2,6 +2,7 @@ package com.innouni.south.activity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+
 import org.stockchart.StockChartView;
 import org.stockchart.core.Appearance;
 import org.stockchart.core.Area;
@@ -34,8 +35,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.innouni.south.entity.TimeChartBean;
 import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.pref.GlobalConfigPreferences;
@@ -59,7 +62,8 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 	private TextView indicator_oneM, indicator_fiveM, indicator_fifM,
 			indicator_thirtyM, indicator_sixtyM, indicator_fourHour,
 			indicator_oneDay, indicator_oneWeek, indicator_oneMonth;
-	private Button btn_back, btn_refresh;
+	private TextView btn_back;
+	private TextView btn_refresh;
 	private StockChartView mTimeChartView, mStockChartView;
 	private String mChartTitle, mCurrentKLineType, mCurrentChartCode;
 	private int mCurrentKLineTYP_index, mShowUpIndicator, mShowDownIndicate,
@@ -131,10 +135,10 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		// title
 		tv_title = (TextView) findViewById(R.id.tv_title);
 		// 返回按钮
-		btn_back = (Button) findViewById(R.id.btn_back);
+		btn_back = (TextView) findViewById(R.id.btn_back);
 		btn_back.setOnClickListener(this);
 		// 数据刷新按钮
-		btn_refresh = (Button) findViewById(R.id.btn_refresh);
+		btn_refresh = (TextView) findViewById(R.id.btn_refresh);
 		btn_refresh.setOnClickListener(this);
 	}
 

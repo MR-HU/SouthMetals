@@ -22,8 +22,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -35,7 +35,6 @@ import com.innouni.south.util.NetUtil;
 import com.innouni.south.util.UpdateVersionUtil;
 import com.innouni.south.widget.MsgBox;
 import com.viewpagerindicator.PageIndicator;
-import com.yintong.secure.f.i;
 
 /**
  * 主页  九宫格展示各个模块
@@ -114,11 +113,11 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	}
 
 	private void initView() {
-		titleLeftBtn = (Button) findViewById(R.id.btn_title_left);
+		titleLeftBtn = (TextView) findViewById(R.id.btn_title_left);
 		titleLeftBtn.setVisibility(View.GONE);
 		titleLeftImage = (ImageView) findViewById(R.id.image_title_left);
 		titleLeftImage.setVisibility(View.VISIBLE);
-		titleRightBtn = (Button) findViewById(R.id.btn_title_right);
+		titleRightBtn = (TextView) findViewById(R.id.btn_title_right);
 		titleRightBtn.setVisibility(View.GONE);
 		titlerightImage = (ImageView) findViewById(R.id.image_title_right);
 		titlerightImage.setVisibility(View.VISIBLE);

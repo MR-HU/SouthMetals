@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
@@ -24,8 +25,8 @@ public abstract class BaseActivityGroup extends ActivityGroup {
 	
 	protected MainApplication appClication;
 	
-	protected Button titleLeftBtn;
-	protected Button titleRightBtn;
+	protected TextView titleLeftBtn;
+	protected TextView titleRightBtn;
 	protected TextView titleContentView;
 
 	/**

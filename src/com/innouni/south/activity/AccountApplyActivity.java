@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
@@ -33,8 +34,8 @@ public class AccountApplyActivity extends BaseActivity implements OnClickListene
 	}
 
 	private void initView() {
-		titleLeftBtn = (Button) findViewById(R.id.btn_title_left);
-		titleRightBtn = (Button) findViewById(R.id.btn_title_right);
+		titleLeftBtn = (TextView) findViewById(R.id.btn_title_left);
+		titleRightBtn = (TextView) findViewById(R.id.btn_title_right);
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
 		titleLeftBtn.setOnClickListener(this);
 		titleRightBtn.setOnClickListener(this);

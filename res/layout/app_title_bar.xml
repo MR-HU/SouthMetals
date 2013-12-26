@@ -9,12 +9,13 @@
     	android:layout_height="wrap_content"
     	android:paddingLeft="10dp"
     	android:layout_centerVertical="true">
-	    <Button
+	    <TextView
 	    	android:id="@+id/btn_title_left"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
 	    	android:layout_marginLeft="6dp"
 	    	android:text="返回"
+	    	android:clickable="true"
 	    	android:textSize="16sp"
 	    	android:gravity="center"
 	    	android:textColor="@color/white"
@@ -38,10 +39,11 @@
     	android:layout_height="wrap_content"
     	android:layout_centerVertical="true"
     	android:layout_alignParentRight="true">
-	    <Button
+	    <TextView
 	    	android:id="@+id/btn_title_right"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
+	    	android:clickable="true"
 	    	android:background="@drawable/toolbar_btn_refurbish"/>
 	    <ProgressBar 
 	    	android:id="@+id/progress_title_right"
@@ -53,6 +55,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:visibility="gone"
+	        android:clickable="true"
 	        android:src="@drawable/toolbar_btn_user"/>
 	</FrameLayout>
 </RelativeLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -42,8 +43,8 @@ public class ShareAppActivity extends BaseActivity implements OnClickListener, I
 		weiboAPI = WeiboSDK.createWeiboAPI(this, ShareUtil.SINA_APP_KEY);
 		weiboAPI.registerApp();
 		
-		titleLeftBtn = (Button) findViewById(R.id.btn_title_left);
-		titleRightBtn = (Button) findViewById(R.id.btn_title_right);
+		titleLeftBtn = (TextView) findViewById(R.id.btn_title_left);
+		titleRightBtn = (TextView) findViewById(R.id.btn_title_right);
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
 		titleLeftBtn.setOnClickListener(this);
 		titleRightBtn.setVisibility(View.GONE);
