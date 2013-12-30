@@ -50,30 +50,53 @@ import com.innouni.south.pref.GlobalConfigPreferences;
  */
 public class StockChartsActivity extends Activity implements OnClickListener,
 		OnTouchListener {
-	private LinearLayout time_chart_layout, indicator_layout;
+	// 标题栏返回,刷新,显示标题
+	private TextView btn_back, btn_refresh, tv_title;
+	// 底部分时图,K线,指标切换按钮
+	private TextView chart_time_tab, chart_k_tab, tv_change_indicator;
+
+	// 分时图头部时间选择
+	private LinearLayout time_chart_layout;
+	// K线图头部时间选择
+	private LinearLayout indicator_layout;
+	// 分时图24小时,48小时,72小时,96小时选择按钮
 	private TextView time_chart_oneDay, time_chart_twoDay, time_chart_threeDay,
-			time_chart_fourDay, tv_title, stock_price_now, stock_price_updown,
-			stock_price_yesterday, stock_price_today, stock_price_high,
-			stock_price_low, chart_time_tab, chart_k_tab, tv_change_indicator,
-			mTitleView, mTimeTitleView, mDataRefreshView;
+			time_chart_fourDay;
+	// K线图时间选择按钮
 	private TextView indicator_oneM, indicator_fiveM, indicator_fifM,
 			indicator_thirtyM, indicator_sixtyM, indicator_fourHour,
 			indicator_oneDay, indicator_oneWeek, indicator_oneMonth;
-	private TextView btn_back;
-	private TextView btn_refresh;
+	private String[] mStockIndicatorTiemStrings;
+
+	// 最新 涨跌 昨收 今开 最高 最低
+	private TextView stock_price_now, stock_price_updown,
+			stock_price_yesterday, stock_price_today, stock_price_high,
+			stock_price_low;
+	// K线图指标标题
+	private TextView mTitleView;
+	// 分时图标题
+	private TextView mTimeTitleView;
+	// 刷新提示
+	private TextView mDataRefreshView;
+	// 分时图和K线图控件
 	private StockChartView mTimeChartView, mStockChartView;
-	private String mChartTitle, mCurrentKLineType, mCurrentChartCode;
-	private int mCurrentKLineTYPIndex, mShowUpIndicator, mShowDownIndicate,
-			mCurrentTimeChartTYP;
+	// 名称和code
+	private String mCurrentChartName, mCurrentChartCode;
+	// K线的类型
+	private String mCurrentKLineType;
+	private int mCurrentKLineTYPIndex;
+	// 分时图类型
+	private int mCurrentTimeChartTYP;
+	private String[] mKLineTypes = { "1001", "1005", "1015", "1030", "1060",
+			"2004", "3001", "4001", "5001" };
+	private String[] mTimChartTypes = { "", "24小时", "48小时", "72小时", "96小时" };
+
 	private Area mKChartArea, mIndicatorArea, mTimeChartArea;
 	private StockSeries mKChartSeries;
 	private LinearSeries mIndicatorSeries;
 	private LinearSeries mCloseSeries, m48CloseSeries, m72CloseSeries,
 			m96CloseSeries;
 	private BarSeries mVolumnSeries;
-	private GetGoldTask iGetGoldTask;
-	private GetTimeGoldTask iGetTimeGoldTask;
-	private String[] mStockIndicatorTiemStrings;
 
 	private SmaIndicator mSMA10Indicator, mSMA20Indicator, mSMA5Indicator;
 	private EmaIndicator mEMA10Indicator, mEMA20Indicator, mEMA5Indicator;
@@ -81,12 +104,14 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 	private BollingerBandsIndicator mBOLLIndicator;
 	private StochasticIndicator mKDJIndicator;
 	private RsiIndicator mRSI12Indicator, mRSI24Indicator, mRSI6Indicator;
-	private String[] mKLineTypes = { "1001", "1005", "1015", "1030", "1060",
-			"2004", "3001", "4001", "5001" };
-	private String[] mTimChartTypes = { "", "24小时", "48小时", "72小时", "96小时" };
+
 	private ArrayList<LinearSeries> mLinearSeries;
 	private ArrayList<TimeChartBean> mChartBeans = new ArrayList<TimeChartBean>();
+
+	private GetGoldTask iGetGoldTask;
+	private GetTimeGoldTask iGetTimeGoldTask;
 	private GetMetalPriceTask iGetMetalPriceTask;
+
 	private GlobalConfigPreferences isPreferences;
 
 	@Override
@@ -94,81 +119,66 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stockchart);
 		isPreferences = new GlobalConfigPreferences(this);
-		/** 界面初始化 */
+		
 		initContentView();
-		mCurrentKLineType = "1015"; // K线默认15分线
+		// K线默认15分线
+		mCurrentKLineType = "1015"; 
 		mCurrentKLineTYPIndex = 2;
-		mCurrentTimeChartTYP = 3; // 分时图默认72小时
-		indicatorBgChange(2);
+		// 分时图默认72小时
+		mCurrentTimeChartTYP = 3; 
+		//默认选中15分钟K线并改变
+		changeKChartTimeSelectBg(2);
 		try {
-			Bundle localBundle = getIntent().getExtras();
-			mCurrentChartCode = localBundle.getString("ChartCode");
-			mChartTitle = localBundle.getString("ChartName");
+			Bundle bundle = getIntent().getExtras();
+			mCurrentChartCode = bundle.getString("ChartCode");
+			mCurrentChartName = bundle.getString("ChartName");
 		} catch (Exception e) {
 			mCurrentChartCode = "XAUUSD";
-			mChartTitle = "现货黄金";
+			mCurrentChartName = "现货黄金";
 		}
+		//K线时间数组{"1分","5分","15分"...}
 		mStockIndicatorTiemStrings = getResources().getStringArray(
 				R.array.stock_indicator);
-		tv_title.setText(mChartTitle + "-" + "K线" + " "
+		tv_title.setText(mCurrentChartName + "-" + "K线" + " "
 				+ mStockIndicatorTiemStrings[mCurrentKLineTYPIndex]);
-		initTimeChart(); // 分时图初始化
-		initKChart(); // k线图初始化
+		initTimeChart(); 
+		initKChart(); 
 		getMetalPriceData();
 		getStockChartData();
 
 	}
 
-	/** 界面头部初始化 **/
 	private void initHeaderView() {
-		// 标题
 		tv_title = (TextView) findViewById(R.id.tv_title);
-		// 返回按钮
 		btn_back = (TextView) findViewById(R.id.btn_back);
 		btn_back.setOnClickListener(this);
-		// 数据刷新按钮
 		btn_refresh = (TextView) findViewById(R.id.btn_refresh);
 		btn_refresh.setOnClickListener(this);
 	}
 
-	/** 时间选择初始化 **/
 	private void initTimeOption() {
-		/** 分时图的 时间选择 布局 **/
+		// 分时图的时间选择布局 
 		time_chart_layout = (LinearLayout) findViewById(R.id.time_chart_layout);
-		// 分时图的 时间选项 一天 24小时
 		time_chart_oneDay = (TextView) findViewById(R.id.time_chart_oneDay);
-		// 分时图的 时间选项 一天 48小时
 		time_chart_twoDay = (TextView) findViewById(R.id.time_chart_twoDay);
-		// 分时图的 时间选项 一天 72小时
 		time_chart_threeDay = (TextView) findViewById(R.id.time_chart_threeDay);
-		// 分时图的 时间选项 一天 96小时
 		time_chart_fourDay = (TextView) findViewById(R.id.time_chart_fourDay);
 		time_chart_oneDay.setOnClickListener(this);
 		time_chart_twoDay.setOnClickListener(this);
 		time_chart_threeDay.setOnClickListener(this);
 		time_chart_fourDay.setOnClickListener(this);
-		/** k线图的 时间选择 布局 **/
+		
+		//k线图的 时间选择 布局 
 		indicator_layout = (LinearLayout) findViewById(R.id.indicator_layout);
-		// k线图的 时间选项 1分 001
 		indicator_oneM = (TextView) findViewById(R.id.indicator_oneM);
-		// k线图的 时间选项 5分 005
 		indicator_fiveM = (TextView) findViewById(R.id.indicator_fiveM);
-		// k线图的 时间选项 15分 015
 		indicator_fifM = (TextView) findViewById(R.id.indicator_fifM);
-		// k线图的 时间选项 30分 030
 		indicator_thirtyM = (TextView) findViewById(R.id.indicator_thirtyM);
-
-		// k线图的 时间选项 60分 060
 		indicator_sixtyM = (TextView) findViewById(R.id.indicator_sixtyM);
-		// k线图的 时间选项 24小时 240
 		indicator_fourHour = (TextView) findViewById(R.id.indicator_fourHour);
-		// k线图的 时间选项 一日 100
 		indicator_oneDay = (TextView) findViewById(R.id.indicator_oneDay);
-		// k线图的 时间选项 一周 200
 		indicator_oneWeek = (TextView) findViewById(R.id.indicator_oneWeek);
-		// k线图的 时间选项 一月 300
 		indicator_oneMonth = (TextView) findViewById(R.id.indicator_oneMonth);
-
 		indicator_oneM.setOnClickListener(this);
 		indicator_fiveM.setOnClickListener(this);
 		indicator_fifM.setOnClickListener(this);
@@ -180,54 +190,40 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		indicator_oneMonth.setOnClickListener(this);
 	}
 
-	/** 最新数据信息显示界面初始化 **/
 	private void initStockPriceNow() {
-		// 当前最新价
 		stock_price_now = (TextView) findViewById(R.id.stock_price_now);
-		// 涨跌幅
 		stock_price_updown = (TextView) findViewById(R.id.stock_price_updown);
-		// 昨收价
 		stock_price_yesterday = (TextView) findViewById(R.id.stock_price_yesterday);
-		// 今开盘价
 		stock_price_today = (TextView) findViewById(R.id.stock_price_today);
-		// 最高
 		stock_price_high = (TextView) findViewById(R.id.stock_price_high);
-		// 最低
 		stock_price_low = (TextView) findViewById(R.id.stock_price_low);
 	}
 
-	/** 界面底部初始化 **/
 	private void initFooterView() {
-		// 切换到 分时图 的 触发 控件
+		// 切换到分时图
 		chart_time_tab = (TextView) findViewById(R.id.chart_time_tab);
 		chart_time_tab.setOnClickListener(this);
-		// 切换到 K线图 的 触发 控件
+		// 切换到K线图 
 		chart_k_tab = (TextView) findViewById(R.id.chart_k_tab);
 		chart_k_tab.setOnClickListener(this);
-		// 指标 切换 触发 控件
+		// 指标切换
 		tv_change_indicator = (TextView) findViewById(R.id.tv_change_indicator);
 		tv_change_indicator.setOnClickListener(this);
 	}
 
-	/** 界面初始化 **/
 	private void initContentView() {
-		/** 界面头部初始化 **/
+		//标题栏初始化
 		initHeaderView();
-		/** 时间选择初始化 **/
+		//时间选择栏目初始化
 		initTimeOption();
-		/** 最新数据信息显示界面初始化 **/
+		//显示当前最新报价界面初始化
 		initStockPriceNow();
-		/** 界面底部初始化 **/
+		//底部栏目初始化
 		initFooterView();
-		// 分时图 控件
 		mTimeChartView = (StockChartView) findViewById(R.id.timeChartView);
-		// K线图 控件
 		mStockChartView = (StockChartView) findViewById(R.id.stockChartView);
-		// K线图 t
 		mTitleView = ((TextView) findViewById(R.id.k_chart_title));
-		// 分时图 t
 		mTimeTitleView = ((TextView) findViewById(R.id.t_chart_title));
-		// 数据刷新 时显示
 		mDataRefreshView = ((TextView) findViewById(R.id.metal_data_refresh_textView));
 	}
 
@@ -282,7 +278,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		this.m96CloseSeries.setYAxisSide(Axis.Side.RIGHT);
 		this.m96CloseSeries.getAppearance().setAllColors(-1);
 		this.m96CloseSeries.setVisible(false);
-		this.mLinearSeries = new ArrayList();
+		this.mLinearSeries = new ArrayList<LinearSeries>();
 		this.mLinearSeries.add(0, this.mCloseSeries);
 		this.mLinearSeries.add(1, this.m48CloseSeries);
 		this.mLinearSeries.add(2, this.m72CloseSeries);
@@ -416,12 +412,12 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		mIndicatorSeries.setYAxisSide(Axis.Side.LEFT);
 	}
 
-	// 被选中的时间控件
-	private void indicatorBgChange(int paramInt) {
+	// K线图时间切换按钮被选中后改变背景
+	private void changeKChartTimeSelectBg(int index) {
 		LinearLayout localLinearLayout = (LinearLayout) findViewById(R.id.stock_indicator_select);
 		for (int i = 0; i < localLinearLayout.getChildCount(); i++) {
 			View localView = localLinearLayout.getChildAt(i);
-			if (i == paramInt) {
+			if (i == index) {
 				localView.setSelected(true);
 			} else {
 				localView.setSelected(false);
@@ -564,7 +560,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 					return null;
 				}
 				strAarray = json.split(",");
-				p_now = strAarray[2];
+				p_now = strAarray[3];
 				p_updwon = strAarray[7];
 				p_updown_str = strAarray[8];
 				p_high = strAarray[5];
@@ -612,8 +608,8 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 		@Override
 		protected void onPreExecute() {
-			mUrl = "http://apphome.sinaapp.com/dc/A/Api/trendData?os=android&tid=ZSUSD&t="
-					+ mCurrentTimeChartTYP + "";
+			mUrl = "http://apphome.sinaapp.com/dc/A/Api/trendData?os=android&tid="
+					+ mCurrentChartCode + "&t=" + mCurrentTimeChartTYP + "";
 			errorString = null;
 			mDataRefreshView.setVisibility(View.VISIBLE);
 		}
@@ -717,8 +713,9 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 		@Override
 		protected void onPreExecute() {
-			mUrl = "http://apphome.sinaapp.com/dc/A/Api/kdata?os=android&tid=ZSUSD&tt="
-					+ mCurrentKLineType + "&apitoken=";
+			mUrl = "http://apphome.sinaapp.com/dc/A/Api/kdata?os=android&tid="
+					+ mCurrentChartCode + "&tt=" + mCurrentKLineType
+					+ "&apitoken=";
 			errorString = null;
 			mDataRefreshView.setVisibility(View.VISIBLE);
 		}
@@ -955,7 +952,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 					+ getResources().getColor(R.color.yellow)
 					+ "\">EMA10</font> <font color=\""
 					+ getResources().getColor(R.color.green)
-					+ "\">EMA20</font>";// + "(点击该图形切换指标)")
+					+ "\">EMA20</font>";
 		}
 		this.mTitleView.setVisibility(View.VISIBLE);
 		this.mTitleView.setText(Html.fromHtml(str));
@@ -1217,11 +1214,11 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 	// K线图 几分线 时间选择
 	private void changeKLineType(int iKLineType) {
-		tv_title.setText(mChartTitle + "-" + "K线" + " "
+		tv_title.setText(mCurrentChartName + "-" + "K线" + " "
 				+ mStockIndicatorTiemStrings[iKLineType]);
 		mCurrentKLineType = mKLineTypes[iKLineType];
 		mCurrentKLineTYPIndex = iKLineType;
-		indicatorBgChange(iKLineType);
+		changeKChartTimeSelectBg(iKLineType);
 		getStockChartData();
 	}
 
@@ -1240,7 +1237,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 
 	// 分时图 几分线 时间选择
 	private void changeTLineType(int iTLineType) {
-		tv_title.setText(mChartTitle + "-" + "实时走势" + " "
+		tv_title.setText(mCurrentChartName + "-" + "实时走势" + " "
 				+ mTimChartTypes[iTLineType]);
 		mCurrentTimeChartTYP = iTLineType;
 		getTimeStockChartData();
@@ -1371,7 +1368,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 			changeTLineType(mCurrentTimeChartTYP);
 			break;
 		case R.id.chart_k_tab:
-			tv_title.setText(mChartTitle + "-" + "K线" + " "
+			tv_title.setText(mCurrentChartName + "-" + "K线" + " "
 					+ mStockIndicatorTiemStrings[mCurrentKLineTYPIndex]);
 			time_chart_layout.setVisibility(View.GONE);
 			indicator_layout.setVisibility(View.VISIBLE);

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
+import com.innouni.south.entity.ETFEntity;
 
 /**
  * 开户申请页面
@@ -21,7 +22,7 @@ import com.innouni.south.base.BaseActivity;
  */
 public class AccountApplyActivity extends BaseActivity implements OnClickListener {
 	
-	private static final String url = "http://192.168.1.100/nfgjs_app_server/index.php?c=apply&a=index";
+	private String url;
 	private WebView webView;
 	
 	@Override
@@ -42,6 +43,8 @@ public class AccountApplyActivity extends BaseActivity implements OnClickListene
 		titleContentView.setText("开户申请");
 		
 		webView = (WebView) findViewById(R.id.webview_apply_account);
+		url = getResources().getString(R.string.app_url) + "index.php?c=apply&a=index";
+		webView.loadUrl(url);
 		webView.loadUrl(url);
 	}
 

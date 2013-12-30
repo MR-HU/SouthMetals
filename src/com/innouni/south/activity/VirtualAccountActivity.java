@@ -41,7 +41,8 @@ public class VirtualAccountActivity extends BaseActivity implements OnClickListe
 		titleContentView.setText("Ä£ÄâÕË»§");
 		
 		webView = (WebView) findViewById(R.id.webview_virtual);
-		webView.loadUrl("http://192.168.1.100/nfgjs_app_server/index.php?c=apply&a=index");
+		String url = getResources().getString(R.string.app_url) + "index.php?c=apply&a=index";
+		webView.loadUrl(url);
 	}
 
 	@Override
