@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -87,6 +88,7 @@ public class MessageActivity extends BaseActivity implements OnClickListener {
 		sendButton = (Button) findViewById(R.id.btn_send_message);
 		sendButton.setOnClickListener(this);
 		contentText = (EditText) findViewById(R.id.edit_message_write);
+		contentText.setTextColor(Color.BLACK);
 		
 		refreshView = (PullToRefreshView) findViewById(R.id.refresh_view);
 		mListView = (ListView) findViewById(R.id.my_listview);

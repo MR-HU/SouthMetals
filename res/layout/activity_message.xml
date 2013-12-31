@@ -40,6 +40,7 @@
    					android:layout_height="wrap_content"
    					android:layout_marginRight="5.0dip"
    					android:layout_toLeftOf="@id/btn_send_message"
+   					android:textColor="@color/black"
    					android:background="@drawable/message_input_bg"/>
    			</RelativeLayout>
    			<LinearLayout 

@@ -52,7 +52,7 @@
 		    		android:layout_width="fill_parent"
 		    		android:layout_height="wrap_content"
 		    		android:gravity="center"
-		    		android:text="南方贵金属经营有限公司  版权所有"
+		    		android:text="南方白银网  版权所有"
 		    		android:textColor="@color/black"
 		    		android:textSize="16.0sp"/>
 		    	<Button 
