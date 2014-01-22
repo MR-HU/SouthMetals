@@ -17,7 +17,16 @@
 		<ImageView 
 		    android:id="@+id/image_voice_class"
 		    android:layout_width="match_parent"
-	    	android:layout_height="match_parent"
+	    	android:layout_height="wrap_content"
+	    	android:visibility="gone"
 	    	android:src="@drawable/welcome_img"/>
+		<TextView 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:background="@color/transparent"
+		    android:gravity="center"
+		    android:text="敬请期待"
+		    android:textColor="@color/white"
+		    android:textSize="30sp"/>
 	</LinearLayout>
 </LinearLayout>

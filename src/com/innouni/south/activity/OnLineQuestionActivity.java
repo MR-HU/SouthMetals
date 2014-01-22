@@ -134,15 +134,16 @@ public class OnLineQuestionActivity extends BaseActivity implements OnClickListe
 		UserInfo user = application.getUserInfo();
 		if (null == user) {
 			showToast(R.string.load_first);
-			return;
+			startActivity(new Intent(OnLineQuestionActivity.this, LoadActivity.class));
+		} else {
+			ExpertInfo expert = (ExpertInfo) adapter.getItem(position);
+			Intent intent = new Intent(OnLineQuestionActivity.this, MessageActivity.class);
+			intent.putExtra("push", false);
+			intent.putExtra("expertId", expert.getId().toString());
+			intent.putExtra("userId", user.getUserId().toString());
+			intent.putExtra("expertName", expert.getName().toString());
+			startActivity(intent);
 		}
-		ExpertInfo expert = (ExpertInfo) adapter.getItem(position);
-		Intent intent = new Intent(OnLineQuestionActivity.this, MessageActivity.class);
-		intent.putExtra("push", false);
-		intent.putExtra("expertId", expert.getId().toString());
-		intent.putExtra("userId", user.getUserId().toString());
-		intent.putExtra("expertName", expert.getName().toString());
-		startActivity(intent);
 	}
 
 	private class GetExpertTask extends AsyncTask<String, Void, ArrayList<Object>>{

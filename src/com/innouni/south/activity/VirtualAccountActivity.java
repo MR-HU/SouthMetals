@@ -3,6 +3,7 @@ package com.innouni.south.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -41,6 +42,8 @@ public class VirtualAccountActivity extends BaseActivity implements OnClickListe
 		titleContentView.setText("Ä£ÄâÕË»§");
 		
 		webView = (WebView) findViewById(R.id.webview_virtual);
+		WebSettings settings = webView.getSettings();
+		settings.setJavaScriptEnabled(true);
 		String url = getResources().getString(R.string.app_url) + "index.php?c=apply&a=index";
 		webView.loadUrl(url);
 	}

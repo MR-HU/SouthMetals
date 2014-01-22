@@ -1,149 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
-    <include layout="@layout/app_title_bar"/>
-    <LinearLayout 
-    	android:layout_width="fill_parent"
-    	android:layout_height="fill_parent"
-    	android:orientation="vertical"
-    	android:background="@drawable/app_background">
-    	<LinearLayout 
-	    	android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-	    	android:visibility="gone"
-	    	android:background="@drawable/title_low_background"/>
-	    <com.innouni.south.widget.ReboundScrollView 
-	    	android:layout_width="fill_parent"
-	    	android:layout_height="fill_parent"
-	    	android:layout_margin="10.0dip"
-	    	android:fadingEdge="none"
-	    	android:fadingEdgeLength="0dip"
-	    	android:scrollbars="none">
-		    <LinearLayout 
-		    	android:layout_width="fill_parent"
-		    	android:layout_height="wrap_content"
-		    	android:orientation="vertical">
-		    	<RelativeLayout 
-		    		android:id="@+id/lay_online_question"
-		    		android:layout_width="fill_parent"
-		    		android:layout_height="50.0dip"
-		    		android:clickable="true"
-		    		android:background="@drawable/list_middle_click">
-		    		<TextView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="fill_parent"
-		    			android:layout_marginLeft="5.0dip"
-		    			android:layout_centerVertical="true"
-		    			android:gravity="center_vertical"
-		    			android:text="@string/online_question"
-		    			android:textColor="@color/black"
-		    			android:textSize="18.0sp"/>
-		    		<ImageView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="wrap_content"
-		    			android:src="@drawable/list_arrow_selector"
-		    			android:layout_alignParentRight="true"
-		    			android:layout_marginRight="5.0dip"
-		    			android:layout_centerVertical="true"/>
-		    	</RelativeLayout>
-		    	<RelativeLayout 
-		    		android:id="@+id/lay_buy_info"
-		    		android:layout_width="fill_parent"
-		    		android:layout_height="50.0dip"
-		    		android:visibility="gone"
-		    		android:clickable="true"
-		    		android:background="@drawable/list_middle_click">
-		    		<TextView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="fill_parent"
-		    			android:layout_marginLeft="5.0dip"
-		    			android:layout_centerVertical="true"
-		    			android:gravity="center_vertical"
-		    			android:text="@string/sub_info"
-		    			android:textColor="@color/black"
-		    			android:textSize="18.0sp"/>
-		    		<ImageView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="wrap_content"
-		    			android:src="@drawable/list_arrow_selector"
-		    			android:layout_alignParentRight="true"
-		    			android:layout_marginRight="5.0dip"
-		    			android:layout_centerVertical="true"/>
-		    	</RelativeLayout>
-		    	<RelativeLayout 
-		    		android:id="@+id/lay_online_pay"
-		    		android:layout_width="fill_parent"
-		    		android:layout_height="50.0dip"
-		    		android:clickable="true"
-		    		android:visibility="gone"
-		    		android:background="@drawable/list_middle_click">
-		    		<TextView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="wrap_content"
-		    			android:layout_marginLeft="5.0dip"
-		    			android:layout_centerVertical="true"
-		    			android:gravity="center_vertical"
-		    			android:text="@string/online_pay"
-		    			android:textColor="@color/black"
-		    			android:textSize="18.0sp"/>
-		    		<ImageView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="wrap_content"
-		    			android:src="@drawable/list_arrow_selector"
-		    			android:layout_alignParentRight="true"
-		    			android:layout_marginRight="5.0dip"
-		    			android:layout_centerVertical="true"/>
-		    	</RelativeLayout>
-		    	<RelativeLayout 
-		    		android:id="@+id/lay_commemt"
-		    		android:layout_width="fill_parent"
-		    		android:layout_height="50.0dip"
-		    		android:clickable="true"
-		    		android:background="@drawable/list_middle_click">
-		    		<TextView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="fill_parent"
-		    			android:layout_marginLeft="5.0dip"
-		    			android:layout_centerVertical="true"
-		    			android:gravity="center_vertical"
-		    			android:text="早中晚独家评论"
-		    			android:textColor="@color/black"
-		    			android:textSize="18.0sp"/>
-		    		<ImageView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="wrap_content"
-		    			android:src="@drawable/list_arrow_selector"
-		    			android:layout_alignParentRight="true"
-		    			android:layout_marginRight="5.0dip"
-		    			android:layout_centerVertical="true"/>
-		    	</RelativeLayout>
-		    	<RelativeLayout 
-		    		android:id="@+id/lay_voice_class"
-		    		android:layout_width="fill_parent"
-		    		android:layout_height="50.0dip"
-		    		android:clickable="true"
-		    		android:background="@drawable/list_middle_click">
-		    		<TextView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="wrap_content"
-		    			android:layout_marginLeft="5.0dip"
-		    			android:layout_centerVertical="true"
-		    			android:gravity="center_vertical"
-		    			android:text="@string/voice_class"
-		    			android:textColor="@color/black"
-		    			android:textSize="18.0sp"/>
-		    		<ImageView 
-		    			android:layout_width="wrap_content"
-		    			android:layout_height="wrap_content"
-		    			android:src="@drawable/list_arrow_selector"
-		    			android:layout_alignParentRight="true"
-		    			android:layout_marginRight="5.0dip"
-		    			android:layout_centerVertical="true"/>
-		    	</RelativeLayout>
-		    </LinearLayout>
-		</com.innouni.south.widget.ReboundScrollView>
-	</LinearLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title_bar" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/title_low_background"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/lay_online_question"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:background="@drawable/list_middle_click"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5.0dip"
+                    android:gravity="center_vertical"
+                    android:text="@string/online_question"
+                    android:textColor="@color/black"
+                    android:textSize="18.0sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5.0dip"
+                    android:src="@drawable/list_arrow_selector" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lay_buy_info"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:background="@drawable/list_middle_click"
+                android:clickable="true"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5.0dip"
+                    android:gravity="center_vertical"
+                    android:text="@string/sub_info"
+                    android:textColor="@color/black"
+                    android:textSize="18.0sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5.0dip"
+                    android:src="@drawable/list_arrow_selector" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lay_online_pay"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:background="@drawable/list_middle_click"
+                android:clickable="true"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5.0dip"
+                    android:gravity="center_vertical"
+                    android:text="@string/online_pay"
+                    android:textColor="@color/black"
+                    android:textSize="18.0sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5.0dip"
+                    android:src="@drawable/list_arrow_selector" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lay_commemt"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:background="@drawable/list_middle_click"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5.0dip"
+                    android:gravity="center_vertical"
+                    android:text="早中晚独家评论"
+                    android:textColor="@color/black"
+                    android:textSize="18.0sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5.0dip"
+                    android:src="@drawable/list_arrow_selector" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lay_voice_class"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:background="@drawable/list_middle_click"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5.0dip"
+                    android:gravity="center_vertical"
+                    android:text="@string/voice_class"
+                    android:textColor="@color/black"
+                    android:textSize="18.0sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5.0dip"
+                    android:src="@drawable/list_arrow_selector" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay_announce"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_high_background"
+        android:visibility="gone"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginRight="8.0dip"
+            android:background="@drawable/title_icon_notice" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="4.0dip"
+            android:text="@string/announcement"
+            android:textColor="#4ED2E6"
+            android:textSize="15sp" />
+
+        <com.innouni.south.widget.AlwaysMarqueeTextView
+            android:id="@+id/txt_announcement"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15.0dip"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="欢迎来到南方贵金属"
+            android:textColor="#4ED2E6"
+            android:textSize="15sp" />
+    </LinearLayout>
+
 </LinearLayout>

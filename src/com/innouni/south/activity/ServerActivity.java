@@ -59,6 +59,8 @@ public class ServerActivity extends BaseActivity implements OnClickListener{
 		titleRightBtn.setVisibility(View.GONE);
 		titleContentView.setText(R.string.server_line);
 		
+		findViewById(R.id.txt_wap).setOnClickListener(this);
+		
 		serverView = (TextView) findViewById(R.id.txt_server_line);
 		serverView.setText(shareUtil.getStringValues(ShareUtil.SERVER_LINE));
 		
@@ -94,6 +96,14 @@ public class ServerActivity extends BaseActivity implements OnClickListener{
 		case R.id.btn_goto_charge:
 			Intent intent4 = new Intent(ServerActivity.this, RateExchangeActivity.class);
 			startActivity(intent4);
+			break;
+		case R.id.txt_wap:
+			Intent intent5 = new Intent();        
+            intent5.setAction("android.intent.action.VIEW");   
+            String uri = getResources().getString(R.string.app_url) + "index.php?c=wap&a=data";
+            Uri url = Uri.parse(uri);   
+            intent5.setData(url);  
+            startActivity(intent5);
 			break;
 		default:
 			break;

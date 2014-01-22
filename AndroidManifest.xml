@@ -32,9 +32,9 @@
        	<activity android:name=".ModifyEmailActivity" />
        	<activity android:name=".ModifyPhoneActivity" />
        	<activity android:name=".GetPwdBackActivity" />
-       	<activity android:name=".RateExchangeActivity" android:windowSoftInputMode="adjustResize" />
+       	<activity android:name=".RateExchangeActivity" android:windowSoftInputMode="adjustPan" />
     	<activity android:name=".AboutActivity" />
-    	<activity android:name=".FeedBackActivity" android:windowSoftInputMode="adjustResize" />
+    	<activity android:name=".FeedBackActivity" android:windowSoftInputMode="adjustPan" />
     	<activity android:name=".AppInfoActivity" />
     	<activity android:name=".EconomicCalendarGroupActivity" android:theme="@style/GroupActivity" />
     	<activity android:name=".EconomicCalendaActivity" />

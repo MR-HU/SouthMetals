@@ -1,18 +1,21 @@
 package com.innouni.south.activity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
+import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.ShareUtil;
 import com.innouni.south.util.TencentAccessTokenKeeper;
 import com.tencent.weibo.api.TAPI;
@@ -28,6 +31,7 @@ import com.tencent.weibo.webview.OAuthV2AuthorizeWebView;
 public class ShareTencentWeiboActivity extends BaseActivity implements OnClickListener {
 	
 	private EditText contentView;
+	private String url;
 
 	private OAuthV2 oAuth;      // 授权
 //	private UserAPI userAPI;    // 用户模块处理对象
@@ -41,6 +45,7 @@ public class ShareTencentWeiboActivity extends BaseActivity implements OnClickLi
 				//显示获得的用户信息
 				showToast(msg.obj.toString());
 			} else if (msg.what == 2) {
+				System.out.println(msg.obj.toString());
 				showToast(R.string.share_success);
 			} else if (msg.what == 3) {
 				showToast(R.string.share_success);
@@ -56,6 +61,10 @@ public class ShareTencentWeiboActivity extends BaseActivity implements OnClickLi
 		setContentView(R.layout.activity_tencent_share);
 		application = MainApplication.getApplication();
 		application.setActivity(this);
+		url = getIntent().getStringExtra("url");
+		if (url.equals("")) {
+			new GetApkUrlTask().execute();
+		}
 		initView();
 	}
 	
@@ -69,6 +78,11 @@ public class ShareTencentWeiboActivity extends BaseActivity implements OnClickLi
 		titleContentView.setText(R.string.tencnet_weibo);
 		
 		contentView = (EditText) findViewById(R.id.edit_share_content);
+		String tip = "";
+		if (!url.trim().equals("")) {
+			tip = "APP的下载地址:" + url;
+		}
+		contentView.setText(contentView.getText().toString() + tip);
 	}
 
 	@Override
@@ -158,6 +172,20 @@ public class ShareTencentWeiboActivity extends BaseActivity implements OnClickLi
 		}
 	}
 
+	private class GetApkUrlTask extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			String json = HttpPostRequest.getDataFromWebServer(ShareTencentWeiboActivity.this, "getApkUrl", null);
+			try {
+				url = new JSONObject(json).optString("url");
+			} catch (JSONException e) {
+				url = "";
+			}
+			return null;
+		}
+		
+	}
 //	/** 获取当前腾讯微博授权用户信息 */
 //	private void getUserInfo() {
 //		message = new Message();

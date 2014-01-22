@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">南方贵金属</string>
+	<!-- <string name="app_url">http://192.168.1.100/nfgjs_app_server/</string> -->
 	<string name="app_url">http://www.innouni.com/nfgjs/</string>
  	<string name="exit_app">您确定要退出南方贵金属吗?</string>
 	

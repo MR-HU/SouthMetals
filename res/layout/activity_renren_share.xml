@@ -10,10 +10,6 @@
     	android:layout_height="fill_parent"
     	android:orientation="vertical"
     	android:background="@drawable/app_background">
-    	<ImageView 
-    		android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"
-    		android:background="@drawable/title_low_background"/>
     	<EditText 
     		android:id="@+id/edit_share_content"
     		android:layout_width="fill_parent"

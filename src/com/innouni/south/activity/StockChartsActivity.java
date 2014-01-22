@@ -26,8 +26,10 @@ import org.stockchart.series.StockSeries;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
@@ -113,6 +115,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 	private GetMetalPriceTask iGetMetalPriceTask;
 
 	private GlobalConfigPreferences isPreferences;
+	private MyCounterUtil counter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -225,6 +228,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		mTitleView = ((TextView) findViewById(R.id.k_chart_title));
 		mTimeTitleView = ((TextView) findViewById(R.id.t_chart_title));
 		mDataRefreshView = ((TextView) findViewById(R.id.metal_data_refresh_textView));
+		mDataRefreshView.setTextColor(Color.argb(100, 255, 255, 255));
 	}
 
 	// 分时图初始化
@@ -645,7 +649,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		protected void onPostExecute(ArrayList<Object> result) {
 			iGetTimeGoldTask = null;
 			try {
-				mDataRefreshView.setVisibility(View.GONE);
+//				mDataRefreshView.setVisibility(View.GONE);
 				if (errorString == null) {
 					int len = mChartBeans.size();
 					int j = string2Int((String) ((LinePoint) ((TimeChartBean) mChartBeans
@@ -718,6 +722,9 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 					+ "&apitoken=";
 			errorString = null;
 			mDataRefreshView.setVisibility(View.VISIBLE);
+			mDataRefreshView.setText("数据加载中..");
+			if (null != counter)
+				counter.cancel();
 		}
 
 		@Override
@@ -764,7 +771,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 			}
 			iGetGoldTask = null;
 			try {
-				mDataRefreshView.setVisibility(View.GONE);
+//				mDataRefreshView.setVisibility(View.GONE);
 				if (errorString == null) {
 
 					if (len < 50) {
@@ -777,8 +784,9 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 						mStockChartView.getGlobalAxisRange(Axis.Side.BOTTOM)
 								.setViewValues(len, -50 + len);
 					}
+					counter = new MyCounterUtil(60000, 1000, mDataRefreshView);
+					counter.start();
 					stockViewRecalc();
-
 					// 显示 已经选择指标
 					showSelcectedIndicator();
 				}
@@ -1383,9 +1391,37 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 		}
 	}
 
+	/**
+	 * 计时器
+	 */
+	private class MyCounterUtil extends CountDownTimer {
+
+		private TextView textView;
+
+		public MyCounterUtil(long millisInFuture, long countDownInterval,
+				TextView textView) {
+			super(millisInFuture, countDownInterval);
+			this.textView = textView;
+		}
+
+		@Override
+		public void onFinish() {
+			getMetalPriceData();
+			getStockChartData();
+		}
+
+		@Override
+		public void onTick(long millisUntilFinished) {
+			textView.setText((millisUntilFinished / 1000) + "");
+		}
+	}
 	@Override
 	protected void onPause() {
 		super.onPause();
+		if (counter != null) {
+			counter.cancel();
+			counter = null;
+		}
 		if (iGetGoldTask != null) {
 			iGetGoldTask.cancel(true);
 		}

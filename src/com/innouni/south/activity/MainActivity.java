@@ -37,55 +37,63 @@ import com.innouni.south.widget.MsgBox;
 import com.viewpagerindicator.PageIndicator;
 
 /**
- * 主页  九宫格展示各个模块
+ * 主页 九宫格展示各个模块
+ * 
  * @author HuGuojun
  * @data 2013-09-02
  */
-public class MainActivity extends BaseActivity implements OnClickListener, OnItemClickListener, OnPageChangeListener {
+public class MainActivity extends BaseActivity implements OnClickListener,
+		OnItemClickListener, OnPageChangeListener {
 
 	private ImageView titleLeftImage;
 	private ImageView titlerightImage;
-	
+	private TextView userNameView;
+
 	private PageIndicator indicatorLayout;
 	private TextView announcementView;
 	private GridView gridView1;
 	private GridView gridView2;
 	private ViewPager viewPager;
 	private List<View> views;
-	
+
 	private List<HashMap<String, Object>> data1;
 	private List<HashMap<String, Object>> data2;
 	private int[] icons;
 	private String[] titles;
 	private int[] icons2;
 	private String[] titles2;
-	
+
 	private int currentPage = 0;
-	
+
 	private GetAnnouncementTask task;
-		
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		application = MainApplication.getApplication();
 		application.setActivity(this);
-		
-		icons = new int[]{
-				R.drawable.icon_home_offer, R.drawable.icon_home_information, R.drawable.icon_home_calendar, 
-				R.drawable.icon_home_strategy, R.drawable.icon_home_simulation, R.drawable.icon_home_etf, 
-				R.drawable.icon_home_analyze, R.drawable.icon_home_service, R.drawable.icon_home_account};
+
+		icons = new int[] { R.drawable.icon_home_offer,
+				R.drawable.icon_home_information,
+				R.drawable.icon_home_calendar, R.drawable.icon_home_strategy,
+				R.drawable.icon_home_simulation, R.drawable.icon_home_etf,
+				R.drawable.icon_home_analyze, R.drawable.icon_home_service,
+				R.drawable.icon_home_account };
 		titles = getResources().getStringArray(R.array.home_icon);
-		icons2 = new int[]{R.drawable.icon_home_news, R.drawable.icon_home_exchange, R.drawable.icon_home_about};
-		titles2 = new String[]{"即时新闻", "价格转换", "关于我们"};
+		icons2 = new int[] { R.drawable.icon_home_news,
+				R.drawable.icon_home_exchange, R.drawable.icon_home_about };
+		titles2 = new String[] { "即时新闻", "价格转换", "关于我们" };
 		initData();
 		initView();
 		if (NetUtil.isNetworkAvailable(this)) {
-			UpdateVersionUtil versionUtil = UpdateVersionUtil.getInstance(MainActivity.this);
+			UpdateVersionUtil versionUtil = UpdateVersionUtil
+					.getInstance(MainActivity.this);
 			versionUtil.setShowLoading(false);
 			versionUtil.startCheckVersion();
-			if (task != null) task.cancel(true);
+			if (task != null)
+				task.cancel(true);
 			task = new GetAnnouncementTask();
 			task.execute();
 		}
@@ -93,7 +101,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 	private void initData() {
 		HashMap<String, Object> map1;
-		data1 = new ArrayList<HashMap<String,Object>>();
+		data1 = new ArrayList<HashMap<String, Object>>();
 		for (int i = 0; i < icons.length; i++) {
 			map1 = new HashMap<String, Object>();
 			map1.put("icon", icons[i]);
@@ -102,7 +110,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			map1 = null;
 		}
 		HashMap<String, Object> map2;
-		data2 = new ArrayList<HashMap<String,Object>>();
+		data2 = new ArrayList<HashMap<String, Object>>();
 		for (int i = 0; i < icons2.length; i++) {
 			map2 = new HashMap<String, Object>();
 			map2.put("icon", icons2[i]);
@@ -124,21 +132,30 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		titlerightImage.setOnClickListener(this);
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
 		titleContentView.setVisibility(View.GONE);
+		userNameView = (TextView) findViewById(R.id.txt_user_name_show);
 		announcementView = (TextView) findViewById(R.id.txt_announcement);
-		
-		View view1 = LayoutInflater.from(this).inflate(R.layout.main_pager_gridview1, null);
+
+		View view1 = LayoutInflater.from(this).inflate(
+				R.layout.main_pager_gridview1, null);
 		gridView1 = (GridView) view1.findViewById(R.id.gridview_main_icon);
 		gridView1.setOnItemClickListener(this);
-		gridView1.setAdapter(new SimpleAdapter(MainActivity.this, data1,
-				R.layout.item_main_gridview, new String[]{"icon", "title"}, 
-				new int[]{R.id.image_main_gridview, R.id.txt_main_gridview}));
-		View view2 = LayoutInflater.from(this).inflate(R.layout.main_pager_gridview1, null);
+		gridView1
+				.setAdapter(new SimpleAdapter(MainActivity.this, data1,
+						R.layout.item_main_gridview, new String[] { "icon",
+								"title" }, new int[] {
+								R.id.image_main_gridview,
+								R.id.txt_main_gridview }));
+		View view2 = LayoutInflater.from(this).inflate(
+				R.layout.main_pager_gridview1, null);
 		gridView2 = (GridView) view2.findViewById(R.id.gridview_main_icon);
 		gridView2.setOnItemClickListener(this);
-		gridView2.setAdapter(new SimpleAdapter(MainActivity.this, data2,
-				R.layout.item_main_gridview, new String[]{"icon", "title"}, 
-				new int[]{R.id.image_main_gridview, R.id.txt_main_gridview}));
-		
+		gridView2
+				.setAdapter(new SimpleAdapter(MainActivity.this, data2,
+						R.layout.item_main_gridview, new String[] { "icon",
+								"title" }, new int[] {
+								R.id.image_main_gridview,
+								R.id.txt_main_gridview }));
+
 		views = new ArrayList<View>();
 		views.add(view1);
 		views.add(view2);
@@ -146,17 +163,19 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		viewPager.setAdapter(new ViewPagerAdapter(views));
 		viewPager.setCurrentItem(0);
 		viewPager.setOnPageChangeListener(this);
-		
+
 		indicatorLayout = (PageIndicator) findViewById(R.id.main_page_indicator);
 		indicatorLayout.setViewPager(viewPager);
 		indicatorLayout.setOnPageChangeListener(this);
 	}
-	
-	private class GetAnnouncementTask extends AsyncTask<Void, Void, List<String>>{
+
+	private class GetAnnouncementTask extends
+			AsyncTask<Void, Void, List<String>> {
 
 		@Override
 		protected List<String> doInBackground(Void... params) {
-			String json = HttpPostRequest.getDataFromWebServer(MainActivity.this, "getAnnouncement", null);
+			String json = HttpPostRequest.getDataFromWebServer(
+					MainActivity.this, "getAnnouncement", null);
 			System.out.println("请求通知返回: " + json);
 			try {
 				if (json == null) {
@@ -179,23 +198,27 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		@Override
 		protected void onPostExecute(List<String> result) {
 			task = null;
-			if (null == result) 
+			if (null == result)
 				return;
 			if (result.size() > 0) {
 				announcementView.setText(result.get(0));
 			}
 		}
 	}
-	
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.image_title_right:
-			if (null != application.getUserInfo() && !"-1".equals(application.getUserInfo().getUserId().toString())) {
-				Intent intent = new Intent(MainActivity.this, UserCenterActivity.class);
+			if (null != application.getUserInfo()
+					&& !"-1".equals(application.getUserInfo().getUserId()
+							.toString())) {
+				Intent intent = new Intent(MainActivity.this,
+						UserCenterActivity.class);
 				startActivity(intent);
 			} else {
-				Intent intent = new Intent(MainActivity.this, LoadActivity.class);
+				Intent intent = new Intent(MainActivity.this,
+						LoadActivity.class);
 				startActivity(intent);
 			}
 			break;
@@ -203,7 +226,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
 		Intent intent = new Intent();
 		switch (position) {
 		case 0:
@@ -222,7 +246,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			break;
 		case 2:
 			if (currentPage == 0) {
-				intent.setClass(MainActivity.this, EconomicCalendarGroupActivity.class);
+				intent.setClass(MainActivity.this,
+						EconomicCalendarGroupActivity.class);
 			} else {
 				intent.setClass(MainActivity.this, AboutActivity.class);
 			}
@@ -250,7 +275,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		}
 		startActivity(intent);
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -263,9 +288,17 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	protected void onResume() {
 		super.onResume();
 		if (NetUtil.isNetworkAvailable(this)) {
-			if (task != null) task.cancel(true);
+			if (task != null)
+				task.cancel(true);
 			task = new GetAnnouncementTask();
 			task.execute();
+		}
+		if (application.getUserInfo() != null) {
+			userNameView.setVisibility(View.VISIBLE);
+			userNameView.setText(application.getUserInfo().getUserName()
+					.toString());
+		} else {
+			userNameView.setVisibility(View.GONE);
 		}
 	}
 
@@ -283,8 +316,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
-	private void exitApp(){
+
+	private void exitApp() {
 		MsgBox mg = new MsgBox();
 		String msg = getString(R.string.exit_app);
 		mg.setMessage(msg);
@@ -308,14 +341,16 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 	/** ViewPager.OnPageChangeListener */
 	@Override
-	public void onPageScrollStateChanged(int arg0) {}
+	public void onPageScrollStateChanged(int arg0) {
+	}
 
 	@Override
-	public void onPageScrolled(int arg0, float arg1, int arg2) {}
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+	}
 
 	@Override
 	public void onPageSelected(int position) {
 		currentPage = position;
 	}
-	
+
 }

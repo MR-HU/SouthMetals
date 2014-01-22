@@ -145,7 +145,7 @@ public class ETFActivity extends BaseActivity implements OnClickListener {
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 			pairs.add(new BasicNameValuePair("type", String.valueOf(type)));
 			String json = HttpPostRequest.getDataFromWebServer(ETFActivity.this, "getETF", pairs);
-			System.out.println(json);
+			System.out.println("ETF: " + json);
 			if (json == null || json.equals("net_err")) {
 				return null;
 			} else {
@@ -160,12 +160,14 @@ public class ETFActivity extends BaseActivity implements OnClickListener {
 			titleRightBtn.setVisibility(View.VISIBLE);
 			titleRefreshBar.setVisibility(View.GONE);
 			if (result != null) {
-				//»­Í¼
-				paint(result);
-				if (adapter != null && adapter.getCount() > 0) {
-					adapter.clear();
+				if (result.size() > 0) {
+					//»­Í¼
+					paint(result);
+					if (adapter != null) {
+						adapter.clear();
+					}
+					adapter.setList(result, true);
 				}
-				adapter.setList(result, true);
 			}
 		}
 	}

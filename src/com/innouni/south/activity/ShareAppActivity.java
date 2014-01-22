@@ -1,6 +1,10 @@
 package com.innouni.south.activity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,6 +15,7 @@ import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
+import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.ShareUtil;
 import com.sina.weibo.sdk.WeiboSDK;
 import com.sina.weibo.sdk.api.BaseResponse;
@@ -27,6 +32,7 @@ import com.sina.weibo.sdk.api.WeiboMessage;
  */
 public class ShareAppActivity extends BaseActivity implements OnClickListener, IWeiboHandler.Response{
 	
+	private String url = "";
 	private RelativeLayout sinaWeiboLayout, tencentWeiboLayout, rennLayout;
 	private IWeiboAPI weiboAPI;
 	
@@ -37,6 +43,7 @@ public class ShareAppActivity extends BaseActivity implements OnClickListener, I
 		application = MainApplication.getApplication();
 		application.setActivity(this);
 		initView();
+		new GetApkUrlTask().execute();
 	}
 
 	private void initView() {
@@ -78,7 +85,11 @@ public class ShareAppActivity extends BaseActivity implements OnClickListener, I
 	 */
 	private TextObject getTextObject(){
 		TextObject textObject = new TextObject();
-		textObject.text = "我正在使用南方贵金属APP,你也来试试吧!!";
+		String tip = "";
+		if (!url.equals("")) {
+			tip = "APP的下载地址:" + url;
+		}
+		textObject.text = "我正在使用南方贵金属APP,你也来试试吧!!" + tip;
 		return textObject;
 	}
 	
@@ -94,10 +105,12 @@ public class ShareAppActivity extends BaseActivity implements OnClickListener, I
 			break;
 		case R.id.lay_tencnet:
 			intent = new Intent(ShareAppActivity.this, ShareTencentWeiboActivity.class);
+			intent.putExtra("url", url);
 			startActivity(intent);
 			break;
 		case R.id.lay_renn:
 			intent = new Intent(ShareAppActivity.this, ShareRenrenActivity.class);
+			intent.putExtra("url", url);
 			startActivity(intent);
 			break;
 		default:
@@ -125,6 +138,22 @@ public class ShareAppActivity extends BaseActivity implements OnClickListener, I
         	showToast(baseResp.errMsg + "分享失败！！");
             break;
         }
+	}
+	
+	private class GetApkUrlTask extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			String json = HttpPostRequest.getDataFromWebServer(ShareAppActivity.this, "getApkUrl", null);
+			System.out.println("APK地址: " + json);
+			try {
+				url = new JSONObject(json).optString("url");
+			} catch (JSONException e) {
+				url = "";
+			}
+			return null;
+		}
+		
 	}
 
 }

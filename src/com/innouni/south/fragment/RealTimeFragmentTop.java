@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -91,7 +92,10 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 						R.id.tvLow, R.id.tvRange, R.id.tvPercent });
 		mListView.setAdapter(adapter);
 		mListView.setOnItemClickListener(this);
+		getData();
+	}
 
+	public void getData() {
 		if (NetUtil.isNetworkAvailable(getActivity())) {
 			if (getRealtimeDataTask != null)
 				getRealtimeDataTask.cancel(true);
@@ -126,6 +130,29 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 		app_list_title_bar_3.setVisibility(View.VISIBLE);
 	}
 
+	/**
+	 * 固定Listview的高度,解决与ScrollView的冲突
+	 * @description setListViewHeightBasedOnChildren
+	 * @param listView 
+	 */
+	public void setListViewHeightBasedOnChildren(ListView listView) {  
+	    ListAdapter listAdapter = listView.getAdapter();   
+	    if (listAdapter == null) {  
+	        return;  
+	    }  
+
+	    int totalHeight = 0;  
+	    for (int i = 0; i < listAdapter.getCount(); i++) {  
+	        View listItem = listAdapter.getView(i, null, listView);  
+	        listItem.measure(0, 0);  
+	        totalHeight += listItem.getMeasuredHeight();  
+	    }  
+
+	    ViewGroup.LayoutParams params = listView.getLayoutParams();  
+	    params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));  
+	    listView.setLayoutParams(params);  
+	} 
+	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -145,12 +172,7 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 			app_list_title_bar_1.setVisibility(View.GONE);
 			app_list_title_bar_2.setVisibility(View.GONE);
 			app_list_title_bar_3.setVisibility(View.VISIBLE);
-			if (NetUtil.isNetworkAvailable(getActivity())) {
-				if (getRealtimeDataTask != null)
-					getRealtimeDataTask.cancel(true);
-				getRealtimeDataTask = new GetRealtimeDataTask();
-				getRealtimeDataTask.execute();
-			}
+			getData();
 			break;
 		case R.id.btn_cahrge:
 			chargeBtn
@@ -167,12 +189,7 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 			app_list_title_bar_1.setVisibility(View.GONE);
 			app_list_title_bar_2.setVisibility(View.GONE);
 			app_list_title_bar_3.setVisibility(View.VISIBLE);
-			if (NetUtil.isNetworkAvailable(getActivity())) {
-				if (getRealtimeDataTask != null)
-					getRealtimeDataTask.cancel(true);
-				getRealtimeDataTask = new GetRealtimeDataTask();
-				getRealtimeDataTask.execute();
-			}
+			getData();
 			break;
 		case R.id.btn_tiantong:
 			tiantongBtn
@@ -189,12 +206,7 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 			app_list_title_bar_1.setVisibility(View.GONE);
 			app_list_title_bar_2.setVisibility(View.VISIBLE);
 			app_list_title_bar_3.setVisibility(View.GONE);
-			if (NetUtil.isNetworkAvailable(getActivity())) {
-				if (getRealtimeDataTask != null)
-					getRealtimeDataTask.cancel(true);
-				getRealtimeDataTask = new GetRealtimeDataTask();
-				getRealtimeDataTask.execute();
-			}
+			getData();
 			break;
 		case R.id.btn_yuegui:
 			yueguiBtn
@@ -211,12 +223,7 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 			app_list_title_bar_1.setVisibility(View.GONE);
 			app_list_title_bar_2.setVisibility(View.VISIBLE);
 			app_list_title_bar_3.setVisibility(View.GONE);
-			if (NetUtil.isNetworkAvailable(getActivity())) {
-				if (getRealtimeDataTask != null)
-					getRealtimeDataTask.cancel(true);
-				getRealtimeDataTask = new GetRealtimeDataTask();
-				getRealtimeDataTask.execute();
-			}
+			getData();
 			break;
 		case R.id.btn_gold_usd_history:
 			usdHistoryBtn
@@ -271,6 +278,7 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 			if (mListData.size() != 0) {
 				adapter.notifyDataSetChanged();
 			}
+			setListViewHeightBasedOnChildren(mListView);
 		}
 	}
 

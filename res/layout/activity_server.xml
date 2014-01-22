@@ -6,6 +6,28 @@
 	android:layout_height="match_parent">
     <include layout="@layout/app_title_bar"/>
     <LinearLayout 
+   		android:layout_width="fill_parent"
+   		android:layout_height="wrap_content"
+   		android:orientation="horizontal"
+   		android:background="@drawable/title_high_background">
+   		<com.innouni.south.widget.AlwaysMarqueeTextView
+   			android:id="@+id/txt_wap"
+   			android:layout_width="fill_parent"
+   			android:layout_height="wrap_content"
+   			android:layout_gravity="center_vertical"
+   			android:layout_marginLeft="15dp"
+   			android:layout_marginRight="15.0dip"
+   			android:textColor="#4ED2E6"
+   			android:singleLine="true"
+   			android:ellipsize="marquee"
+   			android:textSize="15sp"
+   			android:text="点击访问南方白银网网站手机版 "
+   			android:marqueeRepeatLimit="marquee_forever"
+   			android:focusable="true"
+   			android:focusableInTouchMode="true"
+			android:scrollHorizontally="true"/>
+   	</LinearLayout>
+    <LinearLayout 
     	android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
     	android:background="@drawable/app_background"

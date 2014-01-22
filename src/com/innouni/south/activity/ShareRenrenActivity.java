@@ -1,5 +1,9 @@
 package com.innouni.south.activity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
 import com.innouni.south.base.BaseActivity;
+import com.innouni.south.net.HttpPostRequest;
 import com.innouni.south.util.ShareUtil;
 import com.renn.rennsdk.RennClient;
 import com.renn.rennsdk.RennClient.LoginListener;
@@ -27,6 +32,7 @@ public class ShareRenrenActivity extends BaseActivity implements OnClickListener
 	private RennClient rennClient;
 	private EditText contentView;
 	private String content;
+	private String url;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,10 @@ public class ShareRenrenActivity extends BaseActivity implements OnClickListener
 		setContentView(R.layout.activity_renren_share);
 		application = MainApplication.getApplication();
 		application.setActivity(this);
+		url = getIntent().getStringExtra("url");
+		if (url.equals("")) {
+			new GetApkUrlTask().execute();
+		}
 		initView();
 	}
 
@@ -51,6 +61,11 @@ public class ShareRenrenActivity extends BaseActivity implements OnClickListener
 		titleContentView.setText(R.string.renn);
 		
 		contentView = (EditText) findViewById(R.id.edit_share_content);
+		String tip = "";
+		if (!url.equals("")) {
+			tip = "APPµƒœ¬‘ÿµÿ÷∑:" + url;
+		}
+		contentView.setText(contentView.getText().toString() + tip);
 	}
 
 	@Override
@@ -119,4 +134,18 @@ public class ShareRenrenActivity extends BaseActivity implements OnClickListener
 		rennClient.login(this);
 	}
 
+	private class GetApkUrlTask extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			String json = HttpPostRequest.getDataFromWebServer(ShareRenrenActivity.this, "getApkUrl", null);
+			try {
+				url = new JSONObject(json).optString("url");
+			} catch (JSONException e) {
+				url = "";
+			}
+			return null;
+		}
+		
+	}
 }
