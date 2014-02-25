@@ -55,13 +55,13 @@ public class MarketNewsAdapter extends ArrayListAdapter<Object> {
 		TextView timeView;
 	}
 	
-	private String subContent(String content) {
-		String sub = content.substring(content.indexOf("<p>"), content.indexOf("</p>"));
-		return sub;
-	}
+//	private String subContent(String content) {
+//		String sub = content.substring(content.indexOf("<p>"), content.indexOf("</p>"));
+//		return sub;
+//	}
 	
 	private String subHtml(String content) {
-		Spanned spanned = Html.fromHtml(subContent(content));
+		Spanned spanned = Html.fromHtml(content);
 		int length = spanned.length();
 		if (spanned.length() > 50) {
 			length = 50;

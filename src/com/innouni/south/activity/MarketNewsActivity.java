@@ -14,8 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -57,7 +55,6 @@ public class MarketNewsActivity extends BaseActivity implements OnClickListener,
 	
 	private MarketNewsAdapter adapter;
 	private GetMarketNewsTask task;
-	private Resources resources;
 	
 	private TextView fastInfoView, agencyCommentView, marketNewsView;
 	private TextView frexNewsView, worldFianceView, famousColumnView;
@@ -72,7 +69,6 @@ public class MarketNewsActivity extends BaseActivity implements OnClickListener,
 		application = MainApplication.getApplication();
 		application.setActivity(this);
 		adapter = new MarketNewsAdapter(this);
-		resources = getResources();
 		initView();
 	}
 
@@ -184,6 +180,8 @@ public class MarketNewsActivity extends BaseActivity implements OnClickListener,
 			switcherView.setEnabled(false);
 		}
 
+//		http://www.drssm.com/?api-type-1-currentPage-1-pageSize-1
+			
 		@Override
 		protected ArrayList<Object> doInBackground(String... params) {
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>();
