@@ -44,7 +44,8 @@ public class VirtualAccountActivity extends BaseActivity implements OnClickListe
 		webView = (WebView) findViewById(R.id.webview_virtual);
 		WebSettings settings = webView.getSettings();
 		settings.setJavaScriptEnabled(true);
-		String url = getResources().getString(R.string.app_url) + "index.php?c=apply&a=index";
+//		http://www.innouni.com/nfgjs/index.php?c=wap_open&a=index 
+		String url = getResources().getString(R.string.app_url) + "index.php?c=wap_open&a=index";
 		webView.loadUrl(url);
 	}
 
