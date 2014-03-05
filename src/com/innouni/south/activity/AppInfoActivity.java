@@ -1,14 +1,16 @@
 package com.innouni.south.activity;
 
+import java.net.URLDecoder;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.innouni.south.app.MainApplication;
@@ -60,7 +62,7 @@ public class AppInfoActivity extends BaseActivity implements OnClickListener {
 		titleView = (TextView) findViewById(R.id.txt_version_title);
 		titleView.setText(util.getStringValues(ShareUtil.VERSION_TITLE));
 		contentView = (TextView) findViewById(R.id.txt_version_content);
-		contentView.setText(util.getStringValues(ShareUtil.VERSION_CONTENT));
+		contentView.setText(Html.fromHtml(util.getStringValues(ShareUtil.VERSION_CONTENT)));
 		
 		updateButton = (Button) findViewById(R.id.btn_test_update);
 		updateButton.setOnClickListener(this);
@@ -77,7 +79,7 @@ public class AppInfoActivity extends BaseActivity implements OnClickListener {
 			try {
 				JSONObject object = new JSONObject(json);
 				title = object.getString("version");
-				content = object.getString("content");
+				content = URLDecoder.decode(object.getString("content"));
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -88,7 +90,7 @@ public class AppInfoActivity extends BaseActivity implements OnClickListener {
 		protected void onPostExecute(Void result) {
 			task = null;
 			titleView.setText(title);
-			contentView.setText(content);
+			contentView.setText(Html.fromHtml(content));
 			util.setStringValues(ShareUtil.VERSION_TITLE, title);
 			util.setStringValues(ShareUtil.VERSION_CONTENT, content);
 		}

@@ -39,7 +39,7 @@ public class VirtualAccountActivity extends BaseActivity implements OnClickListe
 		titleRightBtn = (TextView) findViewById(R.id.btn_title_right);
 		titleRightBtn.setVisibility(View.GONE);
 		titleContentView = (TextView) findViewById(R.id.txt_title_content);
-		titleContentView.setText("模拟账户");
+		titleContentView.setText("玖赢系统");
 		
 		webView = (WebView) findViewById(R.id.webview_virtual);
 		WebSettings settings = webView.getSettings();

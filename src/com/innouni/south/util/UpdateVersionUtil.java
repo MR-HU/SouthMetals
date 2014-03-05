@@ -1,11 +1,16 @@
 package com.innouni.south.util;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -21,6 +26,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.text.Html;
 import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,7 +80,9 @@ public class UpdateVersionUtil {
 		new UpdateTask().execute();
 	}
 
-	private class UpdateTask extends AsyncTask<String, Integer, InputStream> {
+	private class UpdateTask extends AsyncTask<String, Integer, Void> {
+
+		VersionInfo info;
 
 		@Override
 		protected void onPreExecute() {
@@ -84,8 +92,9 @@ public class UpdateVersionUtil {
 			}
 		}
 
+		// http://www.innouni.com/nfgjs/upload/app/update.xml
 		@Override
-		protected InputStream doInBackground(String... params) {
+		protected Void doInBackground(String... params) {
 			try {
 				String url = resources.getString(R.string.app_url)
 						+ "upload/app/update.xml";
@@ -94,51 +103,48 @@ public class UpdateVersionUtil {
 				conn.setConnectTimeout(5000);
 				conn.setDoOutput(true);
 				conn.setDoInput(true);
-				conn.setRequestMethod("GET");
+				conn.setRequestMethod("POST");
 				conn.setUseCaches(false);
 				conn.setInstanceFollowRedirects(true);
 				conn.setRequestProperty("Content-Type", "text/html;UTF-8");
 				conn.setRequestProperty("Connection", "Keep-Alive");
 				if (conn.getResponseCode() == 200) {
-					return conn.getInputStream();
-				} else {
-					return null;
+					InputStream xml = conn.getInputStream();
+					if (xml != null) {
+						String value = inputStream2String(xml);
+						value = new String(value.getBytes(), "UTF-8");
+						info = parseVersionXml(new ByteArrayInputStream(value.getBytes()));
+					} else {
+						info = null;
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				return null;
+				info = null;
 			}
+			return null;
 		}
 
 		@Override
-		protected void onPostExecute(InputStream result) {
-			super.onPostExecute(result);
-			if (progress.isShowing())
+		protected void onPostExecute(Void result) {
+			if (progress.isShowing()) {
 				progress.hide();
-			if (null != result) {
-				VersionInfo info = parseVersionXml(result);
-				if (null == info || "".equals(info.getVersionNum())) {
-					if (showLoading) {
-						// 提示检查更新异常,请稍后重试
-						dialogAlter(R.string.ver_update_exception);
-					}
-				} else {
-					float updateVer = Float.valueOf(info.getVersionNum());
-					if (updateVer <= getVersion()) {
-						if (showLoading) {
-							// 提示当前已经是最新版本，无需更新
-							dialogAlter(R.string.no_new_version);
-						}
-					} else {
-						// 有新版本,询问是否更新操作
-						updateVer(info);
-					}
-				}
-			} else {
-				// 提示检查更新异常,请稍后重试
+			}
+			if (null == info || "".equals(info.getVersionNum())) {
 				if (showLoading) {
 					// 提示检查更新异常,请稍后重试
 					dialogAlter(R.string.ver_update_exception);
+				}
+			} else {
+				float updateVer = Float.valueOf(info.getVersionNum());
+				if (updateVer <= getVersion()) {
+					if (showLoading) {
+						// 提示当前已经是最新版本，无需更新
+						dialogAlter(R.string.no_new_version);
+					}
+				} else {
+					// 有新版本,询问是否更新操作
+					updateVer(info);
 				}
 			}
 		}
@@ -155,7 +161,7 @@ public class UpdateVersionUtil {
 		View view = inflater.inflate(R.layout.app_update_dialog_layout, null);
 		TextView contentView = (TextView) view
 				.findViewById(R.id.text_ver_content);
-		contentView.setText(info.getContent());
+		contentView.setText(Html.fromHtml(info.getContent()));
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setView(view).setTitle(R.string.ver_update);
@@ -316,7 +322,7 @@ public class UpdateVersionUtil {
 					} else if ("apkUrl".equals(pullParser.getName())) {
 						info.setApkUrl(pullParser.nextText());
 					} else if ("content".equals(pullParser.getName())) {
-						info.setContent(pullParser.nextText());
+						info.setContent(URLDecoder.decode(pullParser.nextText()));
 					}
 					break;
 				}
@@ -324,6 +330,7 @@ public class UpdateVersionUtil {
 			}
 			return info;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -342,4 +349,15 @@ public class UpdateVersionUtil {
 				"application/vnd.android.package-archive");
 		context.startActivity(intent);
 	}
+
+	private String inputStream2String(InputStream is) throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(is));
+		StringBuffer buffer = new StringBuffer();
+		String line = "";
+		while ((line = in.readLine()) != null) {
+			buffer.append(line);
+		}
+		return buffer.toString();
+	}
+
 }
