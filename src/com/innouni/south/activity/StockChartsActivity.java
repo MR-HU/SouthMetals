@@ -784,7 +784,7 @@ public class StockChartsActivity extends Activity implements OnClickListener,
 						mStockChartView.getGlobalAxisRange(Axis.Side.BOTTOM)
 								.setViewValues(len, -50 + len);
 					}
-					counter = new MyCounterUtil(60000, 1000, mDataRefreshView);
+					counter = new MyCounterUtil(6000, 1000, mDataRefreshView);
 					counter.start();
 					stockViewRecalc();
 					// 显示 已经选择指标

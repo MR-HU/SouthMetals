@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,6 +40,7 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 		OnItemClickListener {
 
 	private String mChartCode, mChartName;
+	private String[] XHChartName = { "黄金", "白银", "铂金", "钯金", "港金" };
 	private String[] SpotChartName = { "现货黄金", "现货白银", "现货铂金", "现货钯金", "现货港金" };
 	private String[] SpotChartCode = { "XHAU", "XHAG", "XHPT", "XHPD", "XHHAU" };
 	private String[] TtjChartName = { "天通铂金", "天通钯金", "天通白银", "天通镍" };
@@ -132,27 +130,29 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 
 	/**
 	 * 固定Listview的高度,解决与ScrollView的冲突
+	 * 
 	 * @description setListViewHeightBasedOnChildren
-	 * @param listView 
+	 * @param listView
 	 */
-	public void setListViewHeightBasedOnChildren(ListView listView) {  
-	    ListAdapter listAdapter = listView.getAdapter();   
-	    if (listAdapter == null) {  
-	        return;  
-	    }  
+	public void setListViewHeightBasedOnChildren(ListView listView) {
+		ListAdapter listAdapter = listView.getAdapter();
+		if (listAdapter == null) {
+			return;
+		}
 
-	    int totalHeight = 0;  
-	    for (int i = 0; i < listAdapter.getCount(); i++) {  
-	        View listItem = listAdapter.getView(i, null, listView);  
-	        listItem.measure(0, 0);  
-	        totalHeight += listItem.getMeasuredHeight();  
-	    }  
+		int totalHeight = 0;
+		for (int i = 0; i < listAdapter.getCount(); i++) {
+			View listItem = listAdapter.getView(i, null, listView);
+			listItem.measure(0, 0);
+			totalHeight += listItem.getMeasuredHeight();
+		}
 
-	    ViewGroup.LayoutParams params = listView.getLayoutParams();  
-	    params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));  
-	    listView.setLayoutParams(params);  
-	} 
-	
+		ViewGroup.LayoutParams params = listView.getLayoutParams();
+		params.height = totalHeight
+				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+		listView.setLayoutParams(params);
+	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -387,60 +387,30 @@ public class RealTimeFragmentTop extends Fragment implements OnClickListener,
 				mListData.add(map);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
 	// 获取现货数据
+	// http://apphome.sinaapp.com/dc/A/Api/tdata?os=android&tid=XHHAU&apitoken=
 	private void getSpotData() {
-		String getstr = HttpPostRequest.getDataFromWebServer(getActivity(),
-				"http://zhj8.sinaapp.com/Mobi/Data/spot");
 		mListData.clear();
-		try {
-			JSONObject localJSONObject = new JSONObject(getstr);
-			String str2 = localJSONObject.getString("1");
-			if (str2.length() > 0)
-				setSpotList(str2, "黄金");
-			String str3 = localJSONObject.getString("3");
-			if (str3.length() > 0)
-				setSpotList(str3, "白银");
-			String str4 = localJSONObject.getString("4");
-			if (str4.length() > 0)
-				setSpotList(str4, "铂金");
-			String str5 = localJSONObject.getString("5");
-			if (str5.length() > 0)
-				setSpotList(str5, "钯金");
-			String str6 = localJSONObject.getString("2");
-			if (str6.length() > 0)
-				setSpotList(str6, "港金");
-		} catch (JSONException e) {
-		}
-	}
-
-	private void setSpotList(String data, String name) {
-		try {
-			HashMap<String, String> map;
+		HashMap<String, String> map;
+		for (int i = 0; i < SpotChartCode.length; i++) {
 			map = new HashMap<String, String>();
-			String[] arrayOfString = data.split(",");
-			String str1 = formatMoney_ex2(arrayOfString[0]);
-			String str2 = formatMoney_ex2(arrayOfString[1]);
-			String str3 = formatMoney_ex2(arrayOfString[2]);
-			String str4 = formatMoney_ex2(arrayOfString[3]);
-			String str5 = "0";
-			String str6 = "0%";
-			if (!str1.equals("0")) {
-				float f = Float.parseFloat(str1) - Float.parseFloat(str2);
-				str5 = formatFloat(f);
-				str6 = formatFloat(100.0F * (f / Float.parseFloat(str2))) + "%";
-			}
-			map.put("name", name);
-			map.put("now", str1);
-			map.put("start", str2);
-			map.put("high", str3);
-			map.put("low", str4);
-			map.put("range", str5);
-			map.put("percent", str6);
+			String mUrl = "http://apphome.sinaapp.com/dc/A/Api/tdata?os=android&tid="
+					+ SpotChartCode[i] + "&apitoken=";
+			String json = HttpPostRequest.getDataFromWebServer(getActivity(),
+					mUrl);
+			String[] strAarray = json.split(",");
+			map.put("name", XHChartName[i]);
+			map.put("now", strAarray[3]);
+			map.put("start", strAarray[4]); // 今开
+			map.put("high", strAarray[5]);
+			map.put("low", strAarray[6]);
+			map.put("range", strAarray[7]);
+			map.put("percent", strAarray[8]);
 			mListData.add(map);
-		} catch (Exception e) {
 		}
 	}
 
